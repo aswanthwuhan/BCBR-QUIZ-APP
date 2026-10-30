@@ -46,6 +46,10 @@ import { MODULE_FLASHCARDS, moduleDeckId } from './data/moduleFlashcards';
 import { CURATED_FLASHCARDS, curatedDeckId, CURATED_MODULE_TITLES } from './data/curatedFlashcards';
 import { PrivacyPolicy, TermsOfService, AboutUs, ContactUs } from './components/Legal';
 
+// Skipped questions are stored as -1 in selectedAnswers and must not count as answered
+const countAnswered = (selectedAnswers?: Record<string, number>) =>
+  Object.values(selectedAnswers || {}).filter((v) => v !== -1).length;
+
 const SUPPORT_POPUP_INTERVAL_MS = 20 * 60 * 1000;
 const SUPPORT_POPUP_SNOOZE_MS = 60 * 60 * 1000;
 const SUPPORT_POPUP_LAST_KEY = 'last_support_popup_time';
@@ -110,7 +114,7 @@ export default function App() {
   
   const [sessionAnswers, setSessionAnswers] = useState<Record<number, number>>({});
   const [aiCache, setAiCache] = useState<Record<number, { text: string | null, loading: boolean, detailed: boolean }>>({});
-  const [leaderboard, setLeaderboard] = useState<{username: string, score: number, progress?: Record<number, any>}[]>([]);
+  const [leaderboard, setLeaderboard] = useState<{username: string, score: number, completed?: number}[]>([]);
   const [loginUsername, setLoginUsername] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const [signupFullName, setSignupFullName] = useState("");
@@ -1371,8 +1375,7 @@ export default function App() {
                             <div className="font-bold text-slate-700 dark:text-slate-200">{user.username}</div>
                             {(() => { 
                               const totalQ = ASSIGNMENTS.reduce((acc: number, a: any) => acc + a.questions.length, 0); 
-                              const prog = user.progress || {}; 
-                              const correct = Object.values(prog).reduce((acc: number, p: any) => acc + (p.completedQuestionIds?.length || 0), 0); 
+                              const correct = user.completed || 0;
                               const pct = totalQ > 0 ? Math.round((correct / totalQ) * 100) : 0; 
                               return <div className="text-[9px] font-bold text-sky-500 dark:text-sky-400">{pct}% Mastered</div>; 
                             })()}
@@ -1430,7 +1433,7 @@ export default function App() {
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
                           {ASSIGNMENTS.map(a => {
                             const prog = globalState.progress[a.id];
-                            const comp = Object.keys(prog?.selectedAnswers || {}).length;
+                            const comp = countAnswered(prog?.selectedAnswers);
                             const tot = a.questions.length;
                             const perc = Math.round((comp / tot) * 100);
                             return (
@@ -1578,7 +1581,7 @@ export default function App() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar">
                   {ASSIGNMENTS.map(a => {
                     const prog = globalState.progress[a.id];
-                    const comp = Object.keys(prog?.selectedAnswers || {}).length;
+                    const comp = countAnswered(prog?.selectedAnswers);
                     const tot = a.questions.length;
                     const perc = Math.round((comp / tot) * 100);
                     const isCompleted = comp === tot && tot > 0;
@@ -2740,7 +2743,7 @@ export default function App() {
                     }
 
                     return (
-                      <div className="bg-gradient-to-br from-slate-50 to-sky-50/60 dark:from-slate-800/80 dark:to-slate-800/40 rounded-3xl p-4.5 mb-5 border border-sky-100 dark:border-slate-700 shadow-sm text-center">
+                      <div className="bg-gradient-to-br from-slate-50 to-sky-50/60 dark:from-slate-800/80 dark:to-slate-800/40 rounded-3xl p-[18px] mb-5 border border-sky-100 dark:border-slate-700 shadow-sm text-center">
                         <span className={`inline-block px-3 py-1 rounded-full text-[10px] font-black tracking-widest text-white bg-gradient-to-r ${gradeColor} mb-2 shadow-sm uppercase`}>
                           {gradeBadge}
                         </span>
@@ -2790,14 +2793,14 @@ export default function App() {
                       </h4>
                     </div>
                     <ProgressBar 
-                      value={selectedAssignment ? ((Object.keys(globalState.progress[selectedAssignment.id]?.selectedAnswers || {}).length) / selectedAssignment.questions.length) * 100 : 0} 
+                      value={selectedAssignment ? (countAnswered(globalState.progress[selectedAssignment.id]?.selectedAnswers) / selectedAssignment.questions.length) * 100 : 0} 
                       color="bg-sky-500"
                     />
                     <p className="text-[10px] text-slate-400 dark:text-slate-500 mt-2 font-medium">Overall progress across all sessions.</p>
                   </div>
 
                   {/* Support Developer & Donate Card */}
-                  <div className="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-950/40 dark:to-orange-950/40 p-4.5 rounded-2xl border border-amber-200/80 dark:border-amber-800/50 mb-6 text-left shadow-sm relative overflow-hidden">
+                  <div className="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-950/40 dark:to-orange-950/40 p-[18px] rounded-2xl border border-amber-200/80 dark:border-amber-800/50 mb-6 text-left shadow-sm relative overflow-hidden">
                     <div className="flex items-start gap-3">
                       <div className="w-9 h-9 bg-amber-500 text-white rounded-xl flex items-center justify-center shrink-0 shadow-md">
                         <Coffee size={18} className="animate-pulse" />

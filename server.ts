@@ -166,12 +166,15 @@ const strictLimiter = rateLimit({
 const signupValidation = [
   body("username").trim().isLength({ min: 3, max: 30 }).matches(/^[a-zA-Z0-9_]+$/).withMessage("Username must be 3-30 alphanumeric characters or underscores"),
   body("password")
-    .isLength({ min: 8 }).withMessage("Password must be at least 8 characters")
+    .isLength({ min: 8, max: 72 }).withMessage("Password must be 8-72 characters")
     .matches(/[A-Z]/).withMessage("Password must contain at least one uppercase letter")
     .matches(/[a-z]/).withMessage("Password must contain at least one lowercase letter")
     .matches(/[0-9]/).withMessage("Password must contain at least one number"),
   body("fullName").trim().isLength({ min: 1, max: 100 }).withMessage("Full name is required"),
   body("college").trim().isLength({ min: 1, max: 200 }).withMessage("College is required"),
+  body("place").optional({ values: "falsy" }).isString().trim().isLength({ max: 200 }).withMessage("Place is too long"),
+  body("qualification").optional({ values: "falsy" }).isString().trim().isLength({ max: 200 }).withMessage("Qualification is too long"),
+  body("email").optional({ values: "falsy" }).isString().trim().isLength({ max: 200 }).isEmail().withMessage("Invalid email address"),
 ];
 
 const loginValidation = [
@@ -369,6 +372,18 @@ async function startServer() {
     const authenticatedUsername = (req as any).authenticatedUsername;
     const { progress, score, hasAcceptedDisclaimer, hasSeenAIWarning } = req.body;
 
+    const MAX_SCORE = 1_000_000;
+    if (typeof score !== "number" || !Number.isInteger(score) || score < 0 || score > MAX_SCORE) {
+      return res.status(400).json({ error: "Invalid score" });
+    }
+    if (!progress || typeof progress !== "object" || Array.isArray(progress) || JSON.stringify(progress).length > 500_000) {
+      return res.status(400).json({ error: "Invalid progress" });
+    }
+    if ((hasAcceptedDisclaimer !== undefined && typeof hasAcceptedDisclaimer !== "boolean") ||
+        (hasSeenAIWarning !== undefined && typeof hasSeenAIWarning !== "boolean")) {
+      return res.status(400).json({ error: "Invalid flags" });
+    }
+
     try {
       const updateData: any = { progress, score };
       if (hasAcceptedDisclaimer !== undefined) updateData.has_accepted_disclaimer = hasAcceptedDisclaimer;
@@ -392,21 +407,26 @@ async function startServer() {
     }
   });
 
-  app.get("/api/leaderboard", apiLimiter, async (_req, res) => {
+  app.get("/api/leaderboard", authenticate, apiLimiter, async (_req, res) => {
     try {
       const { data, error } = await supabase
         .from("users")
         .select("username, score, progress")
-        .order("score", { ascending: false });
+        .order("score", { ascending: false })
+        .limit(500);
 
       if (error) throw error;
 
-      const parsedData = (data || []).map((user) => ({
-        ...user,
-        progress: typeof user.progress === "string" ? JSON.parse(user.progress) : user.progress,
-      }));
+      // Only expose username, score and a completed-question count, never the full progress
+      const rows = (data || []).map((user) => {
+        let prog: any = user.progress;
+        if (typeof prog === "string") { try { prog = JSON.parse(prog); } catch { prog = {}; } }
+        const completed = Object.values(prog || {}).reduce(
+          (acc: number, p: any) => acc + (Array.isArray(p?.completedQuestionIds) ? p.completedQuestionIds.length : 0), 0);
+        return { username: user.username, score: user.score, completed };
+      });
 
-      res.json(parsedData);
+      res.json(rows);
     } catch (err: any) {
       console.error("Leaderboard fetch error:", sanitizeError(err));
       res.status(500).json({ error: "Failed to fetch leaderboard" });
@@ -459,27 +479,10 @@ async function startServer() {
     }
   });
 
-  app.post("/api/explanation", authenticate, apiLimiter, async (req, res) => {
-    try {
-      const { key, text } = req.body;
-      if (!key || !text) return res.status(400).json({ error: "Key and text required" });
-
-      const sanitizedKey = String(key).slice(0, 200);
-      const sanitizedText = String(text).slice(0, 50000);
-
-      const { error } = await supabase
-        .from("explanations")
-        .insert([{ cache_key: sanitizedKey, explanation_text: sanitizedText }]);
-
-      if (error) {
-        console.error("[Cache] Insert error:", sanitizeError(error));
-      }
-
-      res.json({ success: true });
-    } catch (err: any) {
-      console.error("[Cache] Save error:", sanitizeError(err));
-      res.status(500).json({ error: "Failed to save explanation" });
-    }
+  // The shared explanation cache is read-only: every question is pre-generated, so
+  // clients can no longer write to it (prevents cache poisoning).
+  app.post("/api/explanation", apiLimiter, (_req, res) => {
+    res.status(403).json({ error: "The explanation cache is read-only" });
   });
 
   app.post("/api/report", authenticate, apiLimiter, async (req, res) => {
@@ -543,6 +546,7 @@ async function startServer() {
   } else {
     console.log("Starting in PRODUCTION mode (Static)...");
     app.use(express.static("dist"));
+    app.use("/api", (_req, res) => res.status(404).json({ error: "Not found" }));
     app.get("*", (_req, res) => {
       res.sendFile(path.resolve("dist", "index.html"));
     });
@@ -553,4 +557,7 @@ async function startServer() {
   });
 }
 
-startServer();
+startServer().catch((err) => {
+  console.error("Failed to start server:", err);
+  process.exit(1);
+});

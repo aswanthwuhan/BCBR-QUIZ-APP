@@ -10,12 +10,14 @@ import cookieParser from "cookie-parser";
 import { body, validationResult } from "express-validator";
 
 const app = express();
+app.set("trust proxy", 1);
 
 // --- Configuration ---
 if (!process.env.JWT_SECRET) {
-  console.error("CRITICAL: JWT_SECRET must be set in Vercel environment variables!");
+  // Fail closed: a random per-instance secret would make tokens fail randomly across Vercel instances
+  throw new Error("CRITICAL: JWT_SECRET must be set in Vercel environment variables!");
 }
-const JWT_SECRET = process.env.JWT_SECRET || crypto.randomBytes(64).toString("hex");
+const JWT_SECRET = process.env.JWT_SECRET;
 const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || "https://bcbr-quiz-app.vercel.app").split(",");
 
 // --- Supabase ---
@@ -158,12 +160,15 @@ const strictLimiter = rateLimit({
 const signupValidation = [
   body("username").trim().isLength({ min: 3, max: 30 }).matches(/^[a-zA-Z0-9_]+$/).withMessage("Username must be 3-30 alphanumeric characters or underscores"),
   body("password")
-    .isLength({ min: 8 }).withMessage("Password must be at least 8 characters")
+    .isLength({ min: 8, max: 72 }).withMessage("Password must be 8-72 characters")
     .matches(/[A-Z]/).withMessage("Password must contain at least one uppercase letter")
     .matches(/[a-z]/).withMessage("Password must contain at least one lowercase letter")
     .matches(/[0-9]/).withMessage("Password must contain at least one number"),
   body("fullName").trim().isLength({ min: 1, max: 100 }).withMessage("Full name is required"),
   body("college").trim().isLength({ min: 1, max: 200 }).withMessage("College is required"),
+  body("place").optional({ values: "falsy" }).isString().trim().isLength({ max: 200 }).withMessage("Place is too long"),
+  body("qualification").optional({ values: "falsy" }).isString().trim().isLength({ max: 200 }).withMessage("Qualification is too long"),
+  body("email").optional({ values: "falsy" }).isString().trim().isLength({ max: 200 }).isEmail().withMessage("Invalid email address"),
 ];
 
 const loginValidation = [
@@ -207,6 +212,11 @@ app.use(express.json({ limit: "1mb" }));
 app.use(cookieParser());
 app.use(csrfCheck);
 
+// --- Health Check (before the DB check so it works even if Supabase env is missing) ---
+app.get("/api/health", (_req, res) => {
+  res.json({ status: "ok", timestamp: new Date().toISOString() });
+});
+
 // DB check
 app.use((req, res, next) => {
   if (!supabase) {
@@ -220,11 +230,6 @@ app.use((_req, res, next) => {
   const requestId = crypto.randomUUID();
   res.setHeader("X-Request-Id", requestId);
   next();
-});
-
-// --- Health Check ---
-app.get("/api/health", (_req, res) => {
-  res.json({ status: "ok", timestamp: new Date().toISOString() });
 });
 
 // --- Auth Routes ---
@@ -278,8 +283,10 @@ app.post("/api/signup", authLimiter, signupValidation, async (req, res) => {
       place: newUser.place,
       qualification: newUser.qualification,
       email: newUser.email,
-      progress: {},
-      score: 0,
+      hasAcceptedDisclaimer: newUser.has_accepted_disclaimer,
+      hasSeenAIWarning: newUser.has_seen_ai_warning,
+      progress: newUser.progress,
+      score: newUser.score,
     });
   } catch (err: any) {
     console.error("Signup error:", sanitizeError(err));
@@ -351,6 +358,18 @@ app.post("/api/progress", authenticate, apiLimiter, async (req, res) => {
   const authenticatedUsername = (req as any).authenticatedUsername;
   const { progress, score, hasAcceptedDisclaimer, hasSeenAIWarning } = req.body;
 
+  const MAX_SCORE = 1_000_000;
+  if (typeof score !== "number" || !Number.isInteger(score) || score < 0 || score > MAX_SCORE) {
+    return res.status(400).json({ error: "Invalid score" });
+  }
+  if (!progress || typeof progress !== "object" || Array.isArray(progress) || JSON.stringify(progress).length > 500_000) {
+    return res.status(400).json({ error: "Invalid progress" });
+  }
+  if ((hasAcceptedDisclaimer !== undefined && typeof hasAcceptedDisclaimer !== "boolean") ||
+      (hasSeenAIWarning !== undefined && typeof hasSeenAIWarning !== "boolean")) {
+    return res.status(400).json({ error: "Invalid flags" });
+  }
+
   try {
     const updateData: any = { progress, score };
     if (hasAcceptedDisclaimer !== undefined) updateData.has_accepted_disclaimer = hasAcceptedDisclaimer;
@@ -372,21 +391,26 @@ app.post("/api/progress", authenticate, apiLimiter, async (req, res) => {
   }
 });
 
-app.get("/api/leaderboard", apiLimiter, async (_req, res) => {
+app.get("/api/leaderboard", authenticate, apiLimiter, async (_req, res) => {
   try {
     const { data, error } = await supabase
       .from("users")
       .select("username, score, progress")
-      .order("score", { ascending: false });
+      .order("score", { ascending: false })
+      .limit(500);
 
     if (error) throw error;
 
-    const parsedData = (data || []).map((user: any) => ({
-      ...user,
-      progress: typeof user.progress === "string" ? JSON.parse(user.progress) : user.progress,
-    }));
+    // Only expose username, score and a completed-question count, never the full progress
+    const rows = (data || []).map((user: any) => {
+      let prog: any = user.progress;
+      if (typeof prog === "string") { try { prog = JSON.parse(prog); } catch { prog = {}; } }
+      const completed = Object.values(prog || {}).reduce(
+        (acc: number, p: any) => acc + (Array.isArray(p?.completedQuestionIds) ? p.completedQuestionIds.length : 0), 0);
+      return { username: user.username, score: user.score, completed };
+    });
 
-    res.json(parsedData);
+    res.json(rows);
   } catch (err: any) {
     console.error("Leaderboard error:", sanitizeError(err));
     res.status(500).json({ error: "Failed to fetch leaderboard" });
@@ -435,22 +459,10 @@ app.get("/api/explanation/:key", apiLimiter, async (req, res) => {
   }
 });
 
-app.post("/api/explanation", authenticate, apiLimiter, async (req, res) => {
-  try {
-    const { key, text } = req.body;
-    if (!key || !text) return res.status(400).json({ error: "Key and text required" });
-
-    const sanitizedKey = String(key).slice(0, 200);
-    const sanitizedText = String(text).slice(0, 50000);
-
-    const { error } = await supabase
-      .from("explanations")
-      .insert([{ cache_key: sanitizedKey, explanation_text: sanitizedText }]);
-    if (error) throw error;
-    res.json({ success: true });
-  } catch (err: any) {
-    res.status(500).json({ error: "Failed to save explanation" });
-  }
+// The shared explanation cache is read-only: every question is pre-generated, so
+// clients can no longer write to it (prevents cache poisoning).
+app.post("/api/explanation", apiLimiter, (_req, res) => {
+  res.status(403).json({ error: "The explanation cache is read-only" });
 });
 
 app.post("/api/report", authenticate, apiLimiter, async (req, res) => {

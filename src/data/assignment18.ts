@@ -11,7 +11,7 @@ export const ASSIGNMENT_18_QUESTIONS: Question[] = [
       "Descriptive stage, coding stage, recoding stage"
     ],
     correctAnswer: 1,
-    explanation: "Recoding stage, descriptive stage and analytical stage."
+    explanation: "Data analysis runs in this order: recoding (preparing variables), then descriptive (describing the population), then analytical (testing associations)."
   },
   {
     id: "a18q2",
@@ -23,21 +23,21 @@ export const ASSIGNMENT_18_QUESTIONS: Question[] = [
       "'a' and 'b'"
     ],
     correctAnswer: 3,
-    explanation: "'a' and 'b'."
+    explanation: "Post hoc analysis and data drenching (fishing for significant results) produce spurious findings and inflate type I error, so both should be avoided. Stratified analysis is a legitimate method for checking confounding."
   },
   {
     id: "a18q3",
     text: "In the descriptive stage of analysis, we use logistic regression models",
     options: ["True", "False"],
     correctAnswer: 1,
-    explanation: "False."
+    explanation: "False. Logistic regression is a multivariate method used in the analytical stage. The descriptive stage uses frequencies, proportions, means and rates."
   },
   {
     id: "a18q4",
     text: "'Epi-Info' is a software used for data entry and data analysis",
     options: ["True", "False"],
     correctAnswer: 0,
-    explanation: "True."
+    explanation: "True. Epi Info is free CDC software that supports form design, data entry with validation, and data analysis."
   },
   {
     id: "a18q5",
@@ -49,7 +49,7 @@ export const ASSIGNMENT_18_QUESTIONS: Question[] = [
       "Frequency analysis and univariate analysis"
     ],
     correctAnswer: 1,
-    explanation: "Univariate analysis, stratified analysis and multivariate analysis."
+    explanation: "The analytical stage moves from univariate (crude) analysis to stratified analysis for confounding and effect modification, and then to multivariate models that adjust for several factors."
   },
   {
     id: "a18q6",
@@ -61,7 +61,7 @@ export const ASSIGNMENT_18_QUESTIONS: Question[] = [
       "E, F, G, C, A, B, D"
     ],
     correctAnswer: 2,
-    explanation: "D, B, C, F, E, G, A."
+    explanation: "The analysis strategy goes: identify the study type, identify the main variables, get familiar with the data, characterize the population, examine the exposure-outcome association, create additional two-way tables, and finally conduct advanced analysis."
   },
   {
     id: "a18q7",
@@ -73,7 +73,7 @@ export const ASSIGNMENT_18_QUESTIONS: Question[] = [
       "We calculate prevalence for cross sectional survey"
     ],
     correctAnswer: 1,
-    explanation: "We compare the study outcome for 2 groups."
+    explanation: "Descriptive studies describe the outcome in one group, for example incidence from cohorts or prevalence from surveys. Comparing two groups is the job of analytical studies, so that statement is wrong."
   },
   {
     id: "a18q8",
@@ -85,7 +85,7 @@ export const ASSIGNMENT_18_QUESTIONS: Question[] = [
       "Surveillance - Incidence"
     ],
     correctAnswer: 1,
-    explanation: "Case-control study - Odds ratio."
+    explanation: "For a rare outcome, a case-control study is the efficient choice because it starts from cases that already exist. Incidence cannot be measured in this design, so the measure of association is the odds ratio."
   },
   {
     id: "a18q9",
@@ -97,28 +97,28 @@ export const ASSIGNMENT_18_QUESTIONS: Question[] = [
       "'a' and 'c'"
     ],
     correctAnswer: 3,
-    explanation: "'a' and 'c'."
+    explanation: "The analysis plan follows from the study objectives and the study type (descriptive or analytical). Budget affects logistics, not which statistical analysis is appropriate."
   },
   {
     id: "a18q10",
     text: "Use of spreadsheets, such as Excel, should be avoided for data management and analysis",
     options: ["True", "False"],
     correctAnswer: 0,
-    explanation: "True."
+    explanation: "True. Spreadsheets lack validation checks and an audit trail, and sorting can misalign records. Dedicated software such as Epi Info, EpiData or REDCap is preferred."
   },
   {
     id: "a18q11",
     text: "Multivariate regression models are used during the descriptive stage of analysis",
     options: ["True", "False"],
     correctAnswer: 1,
-    explanation: "False."
+    explanation: "False. The descriptive stage uses frequencies, proportions and means. Multivariate regression belongs to the analytical stage, where it adjusts for confounders."
   },
   {
     id: "a18q12",
     text: "“Epi-Info” is a software that can be used to create data collection instrument format",
     options: ["True", "False"],
     correctAnswer: 0,
-    explanation: "True."
+    explanation: "True. Epi Info, free software from the CDC, can design data collection forms and questionnaires with validation checks, and can also be used for data entry and analysis."
   },
   {
     id: "a18q13",
@@ -130,7 +130,7 @@ export const ASSIGNMENT_18_QUESTIONS: Question[] = [
       "Existing time for analysis"
     ],
     correctAnswer: 0,
-    explanation: "Objectives and study type."
+    explanation: "The analysis plan is decided by the study objectives and the study type or design. Budget, the statistician's availability and time are practical constraints, not determinants."
   },
   {
     id: "a18q14",
@@ -142,7 +142,7 @@ export const ASSIGNMENT_18_QUESTIONS: Question[] = [
       "Checking range and legal values"
     ],
     correctAnswer: 2,
-    explanation: "Calculating strength of association."
+    explanation: "Data cleaning covers removing duplicates, handling missing values and range or legal-value checks. Strength of association is calculated later, during the analytical stage."
   },
   {
     id: "a18q15",
@@ -154,14 +154,14 @@ export const ASSIGNMENT_18_QUESTIONS: Question[] = [
       "perform multivariable regression"
     ],
     correctAnswer: 0,
-    explanation: "Calculate the frequency distribution."
+    explanation: "The study population is described with descriptive statistics such as frequency distributions and percentages. Association, correlation and regression are analytical methods."
   },
   {
     id: "a18q16",
     text: "While examining the association between exposure and outcome based on a priori hypothesis, we compare frequency of exposures between cases and controls using appropriate measure of association",
     options: ["True", "False"],
     correctAnswer: 0,
-    explanation: "True."
+    explanation: "True. A case-control study tests a pre-stated hypothesis by comparing how often the exposure occurred in cases and in controls, using the odds ratio."
   },
   {
     id: "a18q17",
@@ -173,7 +173,7 @@ export const ASSIGNMENT_18_QUESTIONS: Question[] = [
       "Surveillance - Incidence"
     ],
     correctAnswer: 0,
-    explanation: "Cohort study - relative risk."
+    explanation: "For a frequent, acute outcome, enough cases develop during a feasible follow-up, so a cohort study can measure incidence and calculate the relative risk."
   },
   {
     id: "a18q18",
@@ -185,7 +185,7 @@ export const ASSIGNMENT_18_QUESTIONS: Question[] = [
       "Data drenching is acceptable"
     ],
     correctAnswer: 1,
-    explanation: "Recoding can be done for key variables."
+    explanation: "Recoding key variables (for example grouping age) is acceptable. The analysis plan is made in advance, univariate analysis comes before multivariate analysis, and data dredging is unacceptable."
   },
   {
     id: "a18q19",
@@ -197,14 +197,14 @@ export const ASSIGNMENT_18_QUESTIONS: Question[] = [
       "iii. Measures of association, iv. Frequency distribution, i. Multivariate analysis, ii. Recoding"
     ],
     correctAnswer: 2,
-    explanation: "ii, iv, iii, i."
+    explanation: "The correct order is to recode variables, describe them with frequency distributions, calculate measures of association, and finally adjust with multivariate analysis, moving from simple to complex."
   },
   {
     id: "a18q20",
     text: "Spreadsheets are ideal tools for data entry and analysis",
     options: ["True", "False"],
     correctAnswer: 1,
-    explanation: "False."
+    explanation: "False. Spreadsheets have no validation or audit trail and are prone to errors. Database and statistical software is preferred for research data entry and analysis."
   },
   {
     id: "a18q21",
@@ -216,28 +216,28 @@ export const ASSIGNMENT_18_QUESTIONS: Question[] = [
       "Conduct logistic regression analysis"
     ],
     correctAnswer: 3,
-    explanation: "Conduct logistic regression analysis."
+    explanation: "Frequencies, percentages and baseline comparisons describe the study population. Logistic regression is an analytical method for examining and adjusting associations, not for describing the population."
   },
   {
     id: "a18q22",
     text: "Which of the following is the appropriate measure of association in a case-control study?",
     options: ["Odds ratio", "Prevalence ratio", "Relative risk", "Incidence"],
     correctAnswer: 0,
-    explanation: "Odds ratio."
+    explanation: "Case-control studies sample participants by outcome, so incidence cannot be measured. The odds ratio, $OR = ad/bc$, compares the odds of exposure in cases and controls."
   },
   {
     id: "a18q23",
     text: "Prevalence ratio is one of the measures of association calculated in an analytical cross-sectional study.",
     options: ["True", "False"],
     correctAnswer: 0,
-    explanation: "True."
+    explanation: "True. An analytical cross-sectional study measures prevalence in exposed and unexposed groups, so the prevalence ratio (or prevalence odds ratio) is its measure of association."
   },
   {
     id: "a18q24",
     text: "Hypothesis testing is conducted in an analytical epidemiological study.",
     options: ["True", "False"],
     correctAnswer: 0,
-    explanation: "True."
+    explanation: "True. Analytical studies include a comparison group and are designed to test hypotheses about exposure-outcome associations. Descriptive studies generate hypotheses."
   },
   {
     id: "a18q25",
@@ -249,7 +249,7 @@ export const ASSIGNMENT_18_QUESTIONS: Question[] = [
       "iii, i, ii, iv"
     ],
     correctAnswer: 1,
-    explanation: "i, ii, iv, iii."
+    explanation: "The correct sequence is to identify the variables, check and clean the data, describe the population, and then examine associations."
   },
   {
     id: "a18q26",
@@ -261,35 +261,35 @@ export const ASSIGNMENT_18_QUESTIONS: Question[] = [
       "Applying logistic regression"
     ],
     correctAnswer: 0,
-    explanation: "Calculating frequency of the outcome in one group."
+    explanation: "The frequency of the outcome in a single group, with no comparison, is a descriptive statistic. The analytic stage involves comparisons, odds ratios and regression."
   },
   {
     id: "a18q27",
     text: "Relative risk is calculated in which of the following study designs?",
     options: ["Cross-sectional study", "Cohort study", "Case study", "Case control study"],
     correctAnswer: 1,
-    explanation: "Cohort study."
+    explanation: "Relative risk needs incidence in exposed and unexposed groups, which only a cohort study (following people over time) provides."
   },
   {
     id: "a18q28",
     text: "Risk ratio can be calculated in a descriptive cross-sectional study.",
     options: ["True", "False"],
     correctAnswer: 1,
-    explanation: "False."
+    explanation: "False. A descriptive cross-sectional study only estimates prevalence and has no comparison group. A risk ratio also needs incidence, which requires a cohort design."
   },
   {
     id: "a18q29",
     text: "In a case-control study to examine the association between mobile phone use and acoustic neuroma, 24 cases and 72 hospital controls were recruited. Exposure was present among 16 cases and 18 controls. Calculate the measure of association.",
     options: ["Odds ratio 1.5", "Relative risk 1.5", "Odds ratio 6", "Relative risk 6"],
     correctAnswer: 2,
-    explanation: "Odds ratio 6. (16*54) / (18*8) = 6."
+    explanation: "The cells are a=16, b=18, c=8 and d=54. For a case-control study, $OR = (16 \\times 54)/(18 \\times 8) = 6$. Relative risk is not valid in this design."
   },
   {
     id: "a18q30",
     text: "In a case control conducted taking 100 autism children and 200 normal children, it was found that 90 autism children and 60 normal children had a history of instrumental delivery. Calculate the measure of association.",
     options: ["12", "21", "6", "9"],
     correctAnswer: 1,
-    explanation: "21. (90*140) / (60*10) = 21."
+    explanation: "The cells are a=90, b=60, c=10 and d=140. The odds ratio is $(90 \\times 140)/(60 \\times 10) = 21$."
   },
   {
     id: "a18q31",
@@ -301,28 +301,28 @@ export const ASSIGNMENT_18_QUESTIONS: Question[] = [
       "Conduct logistic regression analysis"
     ],
     correctAnswer: 3,
-    explanation: "Conduct logistic regression analysis."
+    explanation: "Frequencies, percentages and baseline comparisons describe the study population. Logistic regression is an analytical method for examining and adjusting associations, not for describing the population."
   },
   {
     id: "a18q32",
     text: "Which of the following is the appropriate measure of association in a case-control study?",
     options: ["Odds ratio", "Prevalence ratio", "Relative risk", "Incidence"],
     correctAnswer: 0,
-    explanation: "Odds ratio."
+    explanation: "Case-control studies sample participants by outcome, so incidence cannot be measured. The odds ratio, $OR = ad/bc$, compares the odds of exposure in cases and controls."
   },
   {
     id: "a18q33",
     text: "Prevalence ratio is one of the measures of association calculated in an analytical cross-sectional study.",
     options: ["True", "False"],
     correctAnswer: 0,
-    explanation: "True."
+    explanation: "True. An analytical cross-sectional study measures prevalence in exposed and unexposed groups, so the prevalence ratio (or prevalence odds ratio) is its measure of association."
   },
   {
     id: "a18q34",
     text: "Hypothesis testing is conducted in an analytical epidemiological study.",
     options: ["True", "False"],
     correctAnswer: 0,
-    explanation: "True."
+    explanation: "True. Analytical studies include a comparison group and are designed to test hypotheses about exposure-outcome associations. Descriptive studies generate hypotheses."
   },
   {
     id: "a18q35",
@@ -334,7 +334,7 @@ export const ASSIGNMENT_18_QUESTIONS: Question[] = [
       "iii, i, ii, iv"
     ],
     correctAnswer: 1,
-    explanation: "i, ii, iv, iii."
+    explanation: "The correct sequence is to identify the variables, check and clean the data, describe the population, and then examine associations."
   },
   {
     id: "a18q36",
@@ -346,35 +346,35 @@ export const ASSIGNMENT_18_QUESTIONS: Question[] = [
       "Applying logistic regression"
     ],
     correctAnswer: 0,
-    explanation: "Calculating frequency of the outcome in one group."
+    explanation: "The frequency of the outcome in a single group, with no comparison, is a descriptive statistic. The analytic stage involves comparisons, odds ratios and regression."
   },
   {
     id: "a18q37",
     text: "Relative risk is calculated in which of the following study designs?",
     options: ["Cross-sectional study", "Cohort study", "Case study", "Case control study"],
     correctAnswer: 1,
-    explanation: "Cohort study."
+    explanation: "Relative risk needs incidence in exposed and unexposed groups, which only a cohort study (following people over time) provides."
   },
   {
     id: "a18q38",
     text: "Risk ratio can be calculated in a descriptive cross-sectional study.",
     options: ["True", "False"],
     correctAnswer: 1,
-    explanation: "False."
+    explanation: "False. A descriptive cross-sectional study only estimates prevalence and has no comparison group. A risk ratio also needs incidence, which requires a cohort design."
   },
   {
     id: "a18q39",
     text: "In a case-control study to examine the association between mobile phone use and acoustic neuroma, exposure was present among 16 cases and 18 controls out of 24 cases and 72 controls. Calculate the measure of association.",
     options: ["Odds ratio 1.5", "Relative risk 1.5", "Odds ratio 6", "Relative risk 6"],
     correctAnswer: 2,
-    explanation: "Odds ratio 6."
+    explanation: "There are 8 unexposed cases (24−16) and 54 unexposed controls (72−18). The odds ratio is $(16 \\times 54)/(18 \\times 8) = 6$."
   },
   {
     id: "a18q40",
     text: "In a case control conducted taking 100 autism children and 200 normal children, 90 autism children and 60 normal children had instrumental delivery history. Calculate the association.",
     options: ["12", "21", "6", "9"],
     correctAnswer: 1,
-    explanation: "21."
+    explanation: "Using a=90, b=60, c=10 and d=140, the odds ratio is $(90 \\times 140)/(60 \\times 10) = 21$."
   },
   {
     id: "a18q41",
@@ -386,14 +386,14 @@ export const ASSIGNMENT_18_QUESTIONS: Question[] = [
       "All of these"
     ],
     correctAnswer: 3,
-    explanation: "All of these."
+    explanation: "The analysis plan depends on the study objective, the study design and the type of outcome variable (categorical or continuous), so all of these apply."
   },
   {
     id: "a18q42",
     text: "Association between cervical cancer and use of Intra uterine contraceptive device is analysed separately among persons with multiple sexual partners and persons with single sexual partner. This analysis is an example of _______________.",
     options: ["Multivariable adjusted analysis", "Stratified analysis", "Regression analysis", "Dose-response analysis"],
     correctAnswer: 1,
-    explanation: "Stratified analysis."
+    explanation: "Analyzing the association separately within subgroups of a third variable (number of sexual partners) is stratified analysis. It is used to assess confounding or effect modification."
   },
   {
     id: "a18q43",
@@ -405,7 +405,7 @@ export const ASSIGNMENT_18_QUESTIONS: Question[] = [
       "Examine the outcome/exposure analysis"
     ],
     correctAnswer: 2,
-    explanation: "Identify the study design."
+    explanation: "The study design determines the measures of association and the analysis methods, so identifying it is the first step before any data analysis."
   },
   {
     id: "a18q44",
@@ -417,7 +417,7 @@ export const ASSIGNMENT_18_QUESTIONS: Question[] = [
       "Describing a population"
     ],
     correctAnswer: 0,
-    explanation: "Testing of hypothesis."
+    explanation: "Analytical studies compare groups to test hypotheses about associations. Describing populations, estimating parameters and generating hypotheses are the roles of descriptive studies."
   },
   {
     id: "a18q45",
@@ -429,7 +429,7 @@ export const ASSIGNMENT_18_QUESTIONS: Question[] = [
       "Descriptive cross-sectional study"
     ],
     correctAnswer: 0,
-    explanation: "Analytical cross-sectional study."
+    explanation: "Cross-sectional studies measure prevalence, so when exposed and unexposed groups are compared in an analytical cross-sectional study, the prevalence ratio is the preferred measure."
   },
   {
     id: "a18q46",
@@ -441,7 +441,7 @@ export const ASSIGNMENT_18_QUESTIONS: Question[] = [
       "iii, v, i, ii, iv"
     ],
     correctAnswer: 1,
-    explanation: "v, iii, i, iv, ii."
+    explanation: "The sequence is: identify the design, identify the variables, characterize the population, build two-way tables for crude associations, and then do stratified analysis."
   },
   {
     id: "a18q47",
@@ -453,27 +453,27 @@ export const ASSIGNMENT_18_QUESTIONS: Question[] = [
       "Multivariable analysis is done to adjust for potential confounders"
     ],
     correctAnswer: 2,
-    explanation: "Recoding of data is done following descriptive and analytical data analysis."
+    explanation: "This statement is false because recoding is a preparatory step done before descriptive and analytical analysis, not after. The other statements are correct."
   },
   {
     id: "a18q48",
     text: "The preferred measure of association for a case-control study is _____________.",
     options: ["Risk ratio", "Odds ratio", "Prevalence ratio", "Prevalence odds ratio"],
     correctAnswer: 1,
-    explanation: "Odds ratio."
+    explanation: "Case-control studies cannot measure risk, so the odds ratio is the preferred measure of association. Risk ratio belongs to cohort studies and prevalence ratio to cross-sectional studies."
   },
   {
     id: "a18q49",
     text: "Spreadsheets are preferred tools for data management and analysis of large quantity of data.",
     options: ["True", "False"],
     correctAnswer: 1,
-    explanation: "False."
+    explanation: "False. With large datasets, spreadsheets are error-prone and lack validation and an audit trail. Database or statistical software is preferred."
   },
   {
     id: "a18q50",
     text: "In a cohort study to examine the association between use of Oral contraceptive pills (OCP) and development of breast cancer, 35 out of 8,000 women who used OCP and 33 out of the 22,000 women who did not use OCP had developed breast cancer over 10 years of follow-up. Calculate the measure of association.",
     options: ["1.3", "1.5", "1.8", "2.9"],
     correctAnswer: 3,
-    explanation: "The Relative Risk (RR) is calculated as (35 / 8,000) / (33 / 22,000) = 2.9. Note: In the original SWAYAM/NPTEL assignment, the options provided were incorrect and the question was dropped, but we have corrected the option '2.0' to '2.9' here so you can answer correctly."
+    explanation: "In a cohort study, $RR = (35/8000)/(33/22000) = 0.004375/0.0015 \\approx 2.9$."
   }
 ];

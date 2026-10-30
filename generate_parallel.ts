@@ -25,10 +25,10 @@ export function sanitizeLaTeX(text: string): string {
   });
 
   // Convert \[ ... \] to $$ ... $$
-  cleaned = cleaned.replace(/\\\[([\s\S]*?)\\\]/g, '\n$$\n$1\n$$\n');
+  cleaned = cleaned.replace(/\\\[([\s\S]*?)\\\]/g, (_m, p1) => '\n$$\n' + p1 + '\n$$\n');
 
   // Convert \( ... \) to $ ... $
-  cleaned = cleaned.replace(/\\\(([\s\S]*?)\\\)/g, '$$1$');
+  cleaned = cleaned.replace(/\\\(([\s\S]*?)\\\)/g, (_m, p1) => '$' + p1 + '$');
 
   return cleaned.trim();
 }
