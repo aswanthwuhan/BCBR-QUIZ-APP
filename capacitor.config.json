@@ -1,5 +1,5 @@
 {
   "appId": "com.bcbr.prepquiz",
   "appName": "BCBR QBank",
-  "webDir": "dist"
+  "webDir": "dist-offline"
 }

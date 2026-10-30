@@ -5,10 +5,13 @@ import { SpeedInsights } from '@vercel/speed-insights/react';
 import App from './App.tsx';
 import './index.css';
 
+// Vercel's analytics scripts only exist on Vercel; skip them in offline builds (local run, Android)
+const OFFLINE_ONLY = import.meta.env.VITE_OFFLINE_ONLY === 'true';
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <App />
-    <Analytics />
-    <SpeedInsights />
+    {!OFFLINE_ONLY && <Analytics />}
+    {!OFFLINE_ONLY && <SpeedInsights />}
   </StrictMode>,
 );

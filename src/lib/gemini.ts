@@ -2,6 +2,8 @@ import { GoogleGenAI, Type } from "@google/genai";
 import { Question } from "../types";
 
 const explanationCache = new Map<string, string>();
+// Offline builds (local run, Android) have no server, so skip the shared /api explanation cache
+const HAS_SERVER = import.meta.env.VITE_OFFLINE_ONLY !== 'true';
 
 function generateHash(str: string): string {
   if (!str || typeof str !== 'string') return '0';
@@ -53,6 +55,7 @@ export async function checkExistingExplanation(question: string, isDetailed: boo
   }
 
   // 2. Check global database cache (free, very fast)
+  if (!HAS_SERVER) return null;
   try {
     const dbRes = await fetch(`/api/explanation/${cacheKey}`);
     if (dbRes.ok) {
@@ -262,7 +265,7 @@ export async function getAIExplanation(
       explanationCache.set(cacheKey, text);
       
       // Save to global database cache asynchronously
-      fetch('/api/explanation', {
+      if (HAS_SERVER) fetch('/api/explanation', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ key: cacheKey, text })

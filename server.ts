@@ -188,7 +188,7 @@ async function startServer() {
         defaultSrc: ["'self'"],
         scriptSrc: ["'self'", "'unsafe-inline'"],
         styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://cdn.jsdelivr.net"],
-        fontSrc: ["'self'", "https://fonts.gstatic.com", "https://cdn.jsdelivr.net"],
+        fontSrc: ["'self'", "data:", "https://fonts.gstatic.com", "https://cdn.jsdelivr.net"],
         imgSrc: ["'self'", "data:", "https:"],
         connectSrc: ["'self'", "https://*.supabase.co"],
         objectSrc: ["'none'"],
@@ -199,15 +199,17 @@ async function startServer() {
     referrerPolicy: { policy: "strict-origin-when-cross-origin" },
   }));
 
-  app.use(cors({
-    origin: (origin, callback) => {
-      if (!origin || ALLOWED_ORIGINS.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    credentials: true,
+  // Same-origin requests (the site's own pages and scripts) are always allowed,
+  // so a missing ALLOWED_ORIGINS entry can't break a self-hosted deployment.
+  app.use(cors((req, callback) => {
+    const origin = req.headers.origin;
+    let sameOrigin = false;
+    try { sameOrigin = !!origin && new URL(origin).host === req.headers.host; } catch { /* invalid origin */ }
+    if (!origin || sameOrigin || ALLOWED_ORIGINS.includes(origin)) {
+      callback(null, { origin: true, credentials: true });
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
   }));
 
   app.use(express.json({ limit: "1mb" }));
