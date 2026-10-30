@@ -24,9 +24,11 @@ import {
   LogOut,
   Linkedin,
   Coffee,
+  Share2,
   WifiOff
 } from 'lucide-react';
 import { SupportModal } from './components/SupportModal';
+import { shareApp } from './lib/share';
 import { Modal } from './components/Modal';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -64,6 +66,21 @@ const OFFLINE_ONLY = import.meta.env.VITE_OFFLINE_ONLY === 'true';
 const OFFLINE_USERNAME = 'offline';
 
 type View = 'login' | 'dashboard' | 'quiz' | 'review' | 'flashcards' | 'settings' | 'leaderboard' | 'privacy' | 'terms' | 'about' | 'contact';
+
+const ProgressBar = ({ value, className, color = "bg-sky-500" }: { value: number, className?: string, color?: string }) => (
+  <div
+    role="progressbar"
+    aria-valuemin={0}
+    aria-valuemax={100}
+    aria-valuenow={Math.round(value)}
+    className={cn("w-full bg-slate-200/70 dark:bg-slate-800 rounded-full h-2 overflow-hidden", className)}
+  >
+    <div
+      style={{ width: `${value}%` }}
+      className={cn("h-full rounded-full transition-[width] duration-700 ease-out", color)}
+    />
+  </div>
+);
 
 export default function App() {
   // --- State ---
@@ -269,6 +286,12 @@ export default function App() {
     setSupportModalCompact(true);
     setShowSupportModal(true);
   }, [supportPopupDue, view, showSupportModal]);
+
+  // The results screen already carries the donation ask at the natural "just finished"
+  // moment, so count it as the latest reminder and keep the timer from piling on.
+  useEffect(() => {
+    if (showResults) markSupportPopupShown();
+  }, [showResults]);
 
   // Opening the support card by any route (auto reminder or an explicit click on
   // "Buy Me a Coffee") satisfies the pending reminder, so closing the detailed card
@@ -1017,68 +1040,33 @@ export default function App() {
   };
 
   // --- UI Components ---
-  const ProgressBar = ({ value, className, color = "bg-sky-500" }: { value: number, className?: string, color?: string }) => (
-    <div className={cn("w-full bg-sky-100/30 rounded-full h-2 overflow-hidden backdrop-blur-sm", className)}>
-      <motion.div 
-        initial={{ width: 0 }}
-        animate={{ width: `${value}%` }}
-        className={cn("h-full shadow-[0_0_10px_rgba(14,165,233,0.5)]", color)}
-      />
-    </div>
-  );
 
   return (
-    <div className="min-h-screen bg-[#F0F9FF] dark:bg-slate-950 text-[#0F172A] dark:text-slate-100 font-sans selection:bg-sky-200 dark:selection:bg-sky-900 selection:text-slate-900 dark:selection:text-slate-100 transition-colors duration-300">
-      {/* Futuristic Background Elements */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-        <motion.div 
-          animate={prefersReducedMotion ? undefined : { 
-            scale: [1, 1.2, 1],
-            x: [0, 50, 0],
-            y: [0, 30, 0]
-          }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-sky-200/40 blur-[120px] rounded-full" 
-        />
-        <motion.div 
-          animate={prefersReducedMotion ? undefined : { 
-            scale: [1, 1.1, 1],
-            x: [0, -30, 0],
-            y: [0, 50, 0]
-          }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-indigo-200/40 dark:bg-indigo-900/40 blur-[120px] rounded-full" 
-        />
-        <motion.div 
-          animate={prefersReducedMotion ? undefined : { 
-            scale: [1, 1.3, 1],
-            opacity: [0.3, 0.5, 0.3]
-          }}
-          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-          className="absolute top-[20%] right-[10%] w-[20%] h-[20%] bg-cyan-200/30 dark:bg-cyan-900/30 blur-[100px] rounded-full" 
-        />
-      </div>
+    <div className="min-h-dvh text-slate-900 dark:text-slate-100 font-sans selection:bg-sky-200 dark:selection:bg-sky-900 selection:text-slate-900 dark:selection:text-slate-100 transition-colors duration-300">
+      {/* Static ambient backdrop (cheap: no animated blur layers) */}
+      <div className="app-backdrop fixed inset-0 pointer-events-none z-0" aria-hidden="true" />
 
       {/* Navigation Rail / Header */}
-      <header className="sticky top-0 z-40 bg-white/40 dark:bg-slate-900/40 backdrop-blur-xl border-b border-sky-100/50 dark:border-slate-800/50 px-2 sm:px-6 py-3 sm:py-4 flex flex-wrap items-center justify-between gap-y-2 shadow-sm">
+      <header className="sticky top-0 z-40 safe-top bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl border-b border-slate-200/70 dark:border-slate-800/70 px-3 sm:px-8 py-2.5 sm:py-3 flex items-center justify-between gap-2">
         <div className="flex items-center gap-2 sm:gap-3 cursor-pointer" onClick={() => setView(globalState.username ? 'dashboard' : 'login')}>
           <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-sky-500 to-indigo-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-sky-200/50 dark:shadow-sky-900/20">
             <GraduationCap size={20} className="sm:hidden" />
             <GraduationCap size={24} className="hidden sm:block" />
           </div>
           <div>
-            <h1 className="font-bold text-base sm:text-lg tracking-tight bg-gradient-to-r from-sky-600 to-indigo-600 dark:from-sky-400 dark:to-indigo-400 bg-clip-text text-transparent">BCBR QBANK</h1>
+            <h1 className="font-bold text-base sm:text-lg whitespace-nowrap tracking-tight bg-gradient-to-r from-sky-600 to-indigo-600 dark:from-sky-400 dark:to-indigo-400 bg-clip-text text-transparent">BCBR QBANK</h1>
             <p className="text-[9px] sm:text-[10px] uppercase tracking-widest font-bold text-slate-400 dark:text-slate-500 flex items-center gap-1">
-              By Dr Aswanth <a href="https://www.linkedin.com/in/draswanth/" target="_blank" rel="noopener noreferrer" className="hidden sm:inline-flex items-center gap-0.5 font-bold">
-                <Linkedin size={12} className="text-[#0A66C2]" /> <span className="text-orange-600 dark:text-orange-500 hover:text-orange-700 transition-colors">(Click to add me on LinkedIn)</span>
+              By Dr Aswanth <a href="https://www.linkedin.com/in/draswanth/" target="_blank" rel="noopener noreferrer" aria-label="Add Dr Aswanth on LinkedIn" className="inline-flex items-center gap-1 font-bold whitespace-nowrap">
+                <Linkedin size={12} className="text-[#0A66C2]" /> <span className="hidden md:inline text-orange-600 dark:text-orange-500 hover:text-orange-700 transition-colors">(Click to add me on LinkedIn)</span>
               </a>
             </p>
           </div>
         </div>
 
-        <div className="flex flex-wrap items-center justify-end gap-1 sm:gap-4">
+        <div className="flex items-center justify-end gap-0.5 sm:gap-2 shrink-0">
           <button
             onClick={() => setShowSupportModal(true)}
+            aria-label="Support the Creator"
             className="flex items-center gap-1.5 p-2 rounded-lg hover:bg-amber-50/50 dark:hover:bg-amber-950/20 text-amber-600 dark:text-amber-500 hover:text-amber-700 transition-all font-sans"
             title="Support the Creator"
           >
@@ -1090,6 +1078,7 @@ export default function App() {
             onClick={() => setGlobalState(prev => ({ ...prev,  isDarkMode: !prev.isDarkMode }))}
             className="p-2 rounded-lg hover:bg-sky-100/50 dark:hover:bg-slate-800/50 text-sky-600 dark:text-sky-400 transition-all"
             title={globalState.isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            aria-label={globalState.isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
           >
             {globalState.isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
           </button>
@@ -1102,6 +1091,7 @@ export default function App() {
                 view === 'flashcards' ? "bg-sky-500 text-white shadow-lg shadow-sky-200 dark:shadow-sky-900" : "hover:bg-sky-100/50 dark:hover:bg-slate-800/50 text-sky-600 dark:text-sky-400"
               )}
               title="Flashcards"
+              aria-label="Flashcards"
             >
               <Layers size={20} />
             </button>
@@ -1110,6 +1100,7 @@ export default function App() {
           {globalState.username && !globalState.isOffline && (
             <button
               onClick={loadLeaderboard}
+              aria-label="Leaderboard"
               className={cn(
                 "p-2 rounded-lg transition-all",
                 view === 'leaderboard' ? "bg-sky-500 text-white shadow-lg shadow-sky-200 dark:shadow-sky-900" : "hover:bg-sky-100/50 dark:hover:bg-slate-800/50 text-sky-600 dark:text-sky-400"
@@ -1123,6 +1114,7 @@ export default function App() {
               setPreviousView(view);
               setView('settings');
             }}
+            aria-label="Settings"
             className={cn(
               "p-2 rounded-lg transition-all",
               view === 'settings' ? "bg-sky-500 text-white shadow-lg shadow-sky-200 dark:shadow-sky-900" : "hover:bg-sky-100/50 dark:hover:bg-slate-800/50 text-sky-600 dark:text-sky-400"
@@ -1136,6 +1128,7 @@ export default function App() {
               onClick={handleLogout}
               className="p-2 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 text-red-500 transition-all"
               title={globalState.isOffline ? "Exit offline mode" : "Log Out"}
+              aria-label={globalState.isOffline ? "Exit offline mode" : "Log Out"}
             >
               <LogOut size={20} />
             </button>
@@ -1143,7 +1136,7 @@ export default function App() {
         </div>
       </header>
 
-      <main className="max-w-4xl mx-auto p-4 sm:p-6 relative z-10">
+      <main className="max-w-5xl mx-auto p-4 sm:p-8 safe-bottom relative z-10">
         <AnimatePresence mode="wait">
           {view === 'login' && (
             <motion.div 
@@ -1151,9 +1144,9 @@ export default function App() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="max-w-md mx-auto mt-20"
+              className="max-w-md mx-auto mt-8 sm:mt-20"
             >
-              <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-2xl rounded-3xl p-8 shadow-2xl shadow-sky-100/50 dark:shadow-slate-950 border border-white dark:border-slate-800 text-center">
+              <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 shadow-xl shadow-slate-900/5 border border-slate-200/80 dark:border-slate-800 text-center">
                 <div className="w-16 h-16 bg-gradient-to-br from-sky-500 to-indigo-600 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-sky-200/50 dark:shadow-sky-900/20 mx-auto mb-6">
                   <GraduationCap size={32} />
                 </div>
@@ -1396,7 +1389,7 @@ export default function App() {
               {/* Global Progress Card */}
               <div 
                 onClick={() => setShowDetailedProgress(!showDetailedProgress)}
-                className="bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl rounded-3xl p-6 sm:p-8 shadow-xl shadow-sky-100/50 dark:shadow-slate-950 border border-white/50 dark:border-slate-800/50 relative overflow-hidden cursor-pointer group hover:bg-white/80 dark:hover:bg-slate-900/80 transition-all"
+                className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/80 dark:border-slate-800 relative overflow-hidden cursor-pointer group  transition-all"
               >
                 <div className="relative z-10">
                   <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end mb-4 gap-2">
@@ -1465,8 +1458,8 @@ export default function App() {
                       }
                     }}
                     className={cn(
-                      "bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl p-6 rounded-2xl border border-white/50 dark:border-slate-800/50 flex items-center gap-4 transition-all group shadow-lg shadow-sky-100/20 dark:shadow-slate-950",
-                      dueQuestions.length > 0 ? "hover:border-emerald-200 dark:hover:border-emerald-800 hover:bg-white/80 dark:hover:bg-slate-900/80 cursor-pointer" : "opacity-50 cursor-not-allowed"
+                      "bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 flex items-center gap-4 transition-all group shadow-sm hover:shadow-md",
+                      dueQuestions.length > 0 ? "hover:border-emerald-200 dark:hover:border-emerald-800  cursor-pointer" : "opacity-50 cursor-not-allowed"
                     )}
                   >
                     <div className="w-12 h-12 bg-emerald-50 dark:bg-emerald-900/30 rounded-xl flex items-center justify-center text-emerald-500 dark:text-emerald-400 group-hover:scale-110 transition-transform shadow-inner">
@@ -1480,7 +1473,7 @@ export default function App() {
                 )}
                 <button 
                   onClick={() => setView('review')}
-                  className="bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl p-6 rounded-2xl border border-white/50 dark:border-slate-800/50 flex items-center gap-4 transition-all group shadow-lg shadow-sky-100/20 dark:shadow-slate-950 hover:border-sky-200 dark:hover:border-sky-800 hover:bg-white/80 dark:hover:bg-slate-900/80 cursor-pointer"
+                  className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 flex items-center gap-4 transition-all group shadow-sm hover:shadow-md hover:border-sky-200 dark:hover:border-sky-800  cursor-pointer"
                 >
                   <div className="w-12 h-12 bg-sky-50 dark:bg-sky-900/30 rounded-xl flex items-center justify-center text-sky-500 dark:text-sky-400 group-hover:scale-110 transition-transform shadow-inner">
                     <AlertCircle size={24} />
@@ -1494,7 +1487,7 @@ export default function App() {
                   onClick={handleAIQBankClick}
                   disabled={isGeneratingAIQuestions}
                   className={cn(
-                    "bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl p-6 rounded-2xl border border-white/50 dark:border-slate-800/50 flex items-center gap-4 hover:border-indigo-200 dark:hover:border-indigo-800 hover:bg-white/80 dark:hover:bg-slate-900/80 transition-all group shadow-lg shadow-sky-100/20 dark:shadow-slate-950",
+                    "bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 flex items-center gap-4 hover:border-indigo-200 dark:hover:border-indigo-800  transition-all group shadow-sm hover:shadow-md",
                     isGeneratingAIQuestions && "opacity-50 cursor-wait"
                   )}
                 >
@@ -1508,7 +1501,7 @@ export default function App() {
                 </button>
                 <button 
                   onClick={() => openFlashcards(null)}
-                  className="bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl p-6 rounded-2xl border border-white/50 dark:border-slate-800/50 flex items-center gap-4 hover:border-violet-200 dark:hover:border-violet-800 hover:bg-white/80 dark:hover:bg-slate-900/80 transition-all group shadow-lg shadow-sky-100/20 dark:shadow-slate-950"
+                  className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 flex items-center gap-4 hover:border-violet-200 dark:hover:border-violet-800  transition-all group shadow-sm hover:shadow-md"
                 >
                   <div className="w-12 h-12 bg-violet-50 dark:bg-violet-900/30 rounded-xl flex items-center justify-center text-violet-500 dark:text-violet-400 group-hover:scale-110 transition-transform shadow-inner">
                     <Layers size={24} />
@@ -1522,7 +1515,7 @@ export default function App() {
                 </button>
                 <button 
                   onClick={confirmResetProgress}
-                  className="bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl p-6 rounded-2xl border border-white/50 dark:border-slate-800/50 flex items-center gap-4 hover:border-red-200 dark:hover:border-red-800 hover:bg-white/80 dark:hover:bg-slate-900/80 transition-all group shadow-lg shadow-sky-100/20 dark:shadow-slate-950"
+                  className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 flex items-center gap-4 hover:border-red-200 dark:hover:border-red-800  transition-all group shadow-sm hover:shadow-md"
                 >
                   <div className="w-12 h-12 bg-red-50 dark:bg-red-900/30 rounded-xl flex items-center justify-center text-red-500 dark:text-red-400 group-hover:scale-110 transition-transform shadow-inner">
                     <RotateCcw size={24} />
@@ -1535,31 +1528,29 @@ export default function App() {
               </div>
 
               {/* Support Developer Banner */}
-              <div 
+              <div
+                role="button"
+                tabIndex={0}
                 onClick={() => setShowSupportModal(true)}
-                className="bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-indigo-500/10 dark:from-amber-950/20 dark:via-orange-950/20 dark:to-indigo-950/20 border border-amber-200/50 dark:border-amber-900/30 rounded-3xl p-5 sm:p-6 shadow-md cursor-pointer hover:shadow-lg hover:border-amber-300 dark:hover:border-amber-800 transition-all flex flex-col sm:flex-row items-center justify-between gap-4 relative overflow-hidden group"
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setShowSupportModal(true); } }}
+                className="bg-white dark:bg-slate-900 border border-amber-200/70 dark:border-amber-900/40 rounded-2xl p-4 sm:p-5 cursor-pointer hover:shadow-md hover:border-amber-300 dark:hover:border-amber-800 transition-all flex items-center gap-4 group"
               >
-                <div className="flex items-center gap-4 relative z-10">
-                  <div className="w-12 h-12 bg-amber-500 text-white rounded-2xl flex items-center justify-center shadow-lg shadow-amber-200 dark:shadow-none group-hover:scale-110 transition-transform">
-                    <Coffee size={24} />
-                  </div>
-                  <div className="text-left">
-                    <h3 className="font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
-                      ☕ Support the Creator
-                      <span className="text-[9px] uppercase tracking-widest font-black bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-400 px-2 py-0.5 rounded-full">Keep Alive</span>
-                    </h3>
-                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
-                      Created by a doctor, for doctors. Help cover hosting fees and support ongoing development to keep this QBank free!
-                    </p>
-                  </div>
+                <div className="w-11 h-11 shrink-0 bg-gradient-to-br from-amber-400 to-orange-500 text-white rounded-xl flex items-center justify-center shadow-md shadow-amber-300/40 dark:shadow-none group-hover:scale-105 transition-transform">
+                  <Coffee size={22} />
                 </div>
-                <button className="whitespace-nowrap px-5 py-2.5 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-xl font-bold text-xs uppercase tracking-widest hover:opacity-95 transition-opacity shadow-md shadow-amber-200 dark:shadow-none">
-                  Donate / Buy Me a Coffee
-                </button>
+                <div className="min-w-0 flex-1 text-left">
+                  <h3 className="font-bold text-sm sm:text-base text-slate-800 dark:text-slate-100">Keep this QBank free</h3>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 leading-relaxed">
+                    Made by a doctor, for doctors. Chip in from ₹50 to cover hosting and AI costs.
+                  </p>
+                </div>
+                <span className="shrink-0 px-4 py-2 bg-amber-500 group-hover:bg-amber-600 text-white rounded-xl font-bold text-xs transition-colors">
+                  Support
+                </span>
               </div>
 
               {/* Assignment Selection Cards */}
-              <div className="bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl p-6 sm:p-8 rounded-3xl border border-white/50 dark:border-slate-800/50 shadow-xl shadow-sky-100/50 dark:shadow-slate-950">
+              <div className="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm">
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="text-sm uppercase tracking-widest font-bold text-slate-400 dark:text-slate-500">Select Assignment</h3>
                   <div className="flex items-center gap-2 text-xs font-semibold text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-sky-900/30 px-3 py-1 rounded-full">
@@ -1568,7 +1559,7 @@ export default function App() {
                   </div>
                 </div>
                 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-h-[70vh] overflow-y-auto pr-2 custom-scrollbar">
                   {ASSIGNMENTS.map(a => {
                     const prog = globalState.progress[a.id];
                     const comp = Object.keys(prog?.selectedAnswers || {}).length;
@@ -2084,7 +2075,7 @@ export default function App() {
                           
                           if (currentAi.text) {
                             return (
-                              <div className="bg-white/90 dark:bg-slate-800/90 backdrop-blur-xl border border-sky-100 dark:border-slate-700 rounded-3xl p-5 sm:p-6 shadow-xl shadow-sky-100/50 dark:shadow-slate-950">
+                              <div className="bg-white/90 dark:bg-slate-800/90 backdrop-blur-xl border border-sky-100 dark:border-slate-700 rounded-3xl p-5 sm:p-6 shadow-sm">
                                 <div className="flex items-center justify-between mb-4">
                                   <h4 className="text-xs uppercase tracking-widest font-bold text-sky-600 dark:text-sky-400 flex items-center gap-2">
                                     <BrainCircuit size={16} />
@@ -2117,7 +2108,7 @@ export default function App() {
 
                           if (currentAi.loading && !currentAi.text) {
                             return (
-                              <div className="bg-white/90 dark:bg-slate-800/90 backdrop-blur-xl border border-sky-100 dark:border-slate-700 rounded-3xl p-5 sm:p-6 shadow-xl shadow-sky-100/50 dark:shadow-slate-950 animate-pulse">
+                              <div className="bg-white/90 dark:bg-slate-800/90 backdrop-blur-xl border border-sky-100 dark:border-slate-700 rounded-3xl p-5 sm:p-6 shadow-sm animate-pulse">
                                 <div className="flex items-center gap-2 mb-4">
                                   <BrainCircuit size={16} className="text-sky-400" />
                                   <div className="h-4 bg-sky-200/50 dark:bg-sky-900/30 rounded w-24"></div>
@@ -2183,7 +2174,7 @@ export default function App() {
                 <button
                   onClick={handlePrev}
                   disabled={currentQuestionIndex === 0}
-                  className="flex-1 py-3.5 sm:py-4 bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl border border-white/50 dark:border-slate-800/50 rounded-xl sm:rounded-2xl font-bold text-xs sm:text-base text-slate-600 dark:text-slate-300 flex items-center justify-center gap-1.5 sm:gap-2 hover:bg-white/80 dark:hover:bg-slate-900/80 transition-all disabled:opacity-20 shadow-lg shadow-sky-100/20 dark:shadow-slate-950"
+                  className="flex-1 py-3.5 sm:py-4 bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-xl sm:rounded-2xl font-bold text-xs sm:text-base text-slate-600 dark:text-slate-300 flex items-center justify-center gap-1.5 sm:gap-2  transition-all disabled:opacity-20 shadow-sm hover:shadow-md"
                 >
                   <ChevronLeft size={18} className="sm:hidden" />
                   <ChevronLeft size={20} className="hidden sm:block" />
@@ -2239,7 +2230,7 @@ export default function App() {
               </div>
 
               {wrongQuestions.length === 0 ? (
-                <div className="bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl rounded-3xl p-12 text-center border border-white/50 dark:border-slate-800/50 shadow-xl shadow-sky-100/50 dark:shadow-slate-950">
+                <div className="bg-white dark:bg-slate-900 rounded-3xl p-12 text-center border border-slate-200/80 dark:border-slate-800 shadow-sm">
                   <div className="w-20 h-20 bg-sky-50 dark:bg-sky-900/30 text-sky-500 dark:text-sky-400 rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner">
                     <CheckCircle2 size={40} />
                   </div>
@@ -2264,7 +2255,7 @@ export default function App() {
                         <div 
                           key={`mistake-${q.id}-${i}`} 
                           onClick={() => handleStartReviewQuiz(i)}
-                          className="bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl p-5 rounded-2xl border border-white/50 dark:border-slate-800/50 space-y-2 shadow-sm hover:shadow-md hover:border-sky-200 dark:hover:border-sky-800 hover:bg-white/90 dark:hover:bg-slate-900/90 transition-all cursor-pointer group"
+                          className="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800 space-y-2 shadow-sm hover:shadow-md hover:border-sky-200 dark:hover:border-sky-800 hover:bg-white/90 dark:hover:bg-slate-900/90 transition-all cursor-pointer group"
                         >
                           <div className="flex justify-between items-start">
                             <span className="text-[10px] font-black bg-sky-100 dark:bg-sky-900/40 text-sky-600 dark:text-sky-400 px-2 py-1 rounded uppercase tracking-wider">Mistake #{i+1}</span>
@@ -2430,7 +2421,7 @@ export default function App() {
                 <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100">AI Settings</h2>
               </div>
 
-              <div className="bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl p-8 rounded-3xl border border-white/50 dark:border-slate-800/50 shadow-2xl shadow-sky-100/50 dark:shadow-slate-950 space-y-6">
+              <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-2xl shadow-sky-100/50 dark:shadow-slate-950 space-y-6">
                 <div className="space-y-2">
                   <label className="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">Gemini API Key</label>
                   <input 
@@ -2491,7 +2482,7 @@ export default function App() {
               </div>
 
               {/* About Card */}
-              <div className="bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl p-8 rounded-3xl border border-white/50 dark:border-slate-800/50 shadow-2xl space-y-4">
+              <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-2xl space-y-4">
                 <div className="flex items-center gap-3 text-sky-600 dark:text-sky-400">
                   <GraduationCap size={24} />
                   <h3 className="text-xl font-bold">About</h3>
@@ -2514,7 +2505,7 @@ export default function App() {
               </div>
 
               {/* Support Card in Settings */}
-              <div className="bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl p-8 rounded-3xl border border-white/50 dark:border-slate-800/50 shadow-2xl space-y-4">
+              <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-2xl space-y-4">
                 <div className="flex items-center gap-3 text-amber-500">
                   <Coffee size={24} />
                   <h3 className="text-xl font-bold">Support the App</h3>
@@ -2537,7 +2528,7 @@ export default function App() {
               </div>
 
               {/* Legal Card */}
-              <div className="bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl p-8 rounded-3xl border border-white/50 dark:border-slate-800/50 shadow-2xl space-y-4">
+              <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-2xl space-y-4">
                 <div className="flex items-center gap-3 text-red-500">
                   <AlertCircle size={24} />
                   <h3 className="text-xl font-bold">Legal Disclaimer</h3>
@@ -2550,7 +2541,7 @@ export default function App() {
               </div>
 
               {/* Contact Us Card */}
-              <div className="bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl p-8 rounded-3xl border border-white/50 dark:border-slate-800/50 shadow-2xl space-y-6">
+              <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-2xl space-y-6">
                 <div className="flex items-center gap-3 text-indigo-500">
                   <History size={24} />
                   <h3 className="text-xl font-bold">Contact Us</h3>
@@ -2738,30 +2729,35 @@ export default function App() {
                     <p className="text-[10px] text-slate-400 dark:text-slate-500 mt-2 font-medium">Overall progress across all sessions.</p>
                   </div>
 
-                  {/* Support Developer & Donate Card */}
-                  <div className="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-950/40 dark:to-orange-950/40 p-4.5 rounded-2xl border border-amber-200/80 dark:border-amber-800/50 mb-6 text-left shadow-sm relative overflow-hidden">
+                  {/* Pay-what-you-can card, shown at the natural "I just finished" moment */}
+                  <div className="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-950/40 dark:to-orange-950/40 p-4 rounded-2xl border border-amber-200/80 dark:border-amber-800/50 mb-6 text-left relative overflow-hidden">
                     <div className="flex items-start gap-3">
                       <div className="w-9 h-9 bg-amber-500 text-white rounded-xl flex items-center justify-center shrink-0 shadow-md">
-                        <Coffee size={18} className="animate-pulse" />
+                        <Coffee size={18} />
                       </div>
                       <div className="space-y-1">
-                        <h4 className="font-bold text-xs sm:text-sm text-slate-800 dark:text-amber-200">
-                          Support the Developer to Keep App Running ☕
-                        </h4>
+                        <h4 className="font-bold text-sm text-slate-800 dark:text-amber-200">Did this help? Pay what you can</h4>
                         <p className="text-[11px] leading-relaxed text-slate-600 dark:text-slate-300">
-                          If you are enjoying this app, please consider supporting the developer to keep it running free! Even small donations of <strong>₹50 or ₹100</strong> can make a huge difference.
+                          The QBank is free for every doctor. A <strong>₹50</strong> chai keeps it that way, and sharing it with a batchmate helps just as much.
                         </p>
                       </div>
                     </div>
-                    <button
-                      onClick={() => {
-                        setShowSupportModal(true);
-                      }}
-                      className="mt-3 w-full py-2.5 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-bold rounded-xl text-xs flex items-center justify-center gap-2 shadow-md shadow-amber-500/20 transition-all uppercase tracking-wider"
-                    >
-                      <Coffee size={16} />
-                      Donate Now & Buy Me a Coffee
-                    </button>
+                    <div className="mt-3 grid grid-cols-2 gap-2">
+                      <button
+                        onClick={() => setShowSupportModal(true)}
+                        className="py-2.5 bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white font-bold rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-md shadow-amber-500/20 transition-all"
+                      >
+                        <Coffee size={15} />
+                        Support
+                      </button>
+                      <button
+                        onClick={() => { void shareApp(); }}
+                        className="py-2.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 font-bold rounded-xl text-xs flex items-center justify-center gap-1.5 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
+                      >
+                        <Share2 size={15} />
+                        Share app
+                      </button>
+                    </div>
                   </div>
 
                   <div className="space-y-3">

@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { X, Coffee, Heart, Smartphone, HelpCircle, Award } from 'lucide-react';
+import { X, Coffee, Heart, Smartphone, Copy, Check, ChevronDown, ShieldCheck, Share2 } from 'lucide-react';
 import { Modal } from './Modal';
+import { shareApp } from '../lib/share';
+import { SUPPORTERS } from '../data/supporters';
 
 interface SupportModalProps {
   isOpen: boolean;
@@ -16,6 +18,13 @@ interface SupportModalProps {
   onSnooze?: () => void;
 }
 
+const TIERS = [
+  { value: 50, label: 'Chai', emoji: '☕' },
+  { value: 100, label: 'Coffee', emoji: '🥐' },
+  { value: 200, label: 'Supporter', emoji: '🚀' },
+  { value: 500, label: 'Champion', emoji: '🏆' },
+];
+
 export const SupportModal: React.FC<SupportModalProps> = ({
   isOpen,
   onClose,
@@ -25,6 +34,12 @@ export const SupportModal: React.FC<SupportModalProps> = ({
   onExpand,
   onSnooze,
 }) => {
+  const [amount, setAmount] = useState<number>(100);
+  const [custom, setCustom] = useState('');
+  const [copied, setCopied] = useState(false);
+  const [showStory, setShowStory] = useState(false);
+  const [shareState, setShareState] = useState<'idle' | 'copied'>('idle');
+
   if (!isOpen) return null;
 
   // Compact, non-intrusive pop-up used for the automatic reminder. It is small,
@@ -35,7 +50,7 @@ export const SupportModal: React.FC<SupportModalProps> = ({
         role="dialog"
         aria-modal="true"
         aria-label="Support reminder"
-        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm"
+        className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4 bg-slate-900/40"
         onClick={onSnooze}
       >
         <div
@@ -85,146 +100,206 @@ export const SupportModal: React.FC<SupportModalProps> = ({
     );
   }
 
-  const paymentNote = encodeURIComponent("BCBR App Support");
+  const paymentNote = encodeURIComponent('BCBR App Support');
   const encodedName = encodeURIComponent(payeeName);
-  
-  // UPI Deep Link URI for mobile apps
-  const upiUri = `upi://pay?pa=${upiId}&pn=${encodedName}&cu=INR&tn=${paymentNote}`;
-  
-  // Dynamic QR Code generation using a free and reliable API
-  const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(upiUri)}`;
+
+  const customAmount = Number(custom);
+  const chosen = custom
+    ? Number.isFinite(customAmount) && customAmount >= 1
+      ? Math.floor(customAmount)
+      : null
+    : amount;
+  const amountParam = chosen ? `&am=${chosen}` : '';
+  const upiUri = `upi://pay?pa=${upiId}&pn=${encodedName}${amountParam}&cu=INR&tn=${paymentNote}`;
+  const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=240x240&margin=8&data=${encodeURIComponent(upiUri)}`;
+
+  const handleShare = async () => {
+    const result = await shareApp();
+    if (result === 'copied') {
+      setShareState('copied');
+      setTimeout(() => setShareState('idle'), 1800);
+    }
+  };
+
+  const copyUpi = async () => {
+    try {
+      await navigator.clipboard.writeText(upiId);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1800);
+    } catch {
+      /* clipboard unavailable: the ID is still selectable */
+    }
+  };
 
   return (
     <Modal
       ariaLabel="Support the Project"
       onClose={onClose}
-      overlayClassName="flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md"
+      overlayClassName="flex items-end sm:items-center justify-center sm:p-4 bg-slate-900/60"
     >
       <motion.div
-        initial={{ opacity: 0, scale: 0.95, y: 20 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.95, y: 20 }}
-        className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl border border-sky-100/50 dark:border-slate-800 relative overflow-hidden max-h-[90vh] overflow-y-auto custom-scrollbar"
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 24 }}
+        className="bg-white dark:bg-slate-900 rounded-t-3xl sm:rounded-3xl max-w-md w-full shadow-2xl border border-slate-200/80 dark:border-slate-800 relative max-h-[92dvh] overflow-y-auto custom-scrollbar"
       >
-        {/* Close Button */}
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors p-1 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800"
-        >
-          <X size={24} />
-        </button>
-
-        {/* Decorative Background Elements */}
-        <div className="absolute top-[-20%] left-[-20%] w-[50%] h-[50%] bg-sky-200/20 dark:bg-sky-900/20 blur-[80px] rounded-full pointer-events-none" />
-        <div className="absolute bottom-[-20%] right-[-20%] w-[50%] h-[50%] bg-indigo-200/20 dark:bg-indigo-900/20 blur-[80px] rounded-full pointer-events-none" />
-
-        {/* Modal Header */}
-        <div className="flex items-center gap-3 mb-6 relative z-10">
-          <div className="w-12 h-12 bg-amber-50 dark:bg-amber-950/30 rounded-2xl flex items-center justify-center text-amber-600 dark:text-amber-400 shadow-inner">
-            <Coffee size={24} className="animate-pulse" />
-          </div>
-          <div>
-            <h2 className="text-xl font-black tracking-tight text-slate-800 dark:text-slate-100 uppercase">Support the Project</h2>
-            <p className="text-xs text-sky-600 dark:text-sky-400 font-bold uppercase tracking-widest">Keep this app alive & free</p>
-          </div>
-        </div>
-
-        {/* Developer Story */}
-        <div className="bg-gradient-to-br from-sky-50 to-indigo-50/50 dark:from-slate-800/50 dark:to-slate-800/30 p-5 rounded-2xl border border-sky-100/50 dark:border-slate-800 mb-6 space-y-4 relative z-10">
-          <div className="flex items-center gap-2 text-sky-800 dark:text-sky-300">
-            <Award size={18} className="text-sky-600 dark:text-sky-400" />
-            <h3 className="font-bold text-sm">A Note from the Developer</h3>
-          </div>
-          <div className="text-xs text-slate-600 dark:text-slate-300 space-y-3 leading-relaxed">
-            <p>
-              Hi fellow doctor! I am <strong>Dr. Aswanth Krishnan</strong>, currently working as an <strong>MD Pharmacology Resident</strong>.
-            </p>
-            <p>
-              Like many of you, when I was preparing for the mandatory <strong>BCBR (Basic Course in Biomedical Research)</strong> exam, I realized there wasn't a single free, interactive platform with comprehensive past year assignments, structured mock tests, and smart AI insights to help make sense of the concepts.
-            </p>
-            <p>
-              To solve this, I spent my nights after hectic hospital duties designing and coding this web app from scratch. I wanted to make sure it remains <strong>100% free and accessible</strong> to every doctor in India without any paywalls or subscriptions.
-            </p>
-            <p>
-              However, hosting servers, database maintenance, and implementing features like AI QBank cost money. If you are enjoying this app and it helps you prepare for the exam, please consider supporting the developer to keep it running!
-            </p>
-            <div className="p-3 bg-amber-500/10 border border-amber-500/30 rounded-xl text-amber-800 dark:text-amber-300 font-medium text-xs text-center">
-              💡 <strong>Even small donations of ₹50 or ₹100 make a huge difference!</strong>
+        {/* Header */}
+        <div className="relative px-6 pt-6 pb-5 bg-gradient-to-br from-amber-50 via-orange-50/60 to-white dark:from-amber-950/30 dark:via-slate-900 dark:to-slate-900 border-b border-amber-100/70 dark:border-slate-800">
+          <button
+            onClick={onClose}
+            aria-label="Close"
+            className="absolute top-4 right-4 p-1.5 rounded-full text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-white/70 dark:hover:bg-slate-800 transition-colors"
+          >
+            <X size={20} />
+          </button>
+          <div className="flex items-center gap-3 pr-8">
+            <div className="w-12 h-12 shrink-0 bg-gradient-to-br from-amber-400 to-orange-500 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-amber-300/40 dark:shadow-none">
+              <Coffee size={24} />
+            </div>
+            <div className="min-w-0">
+              <h2 className="text-lg font-extrabold tracking-tight text-slate-900 dark:text-slate-100">Keep BCBR QBank free</h2>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Built by a resident doctor. No ads, no paywall.</p>
             </div>
           </div>
         </div>
 
-        {/* Quick Amount Suggestion Chips */}
-        <div className="mb-6 relative z-10 text-center">
-          <p className="text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2.5">
-            Suggested Contributions
-          </p>
-          <div className="flex items-center justify-center gap-2.5 flex-wrap">
-            <a
-              href={`upi://pay?pa=${upiId}&pn=${encodedName}&am=50&cu=INR&tn=${paymentNote}`}
-              className="px-4 py-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white rounded-xl text-xs font-bold shadow-sm transition-all flex items-center gap-1.5"
-            >
-              ☕ ₹50 (Chai)
-            </a>
-            <a
-              href={`upi://pay?pa=${upiId}&pn=${encodedName}&am=100&cu=INR&tn=${paymentNote}`}
-              className="px-4 py-2 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white rounded-xl text-xs font-bold shadow-sm transition-all flex items-center gap-1.5"
-            >
-              ☕ ₹100 (Coffee)
-            </a>
-            <a
-              href={`upi://pay?pa=${upiId}&pn=${encodedName}&am=200&cu=INR&tn=${paymentNote}`}
-              className="px-4 py-2 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white rounded-xl text-xs font-bold shadow-sm transition-all flex items-center gap-1.5"
-            >
-              🚀 ₹200 (Supporter)
-            </a>
-          </div>
-        </div>
-
-        {/* UPI Payments Section */}
-        <div className="flex flex-col items-center justify-center space-y-6 relative z-10 pt-2">
-          {/* QR Code (Visible on Desktop, Scan on Mobile) */}
-          <div className="hidden sm:flex flex-col items-center p-4 bg-white dark:bg-slate-800 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md">
-            <img
-              src={qrCodeUrl}
-              alt="UPI QR Code"
-              className="w-[200px] h-[200px] rounded-xl"
-              loading="lazy"
-            />
-            <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-3">
-              Scan with GPay, PhonePe or Paytm
-            </span>
-          </div>
-
-          {/* UPI ID Info */}
-          <div className="text-center w-full">
-            <p className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">Payee Name</p>
-            <p className="text-sm font-bold text-slate-800 dark:text-slate-200 mt-0.5">{payeeName}</p>
-            <p className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-3">UPI ID</p>
-            <p className="text-sm font-mono font-bold text-sky-600 dark:text-sky-400 select-all p-2 bg-slate-50 dark:bg-slate-800 rounded-xl mt-1 border border-slate-100 dark:border-slate-800 inline-block">
-              {upiId}
+        <div className="p-6 space-y-5">
+          {/* Amount picker */}
+          <div>
+            <p className="text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2.5">Choose an amount</p>
+            <div className="grid grid-cols-4 gap-2" role="radiogroup" aria-label="Donation amount">
+              {TIERS.map(tier => {
+                const active = !custom && amount === tier.value;
+                return (
+                  <button
+                    key={tier.value}
+                    role="radio"
+                    aria-checked={active}
+                    onClick={() => { setAmount(tier.value); setCustom(''); }}
+                    className={
+                      'flex flex-col items-center gap-0.5 py-2.5 rounded-xl border text-center transition-all ' +
+                      (active
+                        ? 'bg-amber-500 border-amber-500 text-white shadow-md shadow-amber-300/40 dark:shadow-none'
+                        : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:border-amber-300 dark:hover:border-amber-700')
+                    }
+                  >
+                    <span className="text-base leading-none">{tier.emoji}</span>
+                    <span className="text-sm font-extrabold">₹{tier.value}</span>
+                    <span className={'text-[9px] font-semibold uppercase tracking-wide ' + (active ? 'text-amber-50' : 'text-slate-400 dark:text-slate-500')}>{tier.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+            <div className="relative mt-2.5">
+              <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-sm font-bold text-slate-400">₹</span>
+              <input
+                type="number"
+                inputMode="numeric"
+                min={1}
+                value={custom}
+                onChange={(e) => setCustom(e.target.value)}
+                placeholder="Other amount"
+                aria-label="Custom amount in rupees"
+                className="w-full pl-8 pr-3 py-2.5 text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-amber-400"
+              />
+            </div>
+            <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-2">
+              Even ₹50 helps cover hosting and AI costs for everyone.
             </p>
           </div>
 
-          {/* Mobile UPI Deep Link Button */}
-          <div className="w-full sm:hidden">
+          {/* Pay: deep link on phones, QR on larger screens */}
+          <div className="sm:hidden">
             <a
               href={upiUri}
-              className="w-full py-4 bg-gradient-to-r from-amber-500 to-orange-600 text-white rounded-2xl font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-all shadow-lg shadow-amber-200 dark:shadow-none text-sm uppercase tracking-wider"
+              className="w-full py-3.5 bg-gradient-to-r from-amber-500 to-orange-600 text-white rounded-2xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-amber-300/40 dark:shadow-none text-sm active:scale-[0.99] transition-transform"
             >
               <Smartphone size={18} />
-              Donate via UPI App
+              {chosen ? `Pay ₹${chosen} with UPI` : 'Pay with UPI'}
             </a>
-            <p className="text-center text-[10px] text-slate-400 dark:text-slate-500 mt-2">
-              Launches GPay, PhonePe, Paytm, or BHIM automatically.
+            <p className="text-center text-[11px] text-slate-400 dark:text-slate-500 mt-2">
+              Opens GPay, PhonePe, Paytm or BHIM.
             </p>
           </div>
-        </div>
 
-        {/* Thank You Note */}
-        <div className="mt-6 text-center border-t border-slate-100 dark:border-slate-800 pt-4 flex items-center justify-center gap-1.5 text-xs text-red-500 dark:text-red-400 font-bold uppercase tracking-wider">
-          <Heart size={14} className="fill-current animate-pulse" />
-          Thank you for supporting medical education!
+          <div className="hidden sm:flex items-center gap-4 p-4 bg-slate-50 dark:bg-slate-800/60 rounded-2xl border border-slate-200/70 dark:border-slate-700/60">
+            <img
+              src={qrCodeUrl}
+              alt={`UPI QR code${chosen ? ` for ₹${chosen}` : ''}`}
+              width={132}
+              height={132}
+              className="w-[132px] h-[132px] rounded-xl bg-white shrink-0"
+              loading="lazy"
+            />
+            <div className="min-w-0">
+              <p className="text-sm font-bold text-slate-800 dark:text-slate-100">Scan to pay{chosen ? ` ₹${chosen}` : ''}</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Use any UPI app. The amount is filled in for you.</p>
+            </div>
+          </div>
+
+          {/* UPI ID with copy */}
+          <div className="flex items-center justify-between gap-3 p-3 rounded-xl border border-slate-200 dark:border-slate-700">
+            <div className="min-w-0">
+              <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">UPI ID · {payeeName}</p>
+              <p className="text-sm font-mono font-bold text-slate-800 dark:text-slate-100 truncate select-all">{upiId}</p>
+            </div>
+            <button
+              onClick={copyUpi}
+              aria-label="Copy UPI ID"
+              className={
+                'shrink-0 inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-bold transition-colors ' +
+                (copied
+                  ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300'
+                  : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700')
+              }
+            >
+              {copied ? <Check size={14} /> : <Copy size={14} />}
+              {copied ? 'Copied' : 'Copy'}
+            </button>
+          </div>
+
+          {/* Story, collapsed by default */}
+          <div className="rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
+            <button
+              onClick={() => setShowStory(s => !s)}
+              aria-expanded={showStory}
+              className="w-full flex items-center justify-between px-4 py-3 text-left text-sm font-bold text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800/60 transition-colors"
+            >
+              Why I built this
+              <ChevronDown size={16} className={'transition-transform ' + (showStory ? 'rotate-180' : '')} />
+            </button>
+            {showStory && (
+              <div className="px-4 pb-4 text-xs text-slate-600 dark:text-slate-300 space-y-2.5 leading-relaxed">
+                <p>Hi fellow doctor! I am <strong>Dr. Aswanth Krishnan</strong>, an <strong>MD Pharmacology Resident</strong>.</p>
+                <p>While preparing for the mandatory <strong>BCBR</strong> exam I found no free, interactive platform with past year assignments, mock tests and smart insights, so I built one after hospital duty.</p>
+                <p>It stays <strong>100% free</strong>. Hosting, the database and the AI QBank cost money, and your support keeps it running.</p>
+              </div>
+            )}
+          </div>
+
+          {SUPPORTERS.length > 0 && (
+            <div className="text-center">
+              <p className="text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2">Thank you to our supporters</p>
+              <div className="flex flex-wrap justify-center gap-1.5">
+                {SUPPORTERS.map(name => (
+                  <span key={name} className="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-300 border border-amber-100 dark:border-amber-900/40">{name}</span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <button
+            onClick={handleShare}
+            className="w-full flex items-center justify-center gap-2 py-3 rounded-xl border border-dashed border-sky-300 dark:border-sky-800 text-sky-700 dark:text-sky-300 text-sm font-bold hover:bg-sky-50 dark:hover:bg-sky-900/20 transition-colors"
+          >
+            <Share2 size={16} />
+            {shareState === 'copied' ? 'Link copied!' : "Can't donate? Share with a batchmate"}
+          </button>
+
+          <div className="flex items-center justify-center gap-4 text-[11px] text-slate-400 dark:text-slate-500">
+            <span className="inline-flex items-center gap-1"><ShieldCheck size={13} /> Pay directly via UPI</span>
+            <span className="inline-flex items-center gap-1 text-rose-500 dark:text-rose-400 font-semibold"><Heart size={13} className="fill-current" /> Thank you</span>
+          </div>
         </div>
       </motion.div>
     </Modal>
