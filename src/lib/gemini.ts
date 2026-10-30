@@ -7,7 +7,7 @@ const HAS_SERVER = import.meta.env.VITE_OFFLINE_ONLY !== 'true';
 
 function generateHash(str: string): string {
   if (!str || typeof str !== 'string') return '0';
-  if (str.length > 10000) return '0'; // Limit input size to prevent DoS
+  if (str.length > 10000) str = str.slice(0, 10000) + ':' + str.length; // Cap hashed input to prevent DoS without collapsing long questions to one key
   
   let hash = 0;
   for (let i = 0; i < str.length; i++) {
@@ -38,10 +38,10 @@ export function sanitizeLaTeX(text: string): string {
   });
 
   // Convert \[ ... \] to $$ ... $$
-  cleaned = cleaned.replace(/\\\[([\s\S]*?)\\\]/g, '\n$$\n$1\n$$\n');
+  cleaned = cleaned.replace(/\\\[([\s\S]*?)\\\]/g, (_m, p1) => '\n$$\n' + p1 + '\n$$\n');
 
   // Convert \( ... \) to $ ... $
-  cleaned = cleaned.replace(/\\\(([\s\S]*?)\\\)/g, '$$1$');
+  cleaned = cleaned.replace(/\\\(([\s\S]*?)\\\)/g, (_m, p1) => '$' + p1 + '$');
 
   return cleaned;
 }
@@ -263,17 +263,6 @@ export async function getAIExplanation(
       const cacheKey = generateCacheKey(question, isDetailed);
       // Save to local memory cache
       explanationCache.set(cacheKey, text);
-      
-      // Save to global database cache asynchronously
-      if (HAS_SERVER) fetch('/api/explanation', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ key: cacheKey, text })
-      }).then(res => {
-        if (!res.ok) {
-          console.error("Server returned error when saving to global cache:", res.status);
-        }
-      }).catch(err => console.error("Failed to save to global cache:", err));
     }
     return text;
   } catch (error: any) {

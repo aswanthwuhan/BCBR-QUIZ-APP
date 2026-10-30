@@ -11,7 +11,7 @@ export const ASSIGNMENT_14_QUESTIONS: Question[] = [
       "Objectives should be defined before identifying the research question"
     ],
     correctAnswer: 0,
-    explanation: "Objectives should be defined at the planning stage of study."
+    explanation: "Objectives guide the design, sample size, data collection and analysis. They must be set at the planning stage, after the research question is framed."
   },
   {
     id: "a14q2",
@@ -23,7 +23,7 @@ export const ASSIGNMENT_14_QUESTIONS: Question[] = [
       "All of the above"
     ],
     correctAnswer: 3,
-    explanation: "All of the above."
+    explanation: "Key indicators come from framing the objectives, choosing a design that can produce them, and identifying the parameters (numerators and denominators) needed to calculate them."
   },
   {
     id: "a14q3",
@@ -35,7 +35,7 @@ export const ASSIGNMENT_14_QUESTIONS: Question[] = [
       "All of the above"
     ],
     correctAnswer: 3,
-    explanation: "All of the above."
+    explanation: "Time management, planning and scheduling of activities, and budgeting all improve the efficiency of a research study."
   },
   {
     id: "a14q4",
@@ -47,7 +47,7 @@ export const ASSIGNMENT_14_QUESTIONS: Question[] = [
       "Formulating study objects, spelling out research question, identifying data needs, planning analysis"
     ],
     correctAnswer: 2,
-    explanation: "Identifying data needs, spelling out research question, formulating study objectives, planning analysis."
+    explanation: "A study begins with a data need, which is turned into a research question. Objectives are derived from the question, and the analysis is planned last."
   },
   {
     id: "a14q5",
@@ -59,7 +59,7 @@ export const ASSIGNMENT_14_QUESTIONS: Question[] = [
       "All of the above"
     ],
     correctAnswer: 3,
-    explanation: "All of the above."
+    explanation: "Research deliverables must meet the defined timeframe, the defined budget and the expected quality standards."
   },
   {
     id: "a14q6",
@@ -71,7 +71,7 @@ export const ASSIGNMENT_14_QUESTIONS: Question[] = [
       "Both 'a' and 'b'"
     ],
     correctAnswer: 3,
-    explanation: "Both 'a' and 'b'."
+    explanation: "Objectives should be few, achievable and clear, and they can be primary or secondary. Adding objectives during implementation is poor practice."
   },
   {
     id: "a14q7",
@@ -83,7 +83,7 @@ export const ASSIGNMENT_14_QUESTIONS: Question[] = [
       "All of the above"
     ],
     correctAnswer: 3,
-    explanation: "All of the above."
+    explanation: "Information elements should be captured with variables that best reflect them, with standardized case definitions and laboratory criteria, and with the most accurate collection methods."
   },
   {
     id: "a14q8",
@@ -95,7 +95,7 @@ export const ASSIGNMENT_14_QUESTIONS: Question[] = [
       "All of the above"
     ],
     correctAnswer: 2,
-    explanation: "Serious difficulties in analysis and interpretation."
+    explanation: "An unplanned (ad hoc) study often collects incomplete or irrelevant data, which causes serious difficulties in analysis and interpretation."
   },
   {
     id: "a14q9",
@@ -107,7 +107,7 @@ export const ASSIGNMENT_14_QUESTIONS: Question[] = [
       "All of the above"
     ],
     correctAnswer: 3,
-    explanation: "All of the above."
+    explanation: "Poorly defined research questions, vague timelines and lack of supervision are all common reasons why studies fail."
   },
   {
     id: "a14q10",
@@ -119,7 +119,7 @@ export const ASSIGNMENT_14_QUESTIONS: Question[] = [
       "All of the above"
     ],
     correctAnswer: 3,
-    explanation: "All of the above."
+    explanation: "Sample size for a prevalence study is calculated as $n = Z^2 p(1-p)/d^2$. This uses the assumed prevalence $p$, the confidence level $Z$ and the acceptable precision $d$."
   },
   {
     id: "a14q11",
@@ -131,7 +131,7 @@ export const ASSIGNMENT_14_QUESTIONS: Question[] = [
       "A question based on established theory and some research evidence"
     ],
     correctAnswer: 3,
-    explanation: "A question based on established theory and some research evidence."
+    explanation: "A good research question is grounded in established theory and existing evidence. It is clear and concise, and it meets the FINER criteria."
   },
   {
     id: "a14q12",
@@ -143,19 +143,19 @@ export const ASSIGNMENT_14_QUESTIONS: Question[] = [
       "None of the above"
     ],
     correctAnswer: 0,
-    explanation: "Its advantages are the low development effort and possibility of getting results in a short time span."
+    explanation: "The ad hoc approach needs little development effort and gives quick results. Its accuracy is usually low, not high."
   },
   {
     id: "a14q13",
-    text: "A cross sectional study is carried out to examine whether naval medical personnel of a higher rank have more positive copying skills than those of a lower rank. Which of the following statement is true of this study?",
+    text: "A cross sectional study is carried out to examine whether naval medical personnel of a higher rank have more positive coping skills than those of a lower rank. Which of the following statement is true of this study?",
     options: [
       "Neither variable is dependent as the researcher cannot manipulate them",
-      "The independent variable is rank and the dependent variable is copying skills",
-      "The independent variable is copying skills and the dependent variable is rank",
+      "The independent variable is rank and the dependent variable is coping skills",
+      "The independent variable is coping skills and the dependent variable is rank",
       "None of the above"
     ],
     correctAnswer: 1,
-    explanation: "The independent variable is rank and the dependent variable is copying skills."
+    explanation: "The study asks whether rank influences coping skills, so rank is the independent variable and coping skill is the dependent variable."
   },
   {
     id: "a14q14",
@@ -167,7 +167,7 @@ export const ASSIGNMENT_14_QUESTIONS: Question[] = [
       "Incidence of AIDS and Life expectancy at birth"
     ],
     correctAnswer: 0,
-    explanation: "Positive indicators have a direct relationship with health status, such as cure rates and life expectancy."
+    explanation: "Positive indicators rise as health improves, such as TB cure rate and life expectancy. AIDS incidence and IMR are negative indicators because they rise as health worsens."
   },
   {
     id: "a14q15",
@@ -179,7 +179,7 @@ export const ASSIGNMENT_14_QUESTIONS: Question[] = [
       "None of the above"
     ],
     correctAnswer: 2,
-    explanation: "Systematic sampling technique."
+    explanation: "Systematic sampling needs a finite, listed population to calculate the sampling interval $k = N/n$ and select every kth unit."
   },
   {
     id: "a14q16",
@@ -191,7 +191,7 @@ export const ASSIGNMENT_14_QUESTIONS: Question[] = [
       "Retrospective cohort study"
     ],
     correctAnswer: 1,
-    explanation: "Prospective cohort study."
+    explanation: "Participants were enrolled in 1980 and followed forward in time for cancer outcomes until 1995, which makes this a prospective cohort study."
   },
   {
     id: "a14q17",
@@ -203,7 +203,7 @@ export const ASSIGNMENT_14_QUESTIONS: Question[] = [
       "None"
     ],
     correctAnswer: 2,
-    explanation: "Both 'a' and 'b'."
+    explanation: "The observed association may be due to confounding, for example sicker patients undergoing open surgery. A randomized controlled trial would balance confounders and give the strongest evidence."
   },
   {
     id: "a14q18",
@@ -215,7 +215,7 @@ export const ASSIGNMENT_14_QUESTIONS: Question[] = [
       "All of the above"
     ],
     correctAnswer: 3,
-    explanation: "All of the above."
+    explanation: "Comparing treated with untreated outcomes, showing a dose-response relationship and comparing adverse events together give the strongest evidence for both efficacy and safety."
   },
   {
     id: "a14q19",
@@ -227,7 +227,7 @@ export const ASSIGNMENT_14_QUESTIONS: Question[] = [
       "None of the above"
     ],
     correctAnswer: 1,
-    explanation: "Experiences shared by victims of domestic violence."
+    explanation: "Experiences of domestic violence victims are qualitative and cannot be measured numerically. The other options describe quantifiable outcomes."
   },
   {
     id: "a14q20",
@@ -239,21 +239,21 @@ export const ASSIGNMENT_14_QUESTIONS: Question[] = [
       "None of these"
     ],
     correctAnswer: 2,
-    explanation: "Both 'a' and 'b'."
+    explanation: "A representative sample improves external validity. Controlling extraneous factors and measuring confounders improves internal validity. Both strengthen overall validity."
   },
   {
     id: "a14q21",
     text: "Which of the following is ideally the first step in developing a study?",
     options: ["Fixing the title", "Formulating the research question", "Writing the background", "Planning for analysis"],
     correctAnswer: 1,
-    explanation: "Formulating the research question."
+    explanation: "Formulating the research question is the first step. The background, objectives, design, analysis plan and title all follow from it."
   },
   {
     id: "a14q22",
     text: "Which of the following is a reason for the failure of a study?",
     options: ["Poorly stated research question", "Unrealistic timeline", "Inadequate supervision", "All the above"],
     correctAnswer: 3,
-    explanation: "All the above."
+    explanation: "A poorly stated research question, an unrealistic timeline and inadequate supervision can each cause a study to fail."
   },
   {
     id: "a14q23",
@@ -265,14 +265,14 @@ export const ASSIGNMENT_14_QUESTIONS: Question[] = [
       "Planning analysis, Data collection, Data analysis, Developing research question"
     ],
     correctAnswer: 1,
-    explanation: "Developing research question, Planning the data analysis, Data collection, Data analysis."
+    explanation: "The analysis should be planned before data are collected, so that the right variables are captured. The correct order is research question, analysis plan, data collection, then analysis."
   },
   {
     id: "a14q24",
     text: "Which of the following factor is NOT essential for effective planning and management of a study?",
     options: ["Time management", "Financial management", "Reduction of sample size", "Team work"],
     correctAnswer: 2,
-    explanation: "Reduction of sample size."
+    explanation: "Effective study management relies on time management, financial management and teamwork. Sample size is set statistically, and reducing it is not a management principle."
   },
   {
     id: "a14q25",
@@ -284,56 +284,56 @@ export const ASSIGNMENT_14_QUESTIONS: Question[] = [
       "All the above"
     ],
     correctAnswer: 3,
-    explanation: "All the above."
+    explanation: "Information should be collected using variables that best reflect each element, standardized case definitions, and validated, standardized methods."
   },
   {
     id: "a14q26",
     text: "State whether true or false: Framing several study objectives improves the study planning and management.",
     options: ["True", "False"],
     correctAnswer: 1,
-    explanation: "False."
+    explanation: "Too many objectives make a study complex and hard to manage. A few clear objectives, with one primary objective, are preferred."
   },
   {
     id: "a14q27",
     text: "State whether true or false: Selection of study design should be related to the objectives.",
     options: ["True", "False"],
     correctAnswer: 0,
-    explanation: "True."
+    explanation: "The study design must match the objectives. For example, prevalence needs a cross-sectional design and efficacy needs an RCT."
   },
   {
     id: "a14q28",
     text: "Which of the following is a part of the planning and program management of a community based thesis study?",
     options: ["Calculating sample size", "Arranging transport to community", "Writing thesis", "All the above"],
     correctAnswer: 3,
-    explanation: "All the above."
+    explanation: "Planning a community-based thesis covers the scientific work (sample size), the logistics (transport) and the deliverables (writing the thesis)."
   },
   {
     id: "a14q29",
     text: "Which of the following can be used to represent the duration, timeline and sequence of activities?",
     options: ["Bar chart", "Histogram", "Gantt chart", "Pie chart"],
     correctAnswer: 2,
-    explanation: "Gantt chart."
+    explanation: "A Gantt chart uses horizontal bars plotted against time to show the duration, timeline and sequence of project activities."
   },
   {
     id: "a14q30",
     text: "Who is primarily responsible for resource allocation and time management in a study?",
     options: ["Institute", "Principal investigator", "Funding agency", "Scientific committee"],
     correctAnswer: 1,
-    explanation: "Principal investigator."
+    explanation: "The principal investigator is accountable for running the study, which includes allocating staff, funds and equipment and keeping activities on schedule. Institutes, funders and committees support or oversee the study but do not manage it day to day."
   },
   {
     id: "a14q31",
     text: "Which of the following is ideally the first step in developing a study?",
     options: ["Fixing the title", "Formulating the research question", "Writing the background", "Planning for analysis"],
     correctAnswer: 1,
-    explanation: "Formulating the research question."
+    explanation: "Formulating the research question is the first step. The background, objectives, design, analysis plan and title all follow from it."
   },
   {
     id: "a14q32",
     text: "Which of the following is a reason for the failure of a study?",
     options: ["Poorly stated research question", "Unrealistic timeline", "Inadequate supervision", "All the above"],
     correctAnswer: 3,
-    explanation: "All the above."
+    explanation: "A poorly stated research question, an unrealistic timeline and inadequate supervision can each cause a study to fail."
   },
   {
     id: "a14q33",
@@ -345,14 +345,14 @@ export const ASSIGNMENT_14_QUESTIONS: Question[] = [
       "Planning analysis, Data collection, Data analysis, Developing research question"
     ],
     correctAnswer: 1,
-    explanation: "Developing research question, Planning the data analysis, Data collection, Data analysis."
+    explanation: "The analysis should be planned before data are collected, so that the right variables are captured. The correct order is research question, analysis plan, data collection, then analysis."
   },
   {
     id: "a14q34",
     text: "Which of the following factor is NOT essential for effective planning and management of a study?",
     options: ["Time management", "Financial management", "Reduction of sample size", "Team work"],
     correctAnswer: 2,
-    explanation: "Reduction of sample size."
+    explanation: "Effective study management relies on time management, financial management and teamwork. Sample size is set statistically, and reducing it is not a management principle."
   },
   {
     id: "a14q35",
@@ -364,56 +364,56 @@ export const ASSIGNMENT_14_QUESTIONS: Question[] = [
       "All the above"
     ],
     correctAnswer: 3,
-    explanation: "All the above."
+    explanation: "Information should be collected using variables that best reflect each element, standardized case definitions, and validated, standardized methods."
   },
   {
     id: "a14q36",
     text: "State whether true or false: Framing several study objectives improves the study planning and management.",
     options: ["True", "False"],
     correctAnswer: 1,
-    explanation: "False."
+    explanation: "Too many objectives make a study complex and hard to manage. A few clear objectives, with one primary objective, are preferred."
   },
   {
     id: "a14q37",
     text: "State whether true or false: Selection of study design should be related to the objectives.",
     options: ["True", "False"],
     correctAnswer: 0,
-    explanation: "True."
+    explanation: "The study design must match the objectives. For example, prevalence needs a cross-sectional design and efficacy needs an RCT."
   },
   {
     id: "a14q38",
     text: "Which of the following is a part of the planning and program management of a community based thesis?",
     options: ["Calculating sample size", "Arranging transport to community", "Writing thesis", "All the above"],
     correctAnswer: 3,
-    explanation: "All the above."
+    explanation: "Planning and program management covers the whole project. That includes technical planning (sample size), field logistics (transport to the community) and scheduling the final output (thesis writing), so all the options apply."
   },
   {
     id: "a14q39",
     text: "Which of the following can be used to represent the duration, timeline and sequence of activities?",
     options: ["Bar chart", "Histogram", "Gantt chart", "Pie chart"],
     correctAnswer: 2,
-    explanation: "Gantt chart."
+    explanation: "A Gantt chart uses horizontal bars plotted against time to show the duration, timeline and sequence of project activities."
   },
   {
     id: "a14q40",
     text: "Who is primarily responsible for resource allocation and time management in a study?",
     options: ["Institute", "Principal investigator", "Funding agency", "Scientific committee"],
     correctAnswer: 1,
-    explanation: "Principal investigator."
+    explanation: "The principal investigator is accountable for running the study, which includes allocating staff, funds and equipment and keeping activities on schedule. Institutes, funders and committees support or oversee the study but do not manage it day to day."
   },
   {
     id: "a14q41",
     text: "State whether True or False: The amount of funding is the factor which decides the study design to conduct a health research.",
     options: ["True", "False"],
     correctAnswer: 1,
-    explanation: "False."
+    explanation: "The research question and objectives decide the study design. Funding is a feasibility constraint that may shape the design, but it is not the deciding factor."
   },
   {
     id: "a14q42",
     text: "Which of the following stage is most appropriate to define the responsibilities to conduct a health project?",
     options: ["During the planning", "During initiation", "During conducting", "Any time of the study"],
     correctAnswer: 0,
-    explanation: "During the planning."
+    explanation: "Responsibilities should be defined at the planning stage so that the protocol, budget, training and timeline reflect who does what. Assigning roles later causes confusion and gaps in accountability."
   },
   {
     id: "a14q43",
@@ -425,7 +425,7 @@ export const ASSIGNMENT_14_QUESTIONS: Question[] = [
       "Both 'a' and 'b'"
     ],
     correctAnswer: 1,
-    explanation: "Generation of low-quality data."
+    explanation: "Without supervision, field staff may deviate from the protocol, misrecord answers or fabricate data, so data quality falls. Supervision lapses do not change the objectives, and any money saved is wasted on unusable data."
   },
   {
     id: "a14q44",
@@ -437,7 +437,7 @@ export const ASSIGNMENT_14_QUESTIONS: Question[] = [
       "Good quality data can be obtained"
     ],
     correctAnswer: 3,
-    explanation: "Good quality data can be obtained (Analysis plan is for structure, data collection methods determine quality)."
+    explanation: "An analysis plan ensures only analyzable, objective-related data are collected and allows early analysis and dissemination. Data quality, however, depends on validated tools, training and supervision during collection, not on the analysis plan."
   },
   {
     id: "a14q45",
@@ -449,14 +449,14 @@ export const ASSIGNMENT_14_QUESTIONS: Question[] = [
       "All of these"
     ],
     correctAnswer: 3,
-    explanation: "All of these."
+    explanation: "A Gantt chart plots activities against time. It is used to build the initial schedule, track and report progress, and mark milestones, so all three uses apply."
   },
   {
     id: "a14q46",
     text: "State whether True or False: ‘Ad hoc’ method is a best method in project implementation and management.",
     options: ["True", "False"],
     correctAnswer: 1,
-    explanation: "False."
+    explanation: "An ad hoc approach means improvising without a plan, which causes delays, cost overruns and poor data. Good implementation needs systematic planning, timelines, SOPs and monitoring."
   },
   {
     id: "a14q47",
@@ -468,14 +468,14 @@ export const ASSIGNMENT_14_QUESTIONS: Question[] = [
       "Conducting regular project review meetings improves project implementation"
     ],
     correctAnswer: 0,
-    explanation: "Having a standard operating procedures is not a prerequisite for multi-centric studies."
+    explanation: "This statement is false because SOPs are essential in multicentric studies. They ensure every site follows identical procedures so that data can be validly pooled. The other statements are true."
   },
   {
     id: "a14q48",
     text: "Which of the following is NOT a part of project management?",
     options: ["Time management", "Resource allocation", "Monitoring and supervision", "Protocol development"],
     correctAnswer: 3,
-    explanation: "Protocol development."
+    explanation: "Project management deals with carrying out an approved study through time management, resource allocation, and monitoring and supervision. Protocol development belongs to the earlier scientific design phase."
   },
   {
     id: "a14q49",
@@ -487,13 +487,13 @@ export const ASSIGNMENT_14_QUESTIONS: Question[] = [
       "Having vague objectives will result in project failure"
     ],
     correctAnswer: 1,
-    explanation: "Having high budget will always result in successful project completion."
+    explanation: "A large budget cannot make up for vague objectives, untrained staff or poor supervision, so the claim that it 'always' ensures success is false. The other statements are true."
   },
   {
     id: "a14q50",
     text: "In the ‘Research cycle’, which step lies between formulating the study objectives and preparing data collection instruments?",
     options: ["Data collection", "Data cleaning", "Data analysis plan", "Data analysis"],
     correctAnswer: 2,
-    explanation: "Data analysis plan."
+    explanation: "In the research cycle, the data analysis plan (dummy tables, variables) comes after the objectives and before designing the data collection instruments, so that the tools capture exactly what the analysis needs."
   }
 ];
