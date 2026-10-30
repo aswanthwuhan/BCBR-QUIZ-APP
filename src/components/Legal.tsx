@@ -48,40 +48,33 @@ export const PrivacyPolicy = ({ onBack }: LegalPageProps) => (
           <li>Provide AI-powered explanations using your locally stored API key.</li>
           <li>Respond to your feedback and support requests.</li>
           <li>Analyze aggregate usage trends to improve our content and platform.</li>
-          <li>Display relevant advertisements through Google AdSense.</li>
         </ul>
       </Section>
 
-      <Section title="3. Google AdSense & Third-Party Advertising">
-        <p>We use <strong>Google AdSense</strong> to display advertisements on our platform. Google may use cookies and web beacons to serve ads based on your prior visits to our website or other websites. These cookies allow Google and its partners to serve ads based on your interests.</p>
-        <p>You may opt out of personalized advertising at any time by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="text-sky-600 font-bold underline">Google Ads Settings</a> or by visiting <a href="https://optout.aboutads.info/" target="_blank" rel="noopener noreferrer" className="text-sky-600 font-bold underline">aboutads.info</a>.</p>
-        <p>Third-party ad servers or ad networks may use technologies like cookies, JavaScript, or web beacons in their respective advertisements. We do not have access to or control over these cookies.</p>
-      </Section>
 
-      <Section title="4. Cookies">
+      <Section title="3. Cookies">
         <p>We use cookies and similar tracking technologies to enhance your experience. Types of cookies we use:</p>
         <ul className="list-disc pl-5 space-y-1">
           <li><strong>Essential Cookies:</strong> Required for the application to function (e.g., session management).</li>
           <li><strong>Performance Cookies:</strong> Used by Vercel Analytics and Speed Insights to measure app performance.</li>
-          <li><strong>Advertising Cookies:</strong> Set by Google AdSense to serve personalized advertisements.</li>
         </ul>
         <p>You can control cookies through your browser settings. Disabling cookies may affect some functionality of the application.</p>
       </Section>
 
-      <Section title="5. Data Retention & Security">
+      <Section title="4. Data Retention & Security">
         <p>Your account data is retained for as long as your account is active. You may request deletion of your account data by contacting us at <a href="mailto:connection249@gmail.com" className="text-sky-600 font-bold underline">connection249@gmail.com</a>.</p>
         <p>We implement industry-standard security measures including password hashing using bcrypt, encrypted database connections (TLS), and secure API endpoints. However, no method of transmission over the internet is 100% secure.</p>
       </Section>
 
-      <Section title="6. Children's Privacy">
+      <Section title="5. Children's Privacy">
         <p>BCBR QBank is designed for medical doctors and postgraduate medical researchers. We do not knowingly collect personal information from children under 13. If you believe a child has provided us with personal information, please contact us immediately.</p>
       </Section>
 
-      <Section title="7. Changes to This Policy">
+      <Section title="6. Changes to This Policy">
         <p>We may update this Privacy Policy periodically. We will notify registered users of significant changes via the app or email. Continued use of the platform after changes constitutes acceptance of the updated policy.</p>
       </Section>
 
-      <Section title="8. Contact Us">
+      <Section title="7. Contact Us">
         <p>If you have questions, concerns, or requests regarding this Privacy Policy, please contact us at:</p>
         <div className="bg-sky-50 dark:bg-sky-900/20 p-4 rounded-2xl border border-sky-100 dark:border-sky-800 mt-2">
           <p className="font-bold text-slate-800 dark:text-slate-200">Email: <a href="mailto:connection249@gmail.com" className="text-sky-600 underline">connection249@gmail.com</a></p>
@@ -139,27 +132,24 @@ export const TermsOfService = ({ onBack }: LegalPageProps) => (
       </Section>
 
       <Section title="5. Intellectual Property">
-        <p>The BCBR QBank platform, including its design, code, and original content, is the intellectual property of Dr. Aswanth Krishnan. You may not copy, reproduce, distribute, or create derivative works from any part of this platform without express written permission.</p>
+        <p>BCBR QBank was created by Dr. Aswanth Krishnan and is open source under the MIT License. You may use, copy, modify, host and distribute it, provided the copyright notice and credit to the original author are kept.</p>
         <p>Examination questions referenced may be derived from publicly available BCBR past papers and published research for educational fair-use purposes. We do not claim ownership of such third-party content.</p>
       </Section>
 
-      <Section title="6. Advertising">
-        <p>BCBR QBank displays advertisements through Google AdSense to support ongoing development and hosting costs. By using the Service, you consent to the display of these advertisements. We are not responsible for the content of third-party advertisements.</p>
-      </Section>
 
-      <Section title="7. Limitation of Liability">
+      <Section title="6. Limitation of Liability">
         <p>To the fullest extent permitted by law, BCBR QBank and its creator, Dr. Aswanth Krishnan, shall not be liable for any direct, indirect, incidental, special, or consequential damages arising from your use of the Service, including but not limited to exam performance outcomes, data loss, or inaccuracies in content.</p>
       </Section>
 
-      <Section title="8. Modifications">
+      <Section title="7. Modifications">
         <p>We reserve the right to modify these Terms at any time. We will notify users of material changes through the application. Continued use of the Service after modifications constitutes acceptance of the revised Terms.</p>
       </Section>
 
-      <Section title="9. Governing Law">
+      <Section title="8. Governing Law">
         <p>These Terms shall be governed by and construed in accordance with the laws of India. Any disputes shall be subject to the exclusive jurisdiction of the courts in India.</p>
       </Section>
 
-      <Section title="10. Contact">
+      <Section title="9. Contact">
         <p>For any questions about these Terms, contact us at <a href="mailto:connection249@gmail.com" className="text-sky-600 font-bold underline">connection249@gmail.com</a>.</p>
       </Section>
     </div>
@@ -286,7 +276,6 @@ export const ContactUs = ({ onBack }: LegalPageProps) => (
             { emoji: '❌', topic: 'Question Error', desc: 'Incorrect answer key, factual errors, or unclear phrasing.' },
             { emoji: '💡', topic: 'Suggestions', desc: 'Feature requests or new content ideas.' },
             { emoji: '🔑', topic: 'Account Issues', desc: 'Login problems or account recovery requests.' },
-            { emoji: '📢', topic: 'Advertising', desc: 'Inquiries about advertising partnerships.' },
             { emoji: '📜', topic: 'Legal / Privacy', desc: 'Data removal requests or privacy policy questions.' },
           ].map(({ emoji, topic, desc }) => (
             <div key={topic} className="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl border border-slate-100 dark:border-slate-700">

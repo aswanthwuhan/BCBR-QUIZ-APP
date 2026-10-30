@@ -43,7 +43,6 @@ import { Flashcards } from './components/Flashcards';
 import { REVISION_CARDS, REVISION_DECK_ID, REVISION_DECK_TITLE } from './data/revisionDeck';
 import { MODULE_FLASHCARDS, moduleDeckId } from './data/moduleFlashcards';
 import { CURATED_FLASHCARDS, curatedDeckId, CURATED_MODULE_TITLES } from './data/curatedFlashcards';
-import { AdBanner } from './components/AdBanner';
 import { PrivacyPolicy, TermsOfService, AboutUs, ContactUs } from './components/Legal';
 
 const SUPPORT_POPUP_INTERVAL_MS = 20 * 60 * 1000;
@@ -3006,7 +3005,7 @@ export default function App() {
         </AnimatePresence>
       </main>
 
-      {/* Persistent Global Footer - Required for AdSense Policy Compliance */}
+      {/* Persistent Global Footer */}
       <footer className="py-6 px-4 text-center border-t border-sky-100/50 dark:border-slate-800/50 bg-white/20 dark:bg-slate-900/20 backdrop-blur-sm">
         <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">
           <button onClick={() => setView('about')} className="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">About Us</button>
@@ -3026,8 +3025,8 @@ export default function App() {
         onExpand={() => setSupportModalCompact(false)}
         onSnooze={snoozeSupportPopup}
         onClose={closeSupportModal}
-        upiId="aswanthwuhan-2@okhdfcbank"
-        payeeName="Dr. Aswanth Krishnan"
+        upiId={import.meta.env.VITE_SUPPORT_UPI_ID || "aswanthwuhan-2@okhdfcbank"}
+        payeeName={import.meta.env.VITE_SUPPORT_PAYEE_NAME || "Dr. Aswanth Krishnan"}
       />
     </div>
   );

@@ -7,10 +7,8 @@ declare module 'rehype-sanitize' {
 }
 
 interface ImportMetaEnv {
-  readonly VITE_ADSENSE_CLIENT_ID: string;
-  readonly VITE_DASHBOARD_AD_SLOT: string;
-  readonly VITE_QUIZ_AD_SLOT: string;
-  readonly VITE_LEADERBOARD_AD_SLOT: string;
+  readonly VITE_SUPPORT_UPI_ID?: string;
+  readonly VITE_SUPPORT_PAYEE_NAME?: string;
 }
 
 interface ImportMeta {

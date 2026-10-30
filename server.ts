@@ -186,12 +186,11 @@ async function startServer() {
     contentSecurityPolicy: {
       directives: {
         defaultSrc: ["'self'"],
-        scriptSrc: ["'self'", "'unsafe-inline'", "https://pagead2.googlesyndication.com", "https://adservice.google.com", "https://adservice.google.co.in"],
+        scriptSrc: ["'self'", "'unsafe-inline'"],
         styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://cdn.jsdelivr.net"],
         fontSrc: ["'self'", "https://fonts.gstatic.com", "https://cdn.jsdelivr.net"],
         imgSrc: ["'self'", "data:", "https:"],
         connectSrc: ["'self'", "https://*.supabase.co"],
-        frameSrc: ["https://googleads.g.doubleclick.net", "https://pagead2.googlesyndication.com"],
         objectSrc: ["'none'"],
         upgradeInsecureRequests: IS_PRODUCTION ? [] : undefined,
       },
