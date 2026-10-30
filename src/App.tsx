@@ -23,7 +23,8 @@ import {
   Flag,
   LogOut,
   Linkedin,
-  Coffee
+  Coffee,
+  WifiOff
 } from 'lucide-react';
 import { SupportModal } from './components/SupportModal';
 import { Modal } from './components/Modal';
@@ -58,6 +59,10 @@ const isSupportPopupSnoozed = () => {
 const markSupportPopupShown = () => {
   sessionStorage.setItem(SUPPORT_POPUP_LAST_KEY, Date.now().toString());
 };
+
+// Builds without a backend (Android app, `npm run local`) only offer offline mode
+const OFFLINE_ONLY = import.meta.env.VITE_OFFLINE_ONLY === 'true';
+const OFFLINE_USERNAME = 'offline';
 
 type View = 'login' | 'dashboard' | 'quiz' | 'review' | 'flashcards' | 'settings' | 'leaderboard' | 'privacy' | 'terms' | 'about' | 'contact';
 
@@ -280,7 +285,7 @@ export default function App() {
 
   // Sync to backend if logged in (with debounce)
   useEffect(() => {
-    if (!globalState.username) return;
+    if (!globalState.username || globalState.isOffline) return;
     
     const handler = setTimeout(() => {
       const score = Object.values(globalState.progress).reduce(
@@ -321,7 +326,7 @@ export default function App() {
     }, 2000);
 
     return () => clearTimeout(handler);
-  }, [globalState.progress, globalState.username, globalState.hasAcceptedDisclaimer, globalState.hasSeenAIWarning]);
+  }, [globalState.progress, globalState.username, globalState.isOffline, globalState.hasAcceptedDisclaimer, globalState.hasSeenAIWarning]);
 
   // Apply dark mode class
   useEffect(() => {
@@ -849,7 +854,20 @@ export default function App() {
     }
   };
 
+  const startOfflineMode = () => {
+    setLoginError("");
+    setGlobalState(prev => ({ ...prev, version: 2, username: OFFLINE_USERNAME, isOffline: true }));
+    setView('dashboard');
+  };
+
   const handleLogout = async () => {
+    if (globalState.isOffline) {
+      // Leaving offline mode keeps on-device progress (it carries over if they log in)
+      setAskedForKeyForQId(null);
+      setGlobalState(prev => ({ ...prev, username: undefined, isOffline: false }));
+      setView('login');
+      return;
+    }
     try {
       await fetch('/api/logout', { method: 'POST' });
     } catch { /* ignore — cookie cleared server-side even if network fails */ }
@@ -870,6 +888,10 @@ export default function App() {
     if (!feedbackForm.message.trim()) return;
     const contact = feedbackForm.contact.trim();
     if (!contact) return;
+    if (globalState.isOffline) {
+      alert("Sending feedback needs an online account. Please log in on the website, or email connection249@gmail.com.");
+      return;
+    }
 
     setIsSubmittingFeedback(true);
     setFeedbackSuccess(false);
@@ -922,7 +944,7 @@ export default function App() {
   };
 
   const executeResetProgress = () => {
-    setGlobalState({ version: 2, progress: {}, apiKey: globalState.apiKey, username: globalState.username });
+    setGlobalState({ version: 2, progress: {}, apiKey: globalState.apiKey, username: globalState.username, isOffline: globalState.isOffline });
     setSessionAnswers({});
     setSessionResults({ correct: 0, wrong: 0 });
     setStreak(0);
@@ -966,6 +988,10 @@ export default function App() {
     if (!globalState.username) return;
     const contact = reportForm.contact.trim();
     if (!contact) return;
+    if (globalState.isOffline) {
+      alert("Reporting a question needs an online account. Please log in on the website, or email connection249@gmail.com.");
+      return;
+    }
     setIsSubmittingReport(true);
     try {
       const res = await fetch('/api/report', {
@@ -1087,8 +1113,8 @@ export default function App() {
             </button>
           )}
 
-          {globalState.username && (
-            <button 
+          {globalState.username && !globalState.isOffline && (
+            <button
               onClick={loadLeaderboard}
               className={cn(
                 "p-2 rounded-lg transition-all",
@@ -1115,7 +1141,7 @@ export default function App() {
             <button 
               onClick={handleLogout}
               className="p-2 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 text-red-500 transition-all"
-              title="Log Out"
+              title={globalState.isOffline ? "Exit offline mode" : "Log Out"}
             >
               <LogOut size={20} />
             </button>
@@ -1139,14 +1165,17 @@ export default function App() {
                 </div>
                 <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100 mb-2">Free BCBR Prep & QBank</h2>
                 <p className="text-slate-500 dark:text-slate-400 mb-3 text-sm leading-relaxed">
-                  {isSignUp ? "Create a free account to save your progress." : "1000+ BCBR past year questions — completely free. Log in to start your BCBR preparation."}
+                  {OFFLINE_ONLY
+                    ? "1000+ BCBR past year questions — completely free, no account needed."
+                    : isSignUp ? "Create a free account to save your progress." : "1000+ BCBR past year questions — completely free. Log in to start your BCBR preparation."}
                 </p>
                 <div className="flex flex-wrap justify-center gap-2 mb-6">
                   {['Past Year Questions', 'Free QBank', '23 Assignments', 'AI Explanations'].map(tag => (
                     <span key={tag} className="text-[10px] font-bold uppercase tracking-wider bg-sky-50 dark:bg-sky-900/30 text-sky-600 dark:text-sky-400 px-2.5 py-1 rounded-full border border-sky-100 dark:border-sky-800/50">{tag}</span>
                   ))}
                 </div>
-                
+
+                {!OFFLINE_ONLY && (<>
                 {loginError && (
                   <div className="bg-red-50 text-red-600 p-3 rounded-xl mb-6 text-sm flex items-center gap-2 text-left">
                     <AlertCircle size={16} className="shrink-0" />
@@ -1249,9 +1278,20 @@ export default function App() {
                     {isSignUp ? "Log In" : "Sign Up"}
                   </button>
                 </div>
+                </>)}
 
-                <div className="mt-8 pt-6 border-t border-slate-100 dark:border-slate-800">
-                  <button 
+                <div className={cn("space-y-3", !OFFLINE_ONLY && "mt-8 pt-6 border-t border-slate-100 dark:border-slate-800")}>
+                  <button
+                    onClick={startOfflineMode}
+                    className="w-full py-3 bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-xl font-bold shadow-lg shadow-emerald-200/50 dark:shadow-emerald-900/20 hover:opacity-90 transition-all flex items-center justify-center gap-2"
+                  >
+                    <WifiOff size={18} />
+                    {OFFLINE_ONLY ? "Start Studying" : "Use Offline (No Account)"}
+                  </button>
+                  <p className="text-xs text-slate-400 dark:text-slate-500">
+                    All questions and flashcards work without internet. Progress is saved on this device only.
+                  </p>
+                  {!OFFLINE_ONLY && <button
                     onClick={() => {
                       setAskedForKeyForQId(null);
                       setSelectedAssignmentId(1);
@@ -1263,7 +1303,7 @@ export default function App() {
                   >
                     <Sparkles size={18} />
                     Try Free BCBR Past Year Questions (No Login)
-                  </button>
+                  </button>}
                 </div>
               </div>
 

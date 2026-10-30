@@ -9,9 +9,14 @@
     "build": "vite build",
     "preview": "vite preview",
     "clean": "rm -rf dist",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "build:offline": "vite build --mode offline",
+    "local": "vite build --mode offline && vite preview --host --port 3000 --strictPort",
+    "android:sync": "vite build --mode offline && cap sync android",
+    "android:open": "cap open android"
   },
   "dependencies": {
+    "@capacitor/core": "^8.6.0",
     "@google/genai": "^1.29.0",
     "@supabase/supabase-js": "^2.99.1",
     "@tailwindcss/typography": "^0.5.19",
@@ -46,6 +51,8 @@
     "vite": "^6.2.0"
   },
   "devDependencies": {
+    "@capacitor/android": "^8.6.0",
+    "@capacitor/cli": "^8.6.0",
     "@types/bcryptjs": "^2.4.6",
     "@types/cookie-parser": "^1.4.10",
     "@types/cors": "^2.8.19",
@@ -56,5 +63,6 @@
     "tailwindcss": "^4.1.14",
     "typescript": "~5.8.2",
     "vite": "^6.2.0"
-  }
+  },
+  "license": "MIT"
 }

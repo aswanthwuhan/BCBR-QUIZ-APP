@@ -9,6 +9,8 @@ export default defineConfig(({mode}) => {
     plugins: [react(), tailwindcss()],
     define: {
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
+      // `--mode offline` (npm run local, Android app) builds without login/server features
+      'import.meta.env.VITE_OFFLINE_ONLY': JSON.stringify(mode === 'offline' ? 'true' : (env.VITE_OFFLINE_ONLY || '')),
     },
     resolve: {
       alias: {
