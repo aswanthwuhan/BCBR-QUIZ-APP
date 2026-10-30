@@ -60,9 +60,9 @@ You need Node.js 20+, a free [Supabase](https://supabase.com) project, and (opti
    ```bash
    npm install
    ```
-2. **Create the database:** open your Supabase project → SQL Editor, paste [`supabase/schema.sql`](supabase/schema.sql) and run it.
+2. **Create the database:** open your Supabase project → SQL Editor, paste [`supabase/schema.sql`](supabase/schema.sql) and run it. This also turns on row level security, so the tables can't be read with the public key.
 3. **Configure:** copy `.env.example` to `.env` and fill in:
-   - `SUPABASE_URL`, `SUPABASE_ANON_KEY`: from Supabase → Project Settings → API (server-side only)
+   - `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`: from Supabase → Project Settings → API. Use the **secret** `service_role` key. It's used only on the server; never commit it or put it in a `VITE_` variable.
    - `JWT_SECRET`: a long random string, e.g. `openssl rand -hex 64`
    - `ALLOWED_ORIGINS`: your site URL(s), comma-separated
    - `GEMINI_API_KEY`: optional

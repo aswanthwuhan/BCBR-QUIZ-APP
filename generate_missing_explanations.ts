@@ -46,8 +46,13 @@ const GEMINI_MODELS = [
   "gemini-2.5-flash-lite"
 ];
 
-const SUPABASE_URL = process.env.SUPABASE_URL || 'https://YOUR_PROJECT.supabase.co';
-const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY || 'REMOVED_SUPABASE_KEY';
+const SUPABASE_URL = process.env.SUPABASE_URL;
+// Server-side script: use the secret service_role key (never commit keys to the repo)
+const SUPABASE_ANON_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY;
+if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+  console.error("ERROR: set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in your environment.");
+  process.exit(1);
+}
 
 const OPENCODE_API_KEY = process.env.OPENCODE_API_KEY || process.env.DEEPSEEK_API_KEY;
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;

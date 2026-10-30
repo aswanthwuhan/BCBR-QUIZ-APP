@@ -19,14 +19,26 @@ const JWT_SECRET = process.env.JWT_SECRET || crypto.randomBytes(64).toString("he
 const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || "https://bcbr-quiz-app.vercel.app").split(",");
 
 // --- Supabase ---
+// The server needs Supabase's secret server key (service_role / sb_secret_…), which bypasses
+// row level security. The public anon/publishable key only works while RLS is off, which
+// leaves every table readable by anyone, so it is accepted only as a deprecated fallback.
+const SUPABASE_SERVER_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_ANON_KEY;
+if (!process.env.SUPABASE_SERVICE_ROLE_KEY && !process.env.SUPABASE_SECRET_KEY && process.env.SUPABASE_ANON_KEY) {
+  console.warn("WARNING: using SUPABASE_ANON_KEY on the server. Set SUPABASE_SERVICE_ROLE_KEY and enable row level security (supabase/enable-rls.sql).");
+}
+
+// Escape LIKE/ILIKE wildcards so a username is matched literally (case-insensitively)
+function escapeLike(value: string): string {
+  return value.replace(/[\\%_]/g, (c) => "\\" + c);
+}
+
 let supabase: any = null;
 try {
   const supabaseUrl = process.env.SUPABASE_URL;
-  const supabaseKey = process.env.SUPABASE_ANON_KEY;
-  if (supabaseUrl && supabaseKey) {
-    supabase = createClient(supabaseUrl, supabaseKey);
+  if (supabaseUrl && SUPABASE_SERVER_KEY) {
+    supabase = createClient(supabaseUrl, SUPABASE_SERVER_KEY);
   } else {
-    console.error("CRITICAL: SUPABASE_URL or SUPABASE_ANON_KEY is missing!");
+    console.error("CRITICAL: SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY is missing!");
   }
 } catch (err) {
   console.error("Failed to initialize Supabase client:", err);
@@ -168,7 +180,7 @@ app.use(helmet({
       styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://cdn.jsdelivr.net"],
       fontSrc: ["'self'", "data:", "https://fonts.gstatic.com", "https://cdn.jsdelivr.net"],
       imgSrc: ["'self'", "data:", "https:"],
-      connectSrc: ["'self'", "https://*.supabase.co"],
+      connectSrc: ["'self'", "https://*.supabase.co", "https://generativelanguage.googleapis.com"],
       objectSrc: ["'none'"],
       upgradeInsecureRequests: [],
     },
@@ -186,7 +198,8 @@ app.use(cors((req, callback) => {
   if (!origin || sameOrigin || ALLOWED_ORIGINS.includes(origin)) {
     callback(null, { origin: true, credentials: true });
   } else {
-    callback(new Error("Not allowed by CORS"));
+    // Unknown site: send no CORS headers (the browser blocks the response); csrfCheck answers writes with 403
+    callback(null, { origin: false });
   }
 }));
 
@@ -225,13 +238,14 @@ app.post("/api/signup", authLimiter, signupValidation, async (req, res) => {
   const username = rawUsername.trim();
 
   try {
-    const { data: existingUser } = await supabase
+    const { data: existingUsers } = await supabase
       .from("users")
       .select("id")
-      .eq("username", username)
-      .single();
+      .ilike("username", escapeLike(username))
+      .limit(1);
 
-    if (existingUser) return res.status(400).json({ error: "Username is already taken" });
+    // Names that differ only in case count as taken, because login is case-insensitive
+    if (existingUsers && existingUsers.length > 0) return res.status(400).json({ error: "Username is already taken" });
 
     const salt = await bcrypt.genSalt(12);
     const passwordHash = await bcrypt.hash(password, salt);
@@ -282,11 +296,13 @@ app.post("/api/login", authLimiter, loginValidation, async (req, res) => {
   const { username, password } = req.body;
 
   try {
-    const { data: user, error: fetchError } = await supabase
+    const { data: matches, error: fetchError } = await supabase
       .from("users")
       .select("id, username, password_hash, full_name, college, place, qualification, email, has_accepted_disclaimer, has_seen_ai_warning, progress, score")
-      .ilike("username", username.trim())
-      .single();
+      .ilike("username", escapeLike(username.trim()))
+      .limit(10);
+    // Prefer the exact-case username; otherwise accept a single case-insensitive match
+    const user = matches?.find((u: any) => u.username === username.trim()) ?? (matches?.length === 1 ? matches[0] : null);
 
     if (!user || fetchError) {
       return res.status(401).json({ error: "Invalid username or password" });
@@ -419,7 +435,7 @@ app.get("/api/explanation/:key", apiLimiter, async (req, res) => {
   }
 });
 
-app.post("/api/explanation", apiLimiter, async (req, res) => {
+app.post("/api/explanation", authenticate, apiLimiter, async (req, res) => {
   try {
     const { key, text } = req.body;
     if (!key || !text) return res.status(400).json({ error: "Key and text required" });
