@@ -1,0 +1,41 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@variant dark (&:where(.dark, .dark *));
+
+html {
+  scroll-behavior: smooth;
+}
+
+@layer utilities {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-sky-200 dark:bg-sky-900/50 rounded-full;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-sky-300 dark:bg-sky-800/50;
+  }
+}
+
+/* Completely delete white banner and hide all ad containers & Google auto-ad overlays */
+.adsbygoogle,
+.ad-container,
+.google-auto-placed,
+.adsbygoogle-noablate,
+iframe[name^="goog"],
+div[id^="google_ads"],
+ins.adsbygoogle {
+  display: none !important;
+  height: 0 !important;
+  width: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}

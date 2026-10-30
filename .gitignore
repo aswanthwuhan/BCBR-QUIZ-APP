@@ -1,0 +1,27 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+vercel.env
+database.sqlite
+
+# local tool / agent folders
+.agent/
+.agents/
+.claude/
+.cursor/
+.gemini/
+.hermes/
+.impeccable/
+.kimchi/
+.opencode/
+.playwright-cli/
+
+# scratch outputs
+*.out
+*.flag
+nul
