@@ -42,7 +42,6 @@ import { getAIExplanation, generateAIQuestions, checkExistingExplanation } from 
 import { addKnownId, removeKnownId, countKnownInIds, isCardDue, scheduleFlashcard, FlashcardGrade } from './lib/flashcards';
 import { Flashcards } from './components/Flashcards';
 import { REVISION_CARDS, REVISION_DECK_ID, REVISION_DECK_TITLE } from './data/revisionDeck';
-import { MODULE_FLASHCARDS, moduleDeckId } from './data/moduleFlashcards';
 import { CURATED_FLASHCARDS, curatedDeckId, CURATED_MODULE_TITLES } from './data/curatedFlashcards';
 import { PrivacyPolicy, TermsOfService, AboutUs, ContactUs } from './components/Legal';
 
@@ -361,17 +360,12 @@ export default function App() {
       globalState.progress[REVISION_DECK_ID]?.knownCardIds || [],
       REVISION_CARDS.map(c => c.id)
     );
-    const modules = ASSIGNMENTS.reduce((sum, a) => {
-      const cards = MODULE_FLASHCARDS[a.id];
-      if (!cards) return sum;
-      return sum + countKnownInIds(globalState.progress[moduleDeckId(a.id)]?.knownCardIds || [], cards.map(c => c.id));
-    }, 0);
     const curated = Object.keys(CURATED_FLASHCARDS).reduce((sum, key) => {
       const id = Number(key);
       const cards = CURATED_FLASHCARDS[id];
       return sum + countKnownInIds(globalState.progress[curatedDeckId(id)]?.knownCardIds || [], cards.map(c => c.id));
     }, 0);
-    return revision + modules + curated;
+    return revision + curated;
   }, [globalState.progress]);
 
   const selectedAssignment = useMemo(() => {
@@ -1617,7 +1611,7 @@ export default function App() {
                              <button
                                onClick={(e) => {
                                  e.stopPropagation();
-                                 openFlashcards(moduleDeckId(a.id));
+                                 openFlashcards(curatedDeckId(a.id));
                                }}
                                className="p-1 px-2 text-[10px] font-bold rounded-md transition-colors border text-violet-600 dark:text-violet-400 border-violet-200 dark:border-violet-800 hover:bg-violet-100 dark:hover:bg-violet-900/30"
                                title="Study this module's facts as flashcards"
@@ -2314,33 +2308,6 @@ export default function App() {
                 );
               }
             }
-            if (flashcardDeckId !== null && flashcardDeckId >= 1000) {
-              const lecture = flashcardDeckId - 1000;
-              const moduleDeck = MODULE_FLASHCARDS[lecture];
-              if (moduleDeck) {
-                return (
-                  <motion.div
-                    key={`flashcards-${flashcardDeckId}`}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                  >
-                    <Flashcards
-                      key={flashcardDeckId}
-                      deckTitle={`Module ${lecture}: ${ASSIGNMENTS.find(a => a.id === lecture)?.title ?? ''}`}
-                      cards={moduleDeck.map(c => ({ id: c.id, front: c.front, back: c.back, tag: `Module ${lecture}` }))}
-                      backLabel="Key facts"
-                      frontLabel="Recall"
-                      knownCardIds={globalState.progress[moduleDeckId(lecture)]?.knownCardIds || []}
-                      onToggleKnown={(qid, known) => handleToggleKnownCard(moduleDeckId(lecture), qid, known)}
-                      srs={globalState.progress[moduleDeckId(lecture)]?.cardSrs || {}}
-                      onGradeCard={(cardId, grade) => handleGradeCard(moduleDeckId(lecture), cardId, grade)}
-                      onExit={() => setView('dashboard')}
-                    />
-                  </motion.div>
-                );
-              }
-            }
             if (flashcardDeckId === REVISION_DECK_ID) {
               return (
                 <motion.div
@@ -2436,30 +2403,6 @@ export default function App() {
                         </>
                       );
                     })()}
-                    <div className="col-span-full text-[10px] uppercase tracking-widest font-bold text-slate-400 dark:text-slate-500 pt-2">
-                      Module flashcards — 50 facts per module
-                    </div>
-                    {ASSIGNMENTS.map(a => {
-                      const moduleCards = MODULE_FLASHCARDS[a.id];
-                      if (!moduleCards) return null;
-                      return (
-                        <button
-                          key={a.id}
-                          onClick={() => openFlashcards(moduleDeckId(a.id))}
-                          className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-2xl rounded-3xl border border-white dark:border-slate-800 p-5 flex items-center gap-4 text-left transition-all group hover:border-violet-300 dark:hover:border-violet-700 hover:shadow-lg hover:shadow-violet-100/50 dark:hover:shadow-violet-900/20"
-                        >
-                          <div className="w-12 h-12 shrink-0 bg-violet-50 dark:bg-violet-900/30 rounded-xl flex items-center justify-center text-violet-500 dark:text-violet-400 group-hover:scale-110 transition-transform shadow-inner">
-                            <Layers size={24} />
-                          </div>
-                          <div className="min-w-0">
-                            <h3 className="font-bold text-slate-800 dark:text-slate-200 line-clamp-2">{a.title}</h3>
-                            <p className="text-sm text-slate-500 dark:text-slate-400">
-                              {moduleCards.length} cards · {countKnownInIds(globalState.progress[moduleDeckId(a.id)]?.knownCardIds || [], moduleCards.map(c => c.id))} known · {countDueCards(moduleDeckId(a.id), moduleCards.map(c => c.id))} due
-                            </p>
-                          </div>
-                        </button>
-                      );
-                    })}
                   </div>
                 </motion.div>
               );

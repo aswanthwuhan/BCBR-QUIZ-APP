@@ -1,7 +1,6 @@
-// Curated flashcards — authored from external authoritative sources
-// (NPTEL/ICMR-NIE BCBR syllabus & lecture transcripts, ICMR National Ethical
-// Guidelines 2017). Kept separate from the question-bank-derived decks in
-// ../revisionDeck and ../moduleFlashcards.
+// Curated flashcards — 100 per module, authored from the BCBR curriculum
+// (NPTEL/ICMR-NIE BCBR syllabus, ICMR National Ethical Guidelines 2017), not
+// from the question bank. Kept separate from the ../revisionDeck.
 
 /** The kind of recall a curated card tests. */
 export type CuratedCardType = 'DEFINITION' | 'DIFFERENCE' | 'LIST' | 'SCENARIO';
