@@ -944,7 +944,8 @@ export default function App() {
   };
 
   const executeResetProgress = () => {
-    setGlobalState({ version: 2, progress: {}, apiKey: globalState.apiKey, username: globalState.username, isOffline: globalState.isOffline });
+    // Clear study progress only; keep the account, settings and accepted disclaimers
+    setGlobalState(prev => ({ ...prev, version: 2, progress: {}, srsData: {} }));
     setSessionAnswers({});
     setSessionResults({ correct: 0, wrong: 0 });
     setStreak(0);
