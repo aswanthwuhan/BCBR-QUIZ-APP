@@ -4,6 +4,8 @@ A free, open-source question bank for students preparing for the BCBR (Basic Cou
 
 **Created by [Dr. Aswanth Krishnan](https://www.linkedin.com/in/draswanth/)** · Live site: https://bcbr-quiz-app.vercel.app
 
+📱 **[Download the Android app (APK)](https://github.com/aswanthwuhan/BCBR-QUIZ-APP/releases/latest)**: works offline, no account needed.
+
 ## Credits
 
 This project is free to use, modify and host under the [MIT License](LICENSE). If you host your own copy, please keep the license file and the "Created by Dr. Aswanth Krishnan" credit in the app footer and About page.
@@ -25,7 +27,7 @@ The app opens at http://localhost:3000. Phones on the same Wi-Fi can open the **
 ### On your phone
 
 - **Install from the website (Android or iPhone):** open the site in Chrome/Safari → menu → **Add to Home Screen** / **Install app**. After the first visit it works fully offline.
-- **Android app (APK):** build it yourself (below) and install `app-debug.apk` on your phone; allow "Install unknown apps" when asked.
+- **Android app (APK):** download the `.apk` from the [latest release](https://github.com/aswanthwuhan/BCBR-QUIZ-APP/releases/latest), open it on your phone and allow "Install unknown apps" when asked. You can also build it yourself (below).
 
 ### Build the Android app
 
