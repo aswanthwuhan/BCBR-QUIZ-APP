@@ -44,6 +44,10 @@ Replace `https://bcbr-quiz-app.vercel.app` with your URL in `index.html` (SEO ta
 - `npm run build`: production build into `dist/`
 - `npm run lint`: TypeScript type check
 
+## Acknowledgements
+
+Thanks to **Dr. Harshad** from [Aurapharmlab](https://aurapharmlab.com) for the support in providing Claude access, which helped build this app.
+
 ## Contributing
 
 Corrections to questions and answers are very welcome. Open an issue or pull request.
