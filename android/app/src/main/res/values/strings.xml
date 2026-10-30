@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">BCBR QBank</string>
+    <string name="title_activity_main">BCBR QBank</string>
+    <string name="package_name">com.bcbr.prepquiz</string>
+    <string name="custom_url_scheme">com.bcbr.prepquiz</string>
+</resources>

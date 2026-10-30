@@ -36,6 +36,8 @@ export interface GlobalState {
   progress: Record<number, UserProgress>;
   apiKey?: string;
   username?: string;
+  /** Offline mode: no account, progress stays on this device only */
+  isOffline?: boolean;
   fullName?: string;
   college?: string;
   place?: string;
