@@ -3030,15 +3030,18 @@ export default function App() {
                   </section>
                 </div>
 
-                <button 
-                  onClick={() => {
-                    setGlobalState(prev => ({ ...prev, hasAcceptedDisclaimer: true }));
-                    setShowDisclaimerModal(false);
-                  }}
-                  className="w-full py-5 bg-gradient-to-r from-sky-600 to-indigo-600 text-white rounded-3xl font-black text-lg shadow-2xl shadow-sky-200 dark:shadow-sky-900/50 hover:scale-[1.02] transition-transform active:scale-95"
-                >
-                  I Accept & Agree
-                </button>
+                {/* Pinned to the bottom so the button is always fully visible on small screens */}
+                <div className="sticky -bottom-8 sm:-bottom-10 -mx-8 sm:-mx-10 -mb-8 sm:-mb-10 px-8 sm:px-10 pt-4 pb-8 sm:pb-10 bg-white dark:bg-slate-900">
+                  <button
+                    onClick={() => {
+                      setGlobalState(prev => ({ ...prev, hasAcceptedDisclaimer: true }));
+                      setShowDisclaimerModal(false);
+                    }}
+                    className="w-full py-5 bg-gradient-to-r from-sky-600 to-indigo-600 text-white rounded-3xl font-black text-lg shadow-2xl shadow-sky-200 dark:shadow-sky-900/50 hover:scale-[1.02] transition-transform active:scale-95"
+                  >
+                    I Accept & Agree
+                  </button>
+                </div>
               </motion.div>
             </Modal>
           )}
