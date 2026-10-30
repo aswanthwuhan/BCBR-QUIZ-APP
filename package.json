@@ -10,9 +10,9 @@
     "preview": "vite preview",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit",
-    "build:offline": "vite build --mode offline",
-    "local": "vite build --mode offline && vite preview --host --port 3000 --strictPort",
-    "android:sync": "vite build --mode offline && cap sync android",
+    "build:offline": "vite build --mode offline --outDir dist-offline",
+    "local": "vite build --mode offline --outDir dist-offline && vite preview --outDir dist-offline --host --port 3000 --strictPort",
+    "android:sync": "vite build --mode offline --outDir dist-offline && cap sync android",
     "android:open": "cap open android"
   },
   "dependencies": {
