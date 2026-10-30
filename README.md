@@ -14,13 +14,23 @@ This project is free to use, modify and host under the [MIT License](LICENSE). I
 
 Every version has an offline mode: all questions, flashcards and progress tracking work with no account and no server. Progress is saved on the device. AI explanations still need internet and your own Gemini key (Settings). The leaderboard, feedback and question reports need an online account.
 
-### On your computer
+### On your computer: one-command install
 
-Install [Node.js](https://nodejs.org), download this repo (Code → Download ZIP), then:
+**Windows:** open PowerShell and run:
 
-- **Windows:** double-click `start-local.bat`
-- **Mac / Linux:** run `./start-local.sh`
-- or run `npm install` then `npm run local`
+```powershell
+irm https://raw.githubusercontent.com/aswanthwuhan/BCBR-QUIZ-APP/main/install.ps1 | iex
+```
+
+**Mac / Linux:** open Terminal and run:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/aswanthwuhan/BCBR-QUIZ-APP/main/install.sh | sh
+```
+
+The installer downloads the app to a `BCBR-QBank` folder in your home folder and installs it. On Windows it also adds a **BCBR QBank** shortcut to your desktop, and then it starts the app. It needs [Node.js](https://nodejs.org); on Windows the installer offers to install Node.js for you. Run the same command again later to update. Your progress is kept.
+
+**Manual install:** download this repo (Code → Download ZIP), then double-click `start-local.bat` (Windows), run `./start-local.sh` (Mac/Linux), or run `npm install` followed by `npm run local`.
 
 The app opens at http://localhost:3000. Phones on the same Wi-Fi can open the **Network** address printed in the window, for example `http://192.168.1.5:3000`.
 
