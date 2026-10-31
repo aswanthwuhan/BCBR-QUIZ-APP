@@ -28,11 +28,24 @@ const JWT_SECRET = process.env.JWT_SECRET || crypto.randomBytes(64).toString("he
 
 const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || "http://localhost:3000,http://localhost:5173").split(",");
 
-if (!process.env.SUPABASE_URL || !process.env.SUPABASE_ANON_KEY) {
-  console.error("CRITICAL: SUPABASE_URL or SUPABASE_ANON_KEY not found in environment!");
+// The server needs Supabase's secret server key (service_role / sb_secret_…), which bypasses
+// row level security. The public anon/publishable key only works while RLS is off, which
+// leaves every table readable by anyone, so it is accepted only as a deprecated fallback.
+const SUPABASE_SERVER_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_ANON_KEY;
+if (!process.env.SUPABASE_SERVICE_ROLE_KEY && !process.env.SUPABASE_SECRET_KEY && process.env.SUPABASE_ANON_KEY) {
+  console.warn("WARNING: using SUPABASE_ANON_KEY on the server. Set SUPABASE_SERVICE_ROLE_KEY and enable row level security (supabase/enable-rls.sql).");
+}
+
+// Escape LIKE/ILIKE wildcards so a username is matched literally (case-insensitively)
+function escapeLike(value: string): string {
+  return value.replace(/[\\%_]/g, (c) => "\\" + c);
+}
+
+if (!process.env.SUPABASE_URL || !SUPABASE_SERVER_KEY) {
+  console.error("CRITICAL: SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY not found in environment!");
   process.exit(1);
 }
-const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY);
+const supabase = createClient(process.env.SUPABASE_URL, SUPABASE_SERVER_KEY);
 
 // --- Token Denylist (in-memory, survives within a single server instance) ---
 const tokenDenylist = new Set<string>();
@@ -153,12 +166,15 @@ const strictLimiter = rateLimit({
 const signupValidation = [
   body("username").trim().isLength({ min: 3, max: 30 }).matches(/^[a-zA-Z0-9_]+$/).withMessage("Username must be 3-30 alphanumeric characters or underscores"),
   body("password")
-    .isLength({ min: 8 }).withMessage("Password must be at least 8 characters")
+    .isLength({ min: 8, max: 72 }).withMessage("Password must be 8-72 characters")
     .matches(/[A-Z]/).withMessage("Password must contain at least one uppercase letter")
     .matches(/[a-z]/).withMessage("Password must contain at least one lowercase letter")
     .matches(/[0-9]/).withMessage("Password must contain at least one number"),
   body("fullName").trim().isLength({ min: 1, max: 100 }).withMessage("Full name is required"),
   body("college").trim().isLength({ min: 1, max: 200 }).withMessage("College is required"),
+  body("place").optional({ values: "falsy" }).isString().trim().isLength({ max: 200 }).withMessage("Place is too long"),
+  body("qualification").optional({ values: "falsy" }).isString().trim().isLength({ max: 200 }).withMessage("Qualification is too long"),
+  body("email").optional({ values: "falsy" }).isString().trim().isLength({ max: 200 }).isEmail().withMessage("Invalid email address"),
 ];
 
 const loginValidation = [
@@ -190,7 +206,7 @@ async function startServer() {
         styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://cdn.jsdelivr.net"],
         fontSrc: ["'self'", "data:", "https://fonts.gstatic.com", "https://cdn.jsdelivr.net"],
         imgSrc: ["'self'", "data:", "https:"],
-        connectSrc: ["'self'", "https://*.supabase.co"],
+        connectSrc: ["'self'", "https://*.supabase.co", "https://generativelanguage.googleapis.com"],
         objectSrc: ["'none'"],
         upgradeInsecureRequests: IS_PRODUCTION ? [] : undefined,
       },
@@ -208,7 +224,8 @@ async function startServer() {
     if (!origin || sameOrigin || ALLOWED_ORIGINS.includes(origin)) {
       callback(null, { origin: true, credentials: true });
     } else {
-      callback(new Error("Not allowed by CORS"));
+      // Unknown site: send no CORS headers (the browser blocks the response); csrfCheck answers writes with 403
+      callback(null, { origin: false });
     }
   }));
 
@@ -240,13 +257,14 @@ async function startServer() {
     const username = rawUsername.trim();
 
     try {
-      const { data: existingUser } = await supabase
+      const { data: existingUsers } = await supabase
         .from("users")
         .select("id")
-        .eq("username", username)
-        .single();
+        .ilike("username", escapeLike(username))
+        .limit(1);
 
-      if (existingUser) return res.status(400).json({ error: "Username is already taken" });
+      // Names that differ only in case count as taken, because login is case-insensitive
+      if (existingUsers && existingUsers.length > 0) return res.status(400).json({ error: "Username is already taken" });
 
       const salt = await bcrypt.genSalt(12);
       const passwordHash = await bcrypt.hash(password, salt);
@@ -299,11 +317,13 @@ async function startServer() {
     const { username, password } = req.body;
 
     try {
-      const { data: user, error: fetchError } = await supabase
+      const { data: matches, error: fetchError } = await supabase
         .from("users")
         .select("id, username, password_hash, full_name, college, place, qualification, email, has_accepted_disclaimer, has_seen_ai_warning, progress, score")
-        .ilike("username", username.trim())
-        .single();
+        .ilike("username", escapeLike(username.trim()))
+        .limit(10);
+      // Prefer the exact-case username; otherwise accept a single case-insensitive match
+      const user = matches?.find((u: any) => u.username === username.trim()) ?? (matches?.length === 1 ? matches[0] : null);
 
       if (!user || fetchError) {
         return res.status(401).json({ error: "Invalid username or password" });
@@ -352,6 +372,18 @@ async function startServer() {
     const authenticatedUsername = (req as any).authenticatedUsername;
     const { progress, score, hasAcceptedDisclaimer, hasSeenAIWarning } = req.body;
 
+    const MAX_SCORE = 1_000_000;
+    if (typeof score !== "number" || !Number.isInteger(score) || score < 0 || score > MAX_SCORE) {
+      return res.status(400).json({ error: "Invalid score" });
+    }
+    if (!progress || typeof progress !== "object" || Array.isArray(progress) || JSON.stringify(progress).length > 500_000) {
+      return res.status(400).json({ error: "Invalid progress" });
+    }
+    if ((hasAcceptedDisclaimer !== undefined && typeof hasAcceptedDisclaimer !== "boolean") ||
+        (hasSeenAIWarning !== undefined && typeof hasSeenAIWarning !== "boolean")) {
+      return res.status(400).json({ error: "Invalid flags" });
+    }
+
     try {
       const updateData: any = { progress, score };
       if (hasAcceptedDisclaimer !== undefined) updateData.has_accepted_disclaimer = hasAcceptedDisclaimer;
@@ -375,21 +407,26 @@ async function startServer() {
     }
   });
 
-  app.get("/api/leaderboard", apiLimiter, async (_req, res) => {
+  app.get("/api/leaderboard", authenticate, apiLimiter, async (_req, res) => {
     try {
       const { data, error } = await supabase
         .from("users")
         .select("username, score, progress")
-        .order("score", { ascending: false });
+        .order("score", { ascending: false })
+        .limit(500);
 
       if (error) throw error;
 
-      const parsedData = (data || []).map((user) => ({
-        ...user,
-        progress: typeof user.progress === "string" ? JSON.parse(user.progress) : user.progress,
-      }));
+      // Only expose username, score and a completed-question count, never the full progress
+      const rows = (data || []).map((user) => {
+        let prog: any = user.progress;
+        if (typeof prog === "string") { try { prog = JSON.parse(prog); } catch { prog = {}; } }
+        const completed = Object.values(prog || {}).reduce(
+          (acc: number, p: any) => acc + (Array.isArray(p?.completedQuestionIds) ? p.completedQuestionIds.length : 0), 0);
+        return { username: user.username, score: user.score, completed };
+      });
 
-      res.json(parsedData);
+      res.json(rows);
     } catch (err: any) {
       console.error("Leaderboard fetch error:", sanitizeError(err));
       res.status(500).json({ error: "Failed to fetch leaderboard" });
@@ -442,27 +479,10 @@ async function startServer() {
     }
   });
 
-  app.post("/api/explanation", apiLimiter, async (req, res) => {
-    try {
-      const { key, text } = req.body;
-      if (!key || !text) return res.status(400).json({ error: "Key and text required" });
-
-      const sanitizedKey = String(key).slice(0, 200);
-      const sanitizedText = String(text).slice(0, 50000);
-
-      const { error } = await supabase
-        .from("explanations")
-        .insert([{ cache_key: sanitizedKey, explanation_text: sanitizedText }]);
-
-      if (error) {
-        console.error("[Cache] Insert error:", sanitizeError(error));
-      }
-
-      res.json({ success: true });
-    } catch (err: any) {
-      console.error("[Cache] Save error:", sanitizeError(err));
-      res.status(500).json({ error: "Failed to save explanation" });
-    }
+  // The shared explanation cache is read-only: every question is pre-generated, so
+  // clients can no longer write to it (prevents cache poisoning).
+  app.post("/api/explanation", apiLimiter, (_req, res) => {
+    res.status(403).json({ error: "The explanation cache is read-only" });
   });
 
   app.post("/api/report", authenticate, apiLimiter, async (req, res) => {
@@ -526,6 +546,7 @@ async function startServer() {
   } else {
     console.log("Starting in PRODUCTION mode (Static)...");
     app.use(express.static("dist"));
+    app.use("/api", (_req, res) => res.status(404).json({ error: "Not found" }));
     app.get("*", (_req, res) => {
       res.sendFile(path.resolve("dist", "index.html"));
     });
@@ -536,4 +557,7 @@ async function startServer() {
   });
 }
 
-startServer();
+startServer().catch((err) => {
+  console.error("Failed to start server:", err);
+  process.exit(1);
+});
