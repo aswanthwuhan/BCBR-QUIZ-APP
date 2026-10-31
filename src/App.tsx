@@ -1278,9 +1278,9 @@ export default function App() {
                 </div>
                 </>)}
 
-                {/* Offline builds (GitHub download, Android) start without an account; the website requires sign-up */}
-                {OFFLINE_ONLY && (
-                <div className="space-y-3">
+                <div className={cn("space-y-3", !OFFLINE_ONLY && "mt-8 pt-6 border-t border-slate-100 dark:border-slate-800")}>
+                  {/* Offline mode is only offered in the offline builds (GitHub download, Android); the website needs internet */}
+                  {OFFLINE_ONLY && <>
                   <button
                     onClick={startOfflineMode}
                     className="w-full py-3 bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-xl font-bold shadow-lg shadow-emerald-200/50 dark:shadow-emerald-900/20 hover:opacity-90 transition-all flex items-center justify-center gap-2"
@@ -1291,8 +1291,21 @@ export default function App() {
                   <p className="text-xs text-slate-400 dark:text-slate-500">
                     All questions and flashcards work without internet. Progress is saved on this device only.
                   </p>
+                  </>}
+                  {!OFFLINE_ONLY && <button
+                    onClick={() => {
+                      setAskedForKeyForQId(null);
+                      setSelectedAssignmentId(1);
+                      setIsReviewMode(false);
+                      setCurrentQuestionIndex(0);
+                      setView('quiz');
+                    }}
+                    className="w-full py-3 bg-sky-50 dark:bg-sky-900/20 text-sky-600 dark:text-sky-400 rounded-xl font-bold hover:bg-sky-100 dark:hover:bg-sky-900/30 transition-all flex items-center justify-center gap-2"
+                  >
+                    <Sparkles size={18} />
+                    Try Free BCBR Past Year Questions (No Login)
+                  </button>}
                 </div>
-                )}
               </div>
 
 
