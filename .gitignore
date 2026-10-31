@@ -26,3 +26,6 @@ database.sqlite
 *.out
 *.flag
 nul
+
+# Supabase CLI local state
+supabase/.temp/
