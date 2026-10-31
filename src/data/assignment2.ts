@@ -55,7 +55,7 @@ export const ASSIGNMENT_2_QUESTIONS: Question[] = [
     text: "Which of the following statements is incorrect?",
     options: ["A good research question should be Feasible, Interesting, Novel, Ethical and Relevant", "A good research question should be in epidemiological terms", "A good research question facilitates to choose optimal design", "A good research question will focus on one issue"],
     correctAnswer: 1,
-    explanation: "According to the answer key, the incorrect statement is that a research question must be in epidemiological terms. A good question is FINER (feasible, interesting, novel, ethical, relevant), focuses on one issue and guides the design."
+    explanation: "A research question should be written in plain, everyday language, not in epidemiological terms; objectives are translated into epidemiological terms later. A good question meets the FINER criteria, focuses on one issue and guides the study design."
   },
   {
     id: "a2q9",
@@ -87,10 +87,10 @@ export const ASSIGNMENT_2_QUESTIONS: Question[] = [
   },
   {
     id: "a2q13",
-    text: "Which of the following verb is used in the statement of objective of a descriptive research study?",
-    options: ["Estimate", "Determine", "Examine", "Compare"],
-    correctAnswer: 0,
-    explanation: "Descriptive objectives measure a quantity such as prevalence, so they use verbs like estimate or describe. Determine, examine and compare imply relationships between variables, typical of analytical objectives."
+    text: "A researcher predicts that mean systolic blood pressure will be higher in group A than in group B. Which type of alternative hypothesis is this?",
+    options: ["Null hypothesis", "Two-tailed alternative hypothesis", "One-tailed (directional) alternative hypothesis", "Hypothesis-free objective"],
+    correctAnswer: 2,
+    explanation: "A one-tailed (directional) hypothesis predicts the direction of the difference, here group A higher than group B. A two-tailed hypothesis only states that a difference exists, without a direction."
   },
   {
     id: "a2q14",
@@ -103,8 +103,8 @@ export const ASSIGNMENT_2_QUESTIONS: Question[] = [
     id: "a2q15",
     text: "Purely descriptive research questions do not require a hypothesis",
     options: ["True", "False"],
-    correctAnswer: 1,
-    explanation: "Keyed False. Note: standard teaching holds that purely descriptive questions (e.g., estimating prevalence) do not need a formal hypothesis, so True is conventionally correct; the key appears doubtful."
+    correctAnswer: 0,
+    explanation: "True. Purely descriptive questions, such as estimating a prevalence, test no association between variables, so no formal hypothesis is needed."
   },
   {
     id: "a2q16",
@@ -213,73 +213,73 @@ export const ASSIGNMENT_2_QUESTIONS: Question[] = [
   },
   {
     id: "a2q31",
-    text: "A clear research question is required in order to facilitate the following:",
-    options: ["To choose an optimal study design", "To identify the outcomes that need to be measured", "To decide when the outcomes need to be measured", "All the above"],
+    text: "Which FINER criterion asks whether the answer will matter to science, policy or practice?",
+    options: ["Rigorous", "Randomised", "Robust", "Relevant"],
     correctAnswer: 3,
-    explanation: "A clear research question determines the optimal study design, which outcomes to measure and when to measure them, so all the options are correct."
+    explanation: "Relevant asks whether the answer will advance science, improve practice or inform policy. Rigorous, randomised and robust describe study quality or design, not a FINER criterion."
   },
   {
     id: "a2q32",
-    text: "Characteristics of a good hypothesis are all, EXCEPT:",
-    options: ["There should be no ambiguity about the study variables", "It should be stated 'a priori'", "It can be revised based on the study findings", "It should specify one exposure and one outcome"],
-    correctAnswer: 2,
-    explanation: "A hypothesis is fixed a priori and must not be revised after seeing the findings; doing so invalidates testing. Being unambiguous, stated a priori and specifying one exposure and one outcome are good features."
+    text: "In the PICOT format, what does the 'T' stand for?",
+    options: ["Timeframe over which outcomes are observed", "Target population group", "Treatment or exposure type", "Test used for diagnosis"],
+    correctAnswer: 0,
+    explanation: "PICOT adds a time element to PICO, specifying the period over which the outcome is assessed, such as 12 months after treatment."
   },
   {
     id: "a2q33",
-    text: "Which of the following is NOT an ideal source of a research question?",
-    options: ["Reviewing the published literature", "Attending conferences where latest findings are shared", "Observing keenly in the out-patient clinic", "Mining existing datasets for research question"],
-    correctAnswer: 3,
-    explanation: "Literature review, conferences and clinical observation are ideal sources of research questions. Trawling existing datasets for any association (data dredging) yields spurious post-hoc findings, so the key treats it as not ideal."
+    text: "Which statement best distinguishes a research question from a research objective?",
+    options: ["A question is a yes/no statement, while an objective is a numerical target", "A research question states the uncertainty to be resolved, while an objective states what the study will do to address it", "They are identical and can be used interchangeably in any protocol", "Objectives are written after data analysis, while questions are written before"],
+    correctAnswer: 1,
+    explanation: "A research question states the uncertainty the study will resolve, while an objective states what the study will do to address it, such as estimate or compare. The two are related but not the same."
   },
   {
     id: "a2q34",
-    text: "Which of the following is TRUE for a 'Descriptive Research Question'?",
-    options: ["Involves observations to measure a quantity", "Involves comparison groups", "Tests the efficacy of interventions", "Requires hypothesis testing"],
-    correctAnswer: 0,
-    explanation: "A descriptive research question observes and measures a quantity, such as prevalence, in one group. Comparison groups, testing interventions and hypothesis testing belong to analytical or experimental questions."
+    text: "Which of the following is a testable (falsifiable) hypothesis?",
+    options: ["Health is good for people", "Everyone should exercise more", "Diet matters in many ways", "Daily salt intake above 5 g increases systolic blood pressure compared with intake below 5 g"],
+    correctAnswer: 3,
+    explanation: "A testable hypothesis states a specific, measurable relationship that data can support or refute. The defined exposure thresholds and outcome make it falsifiable; the other statements are too vague to test."
   },
   {
     id: "a2q35",
-    text: "Which of the following characteristics best describe a good research question?",
-    options: ["Feasible, Novel, Ethical", "Feasible, Noble, Ethical", "Ethical, Novel, Intuitive", "Fantastic, Novel, Relevant"],
-    correctAnswer: 0,
-    explanation: "Feasible, Novel and Ethical are components of the FINER criteria (Feasible, Interesting, Novel, Ethical, Relevant). Noble, Intuitive and Fantastic are not criteria."
+    text: "A general objective of a study is best described as:",
+    options: ["A statistical null hypothesis", "A list of data collection tools", "A broad statement of the overall aim of the study", "A measurable item with a numeric target"],
+    correctAnswer: 2,
+    explanation: "A general objective is the broad overall aim of the study. Specific objectives break it down into focused, measurable components."
   },
   {
     id: "a2q36",
-    text: "State whether 'True' or 'False'. A research study is conducted to estimate the seroprevalence of COVID-19 in Ahmedabad city during April-June 2020. This is an example of analytical research question.",
+    text: "State whether true or false. Feasibility of a research question depends only on the availability of research funds; sample size, expertise and time are irrelevant.",
     options: ["True", "False"],
     correctAnswer: 1,
-    explanation: "False. Estimating COVID-19 seroprevalence in Ahmedabad during April-June 2020 measures frequency in one population without examining an association, so it is descriptive, not analytical."
+    explanation: "False. Feasibility depends on an adequate sample size, required expertise, time and budget, not on funding alone."
   },
   {
     id: "a2q37",
-    text: "Which of the following statement about study objective/s is FALSE?",
-    options: ["Objectives are stated in scientific terms", "Objectives can be primary and secondary", "Each objective is written using multiple verbs", "Objectives should be specific"],
-    correctAnswer: 2,
-    explanation: "Each objective should use a single action verb so it is specific and measurable. Objectives are stated in scientific terms, can be primary or secondary, and must be specific."
+    text: "Novelty, as a FINER criterion, is best satisfied when a study:",
+    options: ["Repeats an identical study already published", "Addresses a gap, such as testing an existing intervention in a population where it has not been evaluated", "Uses a new name for an old disease", "Avoids any review of previous literature"],
+    correctAnswer: 1,
+    explanation: "Novelty means the study adds something new, such as testing an intervention in an unstudied population or extending prior findings. Repeating an identical study adds little new knowledge."
   },
   {
     id: "a2q38",
-    text: "In the life cycle of research, 'spelling out the research question' is followed by",
-    options: ["Preparing data collection instrument", "Formulating study objectives", "Collecting data", "Formulating recommendations"],
-    correctAnswer: 1,
-    explanation: "In the research life cycle, the research question is followed by formulating study objectives, then choosing the design, preparing instruments, collecting data and finally making recommendations."
+    text: "The 'Ethical' criterion of FINER means that the study should:",
+    options: ["Be approved by an ethics committee and avoid unjustified harm to participants", "Use only patient volunteers without consent", "Ignore ethics if funding is available", "Be designed by the ethics committee alone"],
+    correctAnswer: 0,
+    explanation: "The Ethical criterion requires the study to be acceptable to an ethics committee, with informed consent and no unjustified harm to participants. Ethical approval is needed before data collection begins."
   },
   {
     id: "a2q39",
-    text: "How can the given study objective be improved? 'To understand the anaemia in pregnancy'",
-    options: ["Using appropriate action verb", "Specifying the outcome measure", "Specifying the study setting and time period", "All the above"],
-    correctAnswer: 3,
-    explanation: "'To understand anaemia in pregnancy' is vague. It needs a measurable action verb (e.g., estimate), a defined outcome measure (e.g., Hb < 11 g/dL), and a specified setting and time period."
+    text: "An exploratory research question is most appropriate when:",
+    options: ["The relationship between variables is already well known", "The exact prevalence must be estimated with a confidence interval", "Little is known and the aim is to generate ideas rather than to test a hypothesis", "A cause-effect relationship must be proven by a randomised trial"],
+    correctAnswer: 2,
+    explanation: "Exploratory questions are used when little is known, to generate ideas and hypotheses for later testing. Known relationships, prevalence estimation and causal proof call for other question types."
   },
   {
     id: "a2q40",
-    text: "Which of the following is NOT a step in framing an ideal research question?",
-    options: ["Literature review", "Peer review", "Broadening the initial question", "Defining measurable outcomes"],
-    correctAnswer: 2,
-    explanation: "Framing a research question involves narrowing a broad idea into a focused one through literature review, peer review and defining measurable outcomes. Broadening the question is not a step."
+    text: "A study tests a null hypothesis at alpha = 0.05 and obtains p = 0.03. Which conclusion is correct?",
+    options: ["The null hypothesis is proven true", "The null hypothesis is rejected at the 5% level, so the result is statistically significant", "There is a 3% probability that the null hypothesis is true", "The alternative hypothesis is proven true with 97% certainty"],
+    correctAnswer: 1,
+    explanation: "A p-value of 0.03 is below alpha of 0.05, so the null hypothesis is rejected at the 5% level. A p-value neither proves the null or alternative hypothesis nor gives the probability that the null is true."
   },
   {
     id: "a2q41",
@@ -297,10 +297,10 @@ export const ASSIGNMENT_2_QUESTIONS: Question[] = [
   },
   {
     id: "a2q43",
-    text: "All the following are FINER criteria for a research question EXCEPT:",
-    options: ["Feasible", "Novel", "Ethical", "Reliable"],
-    correctAnswer: 3,
-    explanation: "FINER stands for Feasible, Interesting, Novel, Ethical and Relevant. Reliable is not part of it; reliability describes the consistency of measurement tools."
+    text: "Which statement best describes a well-defined outcome in a research question?",
+    options: ["It is vague enough to capture all possible effects", "It is measurable, with a clear definition, time point and method of measurement", "It is allowed to change after the data are seen", "It is defined only in the discussion section"],
+    correctAnswer: 1,
+    explanation: "A good outcome is defined in measurable terms, with a clear definition, time point and measurement method, so that it can be assessed consistently."
   },
   {
     id: "a2q44",
@@ -311,24 +311,24 @@ export const ASSIGNMENT_2_QUESTIONS: Question[] = [
   },
   {
     id: "a2q45",
-    text: "All are source(s) of research question EXCEPT:",
-    options: ["Published literature", "Being alert to new ideas", "Careful observation and teaching", "Personal experiences"],
-    correctAnswer: 3,
-    explanation: "Keyed answer: personal experiences, as questions should arise from literature, alertness to new ideas, and careful observation and teaching. Note: many texts accept personal or clinical experience as a legitimate starting point."
+    text: "In hypothesis testing, a Type I error occurs when:",
+    options: ["The null hypothesis is rejected when it is actually true", "The null hypothesis is not rejected when it is actually false", "The sample size is too small to estimate prevalence", "The research question is changed after data collection"],
+    correctAnswer: 0,
+    explanation: "A Type I error (alpha error) is rejecting a true null hypothesis, concluding that a difference exists when it does not. A Type II error is failing to reject a false null hypothesis."
   },
   {
     id: "a2q46",
-    text: "What is the first step in the life cycle of research?",
-    options: ["Spelling out the research question", "Identifying the data needs", "Formulating the objective of the study", "Choosing the study design"],
-    correctAnswer: 1,
-    explanation: "The research life cycle starts by identifying data needs (the information gap). The research question, objectives and study design follow from that."
+    text: "Which of the following is NOT an element of a SMART objective?",
+    options: ["Specific", "Measurable", "Ambitious", "Time-bound"],
+    correctAnswer: 2,
+    explanation: "SMART objectives are Specific, Measurable, Achievable, Relevant and Time-bound. 'Ambitious' is not part of the acronym; objectives should be achievable, not merely ambitious."
   },
   {
     id: "a2q47",
-    text: "Which of the following statements is INCORRECT regarding a good research question?",
-    options: ["A good research question should be Feasible, Interesting, Novel, Ethical and Relevant", "A good research question facilitates the choice of optimal study design", "A good research question should focus on one issue", "A good research question should be in epidemiological terms"],
-    correctAnswer: 3,
-    explanation: "A research question is written in simple everyday language; objectives are later translated into epidemiological terms. FINER criteria, guiding design choice and focusing on one issue are correct features."
+    text: "Which best illustrates the 'Interesting' criterion of FINER?",
+    options: ["The investigator is genuinely motivated and sees the answer as worth knowing", "The question is chosen because others find it boring", "The question has no clinical or scientific value", "The investigator avoids reading previous studies"],
+    correctAnswer: 0,
+    explanation: "The Interesting criterion means the investigator and the scientific community should see the answer as worth knowing. Motivation from a worthwhile question sustains the study."
   },
   {
     id: "a2q48",
@@ -347,8 +347,8 @@ export const ASSIGNMENT_2_QUESTIONS: Question[] = [
   {
     id: "a2q50",
     text: "When we are formulating a research question we should consider the following points EXCEPT:",
-    options: ["Use specific terms to describe the problem", "Preferably focus on multiple issues", "Write in everyday language", "Use more than one operational verb, if needed"],
+    options: ["Use specific terms to describe the problem", "Preferably focus on multiple issues", "Write in everyday language", "Use one action verb per objective"],
     correctAnswer: 1,
-    explanation: "A good research question should focus on a single issue; multiple issues make it unfocused and hard to answer. Specific terms, everyday language and an extra operational verb if needed are acceptable."
+    explanation: "A good research question should focus on a single issue; multiple issues make it unfocused and hard to answer. Specific terms, everyday language and one action verb per objective are acceptable practice."
   }
 ];

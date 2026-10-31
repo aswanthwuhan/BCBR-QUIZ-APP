@@ -156,15 +156,15 @@ export const ASSIGNMENT_23_QUESTIONS: Question[] = [
   },
   {
     id: "a23q15",
-    text: "Which of the following is correct about determining the authorship?",
+    text: "Which of the following best describes 'gift' (honorary) authorship?",
     options: [
-      "The investigators can follow ICMJE guideline to determine authorship",
-      "The sequence should always be based on alphabetical orders",
-      "The investigators should include the head of the institution’s name irrespective of his/ her contribution",
-      "None of the above"
+      "Listing a person who does not meet authorship criteria, for example because of seniority",
+      "Omitting a person who wrote the manuscript",
+      "Publishing the same data twice",
+      "Splitting one study into several papers"
     ],
     correctAnswer: 0,
-    explanation: "Investigators can follow ICMJE guidelines to determine authorship. Author order is usually based on contribution, not alphabet, and adding the head of institution without contribution is gift authorship."
+    explanation: "Gift or honorary authorship credits someone who did not make a qualifying contribution. Omitting a writer is ghost authorship, and the other options are duplicate publication and salami slicing."
   },
   {
     id: "a23q16",
@@ -256,7 +256,7 @@ export const ASSIGNMENT_23_QUESTIONS: Question[] = [
   },
   {
     id: "a23q25",
-    text: "State whether true or false. The first author is mostly responsible for addressing the comments received from the reviewers of the journal.",
+    text: "State whether true or false. Communicating with the journal and coordinating responses to reviewers' comments is primarily the responsibility of the first author rather than the corresponding author.",
     options: ["True", "False"],
     correctAnswer: 1,
     explanation: "False. The corresponding author, not necessarily the first author, is mainly responsible for communicating with the journal and coordinating responses to reviewers' comments."
@@ -298,88 +298,113 @@ export const ASSIGNMENT_23_QUESTIONS: Question[] = [
   },
   {
     id: "a23q31",
-    text: "Which of the following is TRUE regarding a clinical trial?",
+    text: "Besides contribution, drafting/revising and final approval, the fourth ICMJE authorship criterion is:",
     options: [
-      "It is mandatory to register the trial under ‘Clinical Trials Registry of India’ after completing it.",
-      "Ethical issues are considerably low in clinical trials when compared with descriptive studies.",
-      "Informed consent is a must for recruiting a study participant in a clinical trial",
-      "Both ‘a’ and ‘c’"
+      "Securing funding for the study",
+      "Agreement to be accountable for all aspects of the work",
+      "Supervising the research group",
+      "Collecting the data"
     ],
-    correctAnswer: 2,
-    explanation: "Informed consent is mandatory before recruiting a participant into a clinical trial. CTRI registration must be done before enrolment, not after completion, and trials carry more ethical issues than descriptive studies."
+    correctAnswer: 1,
+    explanation: "ICMJE requires authors to agree to be accountable for all aspects of the work. Funding, supervision or data collection alone do not justify authorship."
   },
   {
     id: "a23q32",
-    text: "Altering the original data to obtain a statistically significant result by the researcher is known as",
-    options: ["Fabrication", "Falsification", "Fascination", "Fasciation"],
-    correctAnswer: 1,
-    explanation: "Altering real data to obtain a statistically significant result is falsification. Fabrication is inventing data that were never collected; fascination and fasciation are distractors."
+    text: "A professional medical writer substantially wrote a manuscript but is neither named as author nor acknowledged. This is:",
+    options: [
+      "Ghost authorship",
+      "Gift authorship",
+      "Salami slicing",
+      "Duplicate publication"
+    ],
+    correctAnswer: 0,
+    explanation: "An undisclosed person who made a substantial writing contribution is a ghost author. Gift authorship is the opposite: crediting someone who did not contribute."
   },
   {
     id: "a23q33",
-    text: "All the following help in reducing ethical issues associated with research publication, EXCEPT",
+    text: "According to COPE, retraction of a published article is mainly warranted when:",
     options: [
-      "Obtaining the institutional ethics committee permission",
-      "Including a guest author to improve the acceptance of the manuscript",
-      "Obtaining permission from the copyright holder to reproduce a figure",
-      "Declaring familial relationship between an author and the CEO of the funding agency"
+      "The authors want to update their affiliations",
+      "A reader disagrees with the conclusions",
+      "There is clear evidence that the findings are unreliable due to misconduct or major error",
+      "The article receives few citations"
     ],
-    correctAnswer: 1,
-    explanation: "Including a guest author who has not contributed is gift authorship, which is itself unethical. Ethics approval, copyright permission and declaring conflicts of interest all reduce ethical issues."
+    correctAnswer: 2,
+    explanation: "COPE guidance reserves retraction for unreliable findings from misconduct or serious error, plagiarism or redundant publication. Minor issues are handled by corrections."
   },
   {
     id: "a23q34",
-    text: "Which of the following is INCORRECT about publishing research finding?",
+    text: "Which feature suggests that a journal may be predatory?",
     options: [
-      "Publication often helps in career progression and academic promotion",
-      "It is a way to communicate research findings with the peer groups",
-      "Conflicts of interest can be suppressed as it has implication in study findings",
-      "It identifies research gaps"
+      "A transparent peer review policy",
+      "A verifiable editorial board and indexing in reputable databases",
+      "A clear retraction policy",
+      "Guaranteed acceptance within days on payment of a fee"
     ],
-    correctAnswer: 2,
-    explanation: "This is incorrect because conflicts of interest must be disclosed, not suppressed, precisely because they may influence findings. Publication aids promotion, communicates findings and identifies research gaps."
+    correctAnswer: 3,
+    explanation: "Predatory journals promise rapid, guaranteed acceptance for a fee without genuine peer review. Transparent policies and verifiable boards indicate a legitimate journal."
   },
   {
     id: "a23q35",
-    text: "State whether true or false. The first author is mostly responsible for addressing the comments received from the reviewers of the journal.",
+    text: "Reusing your own previously published text without citing it is acceptable because it is your own work.",
     options: ["True", "False"],
     correctAnswer: 1,
-    explanation: "False. The corresponding author, not necessarily the first author, is mainly responsible for communicating with the journal and coordinating responses to reviewers' comments."
+    explanation: "False. Reusing one's own published text without citation is self-plagiarism (text recycling) and misleads readers about novelty."
   },
   {
     id: "a23q36",
-    text: "Submitting a manuscript to more than one journal at the same time is known as",
-    options: ["Duplicate publication", "Self-citation", "Simultaneous submission", "Peer review"],
-    correctAnswer: 2,
-    explanation: "Sending the same manuscript to more than one journal at the same time is simultaneous submission. Duplicate publication refers to the same work actually being published twice."
+    text: "An honest error in a published article that does not change its conclusions is best handled by:",
+    options: [
+      "Retraction of the article",
+      "Publishing a correction (erratum or corrigendum)",
+      "Ignoring the error",
+      "Republishing the full article"
+    ],
+    correctAnswer: 1,
+    explanation: "Honest errors that do not invalidate the findings are fixed with a published correction. Retraction is for unreliable findings, and republishing would be duplicate publication."
   },
   {
     id: "a23q37",
-    text: "Which of the following is NOT an essential criterion for authorship?",
-    options: ["Conceptualizing the study", "Drafting the manuscript", "Approval of the final manuscript", "Being departmental head"],
+    text: "A peer reviewer must treat a manuscript received for review as:",
+    options: [
+      "Public information that may be shared",
+      "Material that may be used for the reviewer's own research",
+      "A document that can be forwarded freely to colleagues",
+      "A confidential document"
+    ],
     correctAnswer: 3,
-    explanation: "Being a departmental head is not an authorship criterion; adding someone for their position is gift authorship. ICMJE criteria include contribution to conception, drafting, final approval and accountability."
+    explanation: "ICMJE and COPE require reviewers to keep manuscripts confidential and not use or share their content."
   },
   {
     id: "a23q38",
-    text: "A Post Graduate in a medical college submitted a proposal to the ethics committee of the institute. The committee found that the proposal is a near copy of an earlier proposal from the same department. This act of the PG can be best termed as",
-    options: ["Fabrication", "Falsification", "Plagiarism", "Breach of confidentiality"],
-    correctAnswer: 2,
-    explanation: "Submitting a near copy of an earlier departmental proposal as one's own without credit is plagiarism. Fabrication and falsification involve data, and breach of confidentiality involves disclosure of private information."
+    text: "A person who provided only technical help or writing assistance and does not meet authorship criteria should be:",
+    options: [
+      "Listed as a co-author",
+      "Mentioned in the Acknowledgements",
+      "Left out entirely",
+      "Made the corresponding author"
+    ],
+    correctAnswer: 1,
+    explanation: "Contributors who do not meet all ICMJE criteria are acknowledged, with their contribution described, rather than listed as authors."
   },
   {
     id: "a23q39",
-    text: "State whether true or false. Unpublished work must be acknowledged in a manuscript",
+    text: "State whether true or false. ICMJE requires clinical trials to be registered in a public registry before enrolment of the first participant as a condition for publication.",
     options: ["True", "False"],
     correctAnswer: 0,
-    explanation: "True. Ideas or data taken from unpublished work must be acknowledged, for example as personal communication or unpublished data; failing to do so is plagiarism."
+    explanation: "True. ICMJE member journals consider trial results for publication only if the trial was prospectively registered in a public registry such as CTRI."
   },
   {
     id: "a23q40",
-    text: "Direct or indirect influence of which of the following aspect is considered ‘conflict of interest’?",
-    options: ["Financial", "Personal", "Social", "All the above"],
-    correctAnswer: 3,
-    explanation: "Conflict of interest can arise from financial, personal or social interests that directly or indirectly influence professional judgement, so all of the above is correct."
+    text: "Under a Creative Commons Attribution (CC BY) licence, others may reuse a published article provided they:",
+    options: [
+      "Pay a royalty to the authors",
+      "Obtain ethics committee approval",
+      "Give appropriate credit to the original authors",
+      "Do not cite the original"
+    ],
+    correctAnswer: 2,
+    explanation: "CC BY allows reuse and adaptation as long as the original authors and source are properly credited."
   },
   {
     id: "a23q41",
@@ -409,7 +434,7 @@ export const ASSIGNMENT_23_QUESTIONS: Question[] = [
   },
   {
     id: "a23q44",
-    text: "State whether True or False: During review of a research proposal the Ethics Committee does not review the publication with the research plan.",
+    text: "State whether True or False: During review of a research proposal, the Ethics Committee does not review the publication plan of the research.",
     options: ["True", "False"],
     correctAnswer: 1,
     explanation: "False. The Ethics Committee does review the publication and dissemination plan as part of the research proposal, as expected by the ICMR 2017 guidelines."

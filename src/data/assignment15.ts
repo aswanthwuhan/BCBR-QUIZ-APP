@@ -3,15 +3,10 @@ import { Question } from '../types';
 export const ASSIGNMENT_15_QUESTIONS: Question[] = [
   {
     id: "a15q1",
-    text: "While deciding on the information elements to be collected in a study, which of the following is (are) important?",
-    options: [
-      "Use of the variables that will best reflect the information element",
-      "Adopt standardized case definitions and laboratory criteria",
-      "Choose the most accurate ways of collecting information on various elements",
-      "All of the above"
-    ],
-    correctAnswer: 3,
-    explanation: "Choosing information elements well requires variables that reflect the concept, standardized case definitions and lab criteria for comparability, and the most accurate collection methods. All of these reduce misclassification."
+    text: "A variable recording blood group as A, B, AB or O is measured on which scale?",
+    options: ["Ordinal", "Continuous", "Nominal", "Ratio"],
+    correctAnswer: 2,
+    explanation: "Blood groups are categories with no natural order, so they form a nominal variable. Ordinal categories have a ranking, and continuous or ratio variables are numeric measurements."
   },
   {
     id: "a15q2",
@@ -389,15 +384,10 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
   },
   {
     id: "a15q34",
-    text: "Standardization of data collection instruments helps in reducing",
-    options: [
-      "Random error",
-      "Systematic error (bias)",
-      "Sampling error",
-      "The cost of the study"
-    ],
+    text: "Standardizing data collection instruments and procedures across all observers and sites is aimed mainly at reducing",
+    options: ["Sampling error", "Systematic error (measurement bias)", "The required sample size", "The cost of the study"],
     correctAnswer: 1,
-    explanation: "Standardized instruments make everyone be measured the same way, which reduces systematic error (measurement bias). Random and sampling errors are reduced mainly by increasing the sample size."
+    explanation: "When everyone is measured the same way, differences between observers or sites cannot systematically distort the data, so measurement bias is reduced. Standardization also lowers some random measurement variation, but sampling error depends on sample size."
   },
   {
     id: "a15q35",
@@ -420,15 +410,10 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
   },
   {
     id: "a15q37",
-    text: "The main advantage of using an electronic data collection form over a paper form is",
-    options: [
-      "It is always cheaper",
-      "It allows for instant data entry and validation",
-      "It doesn't require training",
-      "It is easier to design"
-    ],
-    correctAnswer: 1,
-    explanation: "Electronic forms enter data directly and validate it instantly through range checks and skip logic, which reduces errors. They are not always cheaper and still need training."
+    text: "A 'leading question' in a questionnaire is one that",
+    options: ["Asks about two things at once", "Has no fixed answer options", "Appears first in the questionnaire", "Suggests or encourages a particular answer"],
+    correctAnswer: 3,
+    explanation: "A leading question, such as 'You do take your medicines regularly, don't you?', pushes respondents toward an expected answer and causes response bias. Questions should be worded neutrally."
   },
   {
     id: "a15q38",

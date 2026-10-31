@@ -191,9 +191,9 @@ export const ASSIGNMENT_6_QUESTIONS: Question[] = [
   {
     id: "a6q22",
     text: "A gynaecology resident intends to determine the association between intra-uterine device (IUD) use and risk of extrauterine pregnancy. The investigator recruited 100 cases of extrauterine pregnancy and 200 participants who had intrauterine pregnancy as controls from the obstetrics ward of a tertiary care hospital over a period of 2 years. Both cases and controls were interviewed about the history of IUD use. Among the cases, 6 participants had history of IUD use and among controls, 4 had history of IUD use. Calculate the odds ratio of extrauterine pregnancies among women with history of IUD use?",
-    options: ["0.32", "1.39", "3.12", "0.72"],
+    options: ["0.32", "1.39", "3.13", "0.72"],
     correctAnswer: 2,
-    explanation: "OR = ad/bc = (6 × 196)/(4 × 94) = 1176/376 ≈ 3.12. Here c = 100 − 6 = 94 cases and d = 200 − 4 = 196 controls had no history of IUD use."
+    explanation: "OR = ad/bc = (6 × 196)/(4 × 94) = 1176/376 ≈ 3.13. Here c = 100 − 6 = 94 cases and d = 200 − 4 = 196 controls had no history of IUD use."
   },
   {
     id: "a6q23",
@@ -280,22 +280,17 @@ export const ASSIGNMENT_6_QUESTIONS: Question[] = [
   },
   {
     id: "a6q32",
-    text: "A gynaecology resident intends to determine the association between pre-pregnancy weight and the risk of preeclampsia. The investigator recruited 50 women diagnosed with preeclampsia as cases and 50 women without preeclampsia as controls in a tertiary care hospital. Both cases and controls were interviewed and asked about their pre-pregnancy weight and height. The pre-pregnancy body mass index (BMI) was calculated for all. Among the cases, 15 women with preeclampsia and 5 women without preeclampsia had BMI > 25 kg/m2. Calculate the odds ratio for the association between preeclampsia and BMI.",
-    options: ["1.1", "1.5", "2.8", "3.8"],
+    text: "A gynaecology resident intends to determine the association between pre-pregnancy weight and the risk of preeclampsia. The investigator recruited 50 women diagnosed with preeclampsia as cases and 50 women without preeclampsia as controls in a tertiary care hospital. Both cases and controls were interviewed and asked about their pre-pregnancy weight and height. The pre-pregnancy body mass index (BMI) was calculated for all. 15 of the cases and 5 of the controls had BMI > 25 kg/m2. Calculate the odds ratio for the association between preeclampsia and BMI.",
+    options: ["1.1", "1.5", "2.8", "3.9"],
     correctAnswer: 3,
-    explanation: "OR = ad/bc = (15 × 45)/(5 × 35) = 675/175 ≈ 3.86, so about 3.8. Here c = 50 − 15 = 35 cases and d = 50 − 5 = 45 controls had a BMI of 25 or less."
+    explanation: "OR = ad/bc = (15 × 45)/(5 × 35) = 675/175 ≈ 3.86, which rounds to 3.9. Here c = 50 − 15 = 35 cases and d = 50 − 5 = 45 controls had a BMI of 25 or less."
   },
   {
     id: "a6q33",
-    text: "Which of the following is correct about selection of cases in case-control study?",
-    options: [
-      "Cases are the study participants in the source population who are exposed",
-      "Selection of cases and controls should be based on the exposure",
-      "Including incident cases in case-control study can save time and money",
-      "Including prevalent cases may lead to survival bias"
-    ],
-    correctAnswer: 3,
-    explanation: "Prevalent cases over-represent people who survived longer with the disease, causing survival (Neyman) bias. Cases are selected by disease, not exposure, and it is prevalent rather than incident cases that save time and money."
+    text: "In a cohort study, the incidence of lung cancer was 30 per 1000 among smokers and 10 per 1000 among non-smokers. What is the attributable risk (risk difference) due to smoking?",
+    options: ["20 per 1000", "3 per 1000", "10 per 1000", "40 per 1000"],
+    correctAnswer: 0,
+    explanation: "Attributable risk = incidence in exposed − incidence in unexposed = 30 − 10 = 20 per 1000; this is the excess risk among smokers due to smoking. (3 is the relative risk, not a risk difference.)"
   },
   {
     id: "a6q34",
@@ -332,15 +327,10 @@ export const ASSIGNMENT_6_QUESTIONS: Question[] = [
   },
   {
     id: "a6q38",
-    text: "All of the following are true about cohort study EXCEPT",
-    options: [
-      "It is can be expensive and time consuming",
-      "It is appropriate for diseases with long latency period",
-      "Incidence of disease can be determined",
-      "Loss to follow up can introduce bias"
-    ],
+    text: "Concluding that individuals with high fat intake develop colon cancer, based only on a correlation between national fat consumption and colon cancer rates across countries, is an example of",
+    options: ["Recall bias", "Ecological fallacy", "Survival (Neyman) bias", "Loss to follow-up"],
     correctAnswer: 1,
-    explanation: "Long latency is the exception. Diseases with long latency require very long follow-up, which makes cohort studies impractical. The other statements about cohort studies are true."
+    explanation: "Ecological studies use group-level data; inferring an individual-level association from them is the ecological fallacy, because the people exposed may not be the ones who developed the disease."
   },
   {
     id: "a6q39",
@@ -382,15 +372,10 @@ export const ASSIGNMENT_6_QUESTIONS: Question[] = [
   },
   {
     id: "a6q43",
-    text: "A relative risk of one would denote that",
-    options: [
-      "The incidence among non-exposed is higher than the incidence among exposed",
-      "The exposure is positively associated with the disease",
-      "The incidence among exposed is same as the incidence among the unexposed",
-      "The incidence among exposed is higher than the incidence among non-exposed"
-    ],
+    text: "In a cohort study the relative risk of disease among the exposed is 4. What proportion of the disease among the exposed is attributable to the exposure (attributable risk percent)?",
+    options: ["25%", "50%", "75%", "400%"],
     correctAnswer: 2,
-    explanation: "Relative risk is incidence in exposed divided by incidence in unexposed; a value of 1 means both incidences are equal, indicating no association between exposure and disease."
+    explanation: "Attributable risk percent = (RR − 1)/RR × 100 = (4 − 1)/4 × 100 = 75%, i.e., three-quarters of cases among the exposed would be prevented by removing the exposure."
   },
   {
     id: "a6q44",

@@ -273,88 +273,73 @@ export const ASSIGNMENT_9_QUESTIONS: Question[] = [
   },
   {
     id: "a9q31",
-    text: "Which of the following characteristics is NOT related to qualitative research data?",
-    options: ["Subjective validity", "Data is in text form", "Hypothesis testing is a goal", "It involves interpretation of responses"],
-    correctAnswer: 2,
-    explanation: "Qualitative research generates hypotheses rather than testing them; hypothesis testing is a quantitative goal. Qualitative data are text-based, interpretive, and subjective."
+    text: "Which sampling technique is most commonly used to select participants in qualitative research?",
+    options: ["Simple random sampling", "Purposive sampling", "Systematic random sampling", "Cluster sampling"],
+    correctAnswer: 1,
+    explanation: "Qualitative studies deliberately choose information-rich participants who can best illuminate the topic (purposive sampling), rather than aiming for statistical representativeness."
   },
   {
     id: "a9q32",
-    text: "Which of the following cannot be done using qualitative research?",
-    options: [
-      "Viewing a social phenomenon holistically",
-      "Estimating the burden of a disease",
-      "Seeking in-depth understanding of a phenomenon",
-      "Unfamiliar subject matter"
-    ],
-    correctAnswer: 1,
-    explanation: "Estimating disease burden (prevalence, incidence) needs numerical data from representative samples, which is quantitative research. Qualitative research explores why and how, holistically and in depth."
+    text: "In qualitative research, the number of interviews or focus groups is usually decided by",
+    options: ["A formal power calculation", "The prevalence of the condition", "A fixed 10% of the population", "Data saturation, when no new themes emerge"],
+    correctAnswer: 3,
+    explanation: "Data collection continues until additional interviews no longer yield new information or themes (saturation); statistical sample size formulas are not used."
   },
   {
     id: "a9q33",
-    text: "A researcher wants to estimate the prevalence of exclusive breast feeding in a remote tribal population. She also wants to understand the myths and taboos associated with breast feeding. Which of the following approaches can be employed in this scenario?",
-    options: ["Qualitative study", "Clinical trial", "Mixed-methods study", "Cross-sectional study"],
-    correctAnswer: 2,
-    explanation: "Prevalence needs a quantitative survey, while myths and taboos need qualitative exploration; combining both approaches is a mixed-methods study."
+    text: "Interviewing a village health worker because of her special knowledge about the community's health practices is an example of",
+    options: ["Key informant interview", "Focus group discussion", "Participant observation", "Structured interview"],
+    correctAnswer: 0,
+    explanation: "Key informants are people chosen for their particular knowledge or position in the community, who can provide insight beyond their own personal experience."
   },
   {
     id: "a9q34",
-    text: "Which of the following is NOT a data collection method used in qualitative research?",
-    options: ["Interviews", "Sociogram", "Participant observation", "Focus group discussion"],
-    correctAnswer: 1,
-    explanation: "A sociogram is a diagram of social relationships, not a standard qualitative data collection method; interviews, participant observation, and FGDs are."
+    text: "The researcher's critical reflection on how his or her own background and assumptions may influence data collection and interpretation is called",
+    options: ["Triangulation", "Saturation", "Reflexivity", "Member checking"],
+    correctAnswer: 2,
+    explanation: "Reflexivity acknowledges that the qualitative researcher is part of the research instrument and makes his or her influence on the findings explicit."
   },
   {
     id: "a9q35",
-    text: "Which of the following is NOT a feature",
-    options: [
-      "It involves two or more participants at a time",
-      "It follows an interview guide",
-      "It is suitable for a highly sensitive topic",
-      "It obtains rich contextualized information"
-    ],
+    text: "Sharing preliminary findings with study participants to confirm that they accurately reflect their experiences is known as",
+    options: ["Member checking (respondent validation)", "Thick description", "Audit trail", "Coding"],
     correctAnswer: 0,
-    explanation: "An in-depth interview is a one-to-one conversation, so involving two or more participants at a time is not its feature; that describes a focus group discussion."
+    explanation: "Member checking returns interpretations to participants for confirmation and is a common strategy to improve the credibility of qualitative findings."
   },
   {
     id: "a9q36",
-    text: "Which of the following [is an advantage of conducting 'in-depth interviews']?",
-    options: ["It expresses the 'Emic' perspective", "It is generalizable", "It is a quick process", "It uses a systematic sampling approach"],
-    correctAnswer: 0,
-    explanation: "In-depth interviews let a participant describe experiences in their own words, capturing the emic (insider) perspective. They are not generalizable, are time-consuming, and use purposive rather than systematic sampling."
+    text: "In qualitative research, the criterion that corresponds to external validity (generalizability) in quantitative research is",
+    options: ["Credibility", "Dependability", "Transferability", "Confirmability"],
+    correctAnswer: 2,
+    explanation: "In Lincoln and Guba's trustworthiness criteria, transferability (supported by thick description) parallels external validity; credibility parallels internal validity."
   },
   {
     id: "a9q37",
-    text: "State whether true or false. In a focus group discussion, it is easy to obtain personal behaviours on a sensitive issue",
+    text: "State whether true or false. A large, randomly selected sample is essential for credible qualitative findings.",
     options: ["True", "False"],
     correctAnswer: 1,
-    explanation: "False. In a group setting people self-censor and give socially desirable answers, so personal behaviours on sensitive issues are hard to obtain; in-depth interviews are better for such topics."
+    explanation: "False. Qualitative studies use small, purposively selected samples; credibility comes from depth, saturation and rigorous analysis, not from random selection or large numbers."
   },
   {
     id: "a9q38",
-    text: "Which of the following is TRUE regarding 'participant observation' method?",
-    options: [
-      "It is easy to analyze the data",
-      "The researcher himself becomes a part of the study group",
-      "Data obtained is very concise",
-      "The researcher interviews each participant in detail"
-    ],
+    text: "In a focus group discussion, the main role of the moderator is to",
+    options: ["Give expert answers to participants' questions", "Facilitate the discussion and ensure all participants contribute", "Write down every word spoken", "Choose the statistical test for analysis"],
     correctAnswer: 1,
-    explanation: "In participant observation the researcher immerses in and becomes part of the study group, observing behaviour in its natural setting. The data are voluminous and hard to analyze."
+    explanation: "The moderator guides the discussion with the topic guide, probes, and prevents dominant members from taking over; detailed notes are kept by a separate note-taker."
   },
   {
     id: "a9q39",
-    text: "State whether true or false. Data obtained from Focus Group Discussion may be sensitive to biased analysis.",
+    text: "State whether true or false. In qualitative research, data collection and analysis usually proceed together in an iterative manner.",
     options: ["True", "False"],
     correctAnswer: 0,
-    explanation: "True. FGD analysis relies on the researcher's interpretation and can be skewed by dominant participants, group-think and selective quoting, so it is prone to biased analysis."
+    explanation: "True. Early analysis shapes later interviews (new probes, further sampling), and this back-and-forth continues until saturation is reached."
   },
   {
     id: "a9q40",
-    text: "The analytical approach where the researcher proceeds to develop a theory based on learnings obtained from the data is called-",
-    options: ["Grounded theory analysis", "Content analysis", "Schema analysis", "Factor analysis"],
-    correctAnswer: 0,
-    explanation: "Grounded theory analysis builds theory inductively from the data itself (coding and constant comparison) rather than testing a pre-set hypothesis."
+    text: "In qualitative data analysis, the process of labelling segments of text with short descriptive tags is called",
+    options: ["Sampling", "Randomization", "Tabulation", "Coding"],
+    correctAnswer: 3,
+    explanation: "Coding assigns labels to meaningful segments of transcripts; related codes are then grouped into categories and themes."
   },
   {
     id: "a9q41",
@@ -428,7 +413,7 @@ export const ASSIGNMENT_9_QUESTIONS: Question[] = [
     id: "a9q50",
     text: "A researcher wanted to conduct a prospective study on the dietary practices of toddlers admitted to a nutritional rehabilitation centre. Which of the following is an appropriate method for data collection?",
     options: ["Focus group discussion", "Document analysis", "Participant observation", "Ethnography"],
-    correctAnswer: 0,
-    explanation: "Per the key, an FGD with mothers/caregivers can capture toddlers' dietary practices and feeding norms. Note: participant observation is arguably a better fit for a prospective study of actual practices."
+    correctAnswer: 2,
+    explanation: "Actual dietary practices in a residential setting are best captured by observing them as they happen over time, so participant observation is appropriate. An FGD records what people say they do, not observed behaviour."
   }
 ];

@@ -39,7 +39,7 @@ export const ASSIGNMENT_12_QUESTIONS: Question[] = [
   },
   {
     id: "a12q4",
-    text: "Exact calculation of design effect for a study parameter can take place you after study completion",
+    text: "Exact calculation of design effect for a study parameter can take place only after study completion",
     options: ["True", "False"],
     correctAnswer: 0,
     explanation: "True. Design effect is only assumed at the planning stage. Its exact value can be calculated after data collection, using the observed variance or intracluster correlation in the actual study data."
@@ -195,9 +195,9 @@ export const ASSIGNMENT_12_QUESTIONS: Question[] = [
   {
     id: "a12q19",
     text: "A researcher wants to estimate the prevalence of surgical site infection following cesarean section at a tertiary care hospital. What would be the minimum sample size if the estimated proportion is 10%, absolute precision is 5%, and confidence level is 95% (Z = 1.96)?",
-    options: ["100", "138", "148", "158"],
+    options: ["100", "139", "148", "158"],
     correctAnswer: 1,
-    explanation: "Using $n = Z^2pq/d^2 = 1.96^2 \\times 10 \\times 90 / 5^2 \\approx 138$. (Strict rounding up gives 139; 138 is the keyed option.)"
+    explanation: "Using $n = Z^2pq/d^2 = 3.8416 \\times 10 \\times 90 / 5^2 = 138.3$, which is rounded up to 139 because sample sizes are always rounded up."
   },
   {
     id: "a12q20",
@@ -209,9 +209,9 @@ export const ASSIGNMENT_12_QUESTIONS: Question[] = [
   {
     id: "a12q21",
     text: "Researchers want to estimate the prevalence of cephalosporin-resistant E.coli (found previously to be 6.5%) with 20% relative precision and 95% significance level. What is the minimum sample size?",
-    options: ["1042", "1381", "6", "600"],
+    options: ["1042", "1382", "6", "600"],
     correctAnswer: 1,
-    explanation: "Relative precision of 20% of 6.5% gives $d = 1.3$. Then $n = 1.96^2 \\times 6.5 \\times 93.5 / 1.3^2 \\approx 1381$."
+    explanation: "Relative precision of 20% of 6.5% gives $d = 1.3$. Then $n = 3.8416 \\times 6.5 \\times 93.5 / 1.3^2 = 2334.8 / 1.69 = 1381.5$, rounded up to 1382."
   },
   {
     id: "a12q22",
@@ -248,15 +248,10 @@ export const ASSIGNMENT_12_QUESTIONS: Question[] = [
   },
   {
     id: "a12q26",
-    text: "What is Type I error?",
-    options: [
-      "The probability of accepting the null hypothesis when it is false",
-      "The probability of rejecting the null hypothesis when it is true",
-      "The probability of rejecting the null hypothesis when it is false",
-      "The probability of accepting the null hypothesis when it is true"
-    ],
-    correctAnswer: 1,
-    explanation: "Type I (α) error is the probability of rejecting the null hypothesis when it is true, i.e., a false positive finding."
+    text: "The calculated sample size for a survey is 400. If a non-response rate of 20% is expected, what is the adjusted sample size?",
+    options: ["420", "480", "500", "800"],
+    correctAnswer: 2,
+    explanation: "Adjusted n = n / (1 - non-response rate) = 400 / 0.8 = 500. Simply adding 20% (480) is not enough, because 20% of 480 would still be lost."
   },
   {
     id: "a12q27",
@@ -274,15 +269,10 @@ export const ASSIGNMENT_12_QUESTIONS: Question[] = [
   },
   {
     id: "a12q29",
-    text: "Design effect is considered for which of the following sampling strategy?",
-    options: [
-      "Cluster sampling",
-      "Simple random sampling",
-      "Stratified random sampling",
-      "Non-probability sampling"
-    ],
-    correctAnswer: 0,
-    explanation: "Design effect is applied in cluster sampling because individuals within a cluster are similar (intra-cluster correlation), which reduces effective sample size compared with simple random sampling."
+    text: "A cluster survey plans 10 participants per cluster, and the intracluster correlation coefficient is 0.05. What is the design effect?",
+    options: ["1.05", "1.45", "1.50", "0.55"],
+    correctAnswer: 1,
+    explanation: "Design effect = $1 + (m-1)\\rho = 1 + (10-1) \\times 0.05 = 1 + 0.45 = 1.45$. The simple random sample size would be multiplied by 1.45."
   },
   {
     id: "a12q30",
@@ -293,88 +283,78 @@ export const ASSIGNMENT_12_QUESTIONS: Question[] = [
   },
   {
     id: "a12q31",
-    text: "Researchers want to estimate the prevalence of cephalosporin-resistant E.coli (6.5%) with 20% relative precision and 95% significance level. What is the minimum sample size?",
-    options: ["1042", "1381", "6", "600"],
-    correctAnswer: 1,
-    explanation: "Relative precision of 20% of 6.5% gives $d = 1.3$, so $n = 1.96^2 \\times 6.5 \\times 93.5 / 1.3^2 \\approx 1381$."
+    text: "A sample size of 384 is calculated for a very large population, but the actual population is only 1000. Applying the finite population correction $n = n_0 / (1 + (n_0 - 1)/N)$, the required sample size is about",
+    options: ["278", "384", "500", "1384"],
+    correctAnswer: 0,
+    explanation: "$n = 384 / (1 + 383/1000) = 384 / 1.383 = 277.7$, rounded up to 278. The correction reduces the sample size when the sample would be a sizeable fraction of a small population."
   },
   {
     id: "a12q32",
-    text: "Which of the following factors is NOT essential for calculating sample size for a single mean estimation?",
-    options: [
-      "Need for statistical significance",
-      "Assumptions about population standard deviation",
-      "Precision",
-      "Significance level"
-    ],
-    correctAnswer: 0,
-    explanation: "Estimating a single mean uses $n = Z^2\\sigma^2/d^2$, requiring significance level, assumed SD and precision. A 'need for statistical significance' is not an input for a descriptive estimate."
+    text: "Keeping everything else constant, if the confidence level is raised from 95% to 99%, the required sample size",
+    options: ["Decreases", "Stays the same", "Increases by about 73%", "Exactly doubles"],
+    correctAnswer: 2,
+    explanation: "Sample size is proportional to $Z^2$: $(2.576/1.96)^2 = 6.635/3.842 \\approx 1.73$, so about 73% more participants are needed."
   },
   {
     id: "a12q33",
-    text: "Adjustments to a calculated sample size need NOT be done for which of the following reasons?",
-    options: ["Non-response rate", "Finite population size", "Cluster design", "Hospital-based study"],
+    text: "For estimating a proportion, if the absolute precision is changed from 5% to 2.5% (other factors unchanged), the required sample size",
+    options: ["Halves", "Is unchanged", "Doubles", "Becomes four times as large"],
     correctAnswer: 3,
-    explanation: "Sample size is adjusted for non-response, finite population size and cluster design (design effect). Being a hospital-based study does not by itself require a statistical adjustment."
+    explanation: "Because $n \\propto 1/d^2$, halving d multiplies n by $2^2 = 4$."
   },
   {
     id: "a12q34",
-    text: "A pilot study can be conducted to get an estimate of the expected prevalence of the disease being studied to calculate the minimum required sample size.",
+    text: "For a fixed absolute precision and confidence level, an expected proportion of p = 0.5 gives the largest sample size for estimating a proportion.",
     options: ["True", "False"],
     correctAnswer: 0,
-    explanation: "True. When literature provides no reliable estimate of expected prevalence, a pilot study can supply it; alternatively previous studies or $p = 0.5$ can be used."
+    explanation: "True. The product $p(1-p)$ is maximal (0.25) at p = 0.5, so this choice gives the most conservative (largest) sample size."
   },
   {
     id: "a12q35",
-    text: "Which of the following is NOT required for calculating the minimum required sample size for estimating a proportion?",
-    options: ["Significance level", "Assumed prevalence", "Precision", "Population variance"],
-    correctAnswer: 3,
-    explanation: "Estimating a proportion requires significance level, assumed prevalence and precision ($n = Z^2pq/d^2$). Population variance is used for estimating means, not proportions."
+    text: "What Z value is used in the sample size formula for a 99% confidence level (two-sided)?",
+    options: ["1.64", "1.96", "2.58", "3.29"],
+    correctAnswer: 2,
+    explanation: "A two-sided 99% confidence level leaves 0.5% in each tail, corresponding to Z = 2.58 (2.576). 1.96 is for 95% and 1.64 is for 90%."
   },
   {
     id: "a12q36",
-    text: "What is Type I error?",
-    options: [
-      "The probability of accepting the null hypothesis when it is false",
-      "The probability of rejecting the null hypothesis when it is true",
-      "The probability of rejecting the null hypothesis when it is false",
-      "The probability of accepting the null hypothesis when it is true"
-    ],
-    correctAnswer: 1,
-    explanation: "Type I (α) error is the probability of rejecting the null hypothesis when it is true, i.e., a false positive finding."
+    text: "In sample size formulas for comparative studies, the $Z_{1-\\beta}$ value corresponding to 80% power is",
+    options: ["0.84", "1.28", "1.96", "0.20"],
+    correctAnswer: 0,
+    explanation: "For 80% power ($\\beta = 0.20$), $Z_{1-\\beta} = 0.84$. For 90% power it is 1.28."
   },
   {
     id: "a12q37",
-    text: "Ability of a study to detect correctly the presence of an association is known as",
-    options: ["Precision", "Power", "Confidence", "Significance"],
+    text: "Which input is specifically needed to calculate the sample size for an unmatched case-control study?",
+    options: [
+      "Incidence of the outcome among the exposed",
+      "Proportion of exposure among controls and the expected odds ratio",
+      "Population size of the district",
+      "Desired absolute precision of a prevalence estimate"
+    ],
     correctAnswer: 1,
-    explanation: "Power ($1-\\beta$) is the ability of a study to correctly detect an association or difference that truly exists."
+    explanation: "Case-control studies compare exposure between cases and controls, so the inputs are the exposure prevalence among controls, the odds ratio to be detected, alpha and power. Incidence is not measured in a case-control design."
   },
   {
     id: "a12q38",
-    text: "Standard deviation of a sampling distribution is called systematic error",
+    text: "Increasing the desired power of a study from 80% to 90% decreases the required sample size.",
     options: ["True", "False"],
     correctAnswer: 1,
-    explanation: "False. The standard deviation of a sampling distribution is the standard error ($\\sigma/\\sqrt{n}$), which reflects random error. Systematic error is bias."
+    explanation: "False. Higher power needs a larger sample: $Z_{1-\\beta}$ rises from 0.84 to 1.28, which increases $(Z_{1-\\alpha/2} + Z_{1-\\beta})^2$ by about a third."
   },
   {
     id: "a12q39",
-    text: "Design effect is considered for which of the following sampling strategy?",
-    options: [
-      "Cluster sampling",
-      "Simple random sampling",
-      "Stratified random sampling",
-      "Non-probability sampling"
-    ],
-    correctAnswer: 0,
-    explanation: "Design effect is applied in cluster sampling because individuals within a cluster are similar (intra-cluster correlation), which reduces effective sample size compared with simple random sampling."
+    text: "The expected prevalence of a condition is 20%. If a relative precision of 10% is desired, the absolute precision (d) to be used in the formula is",
+    options: ["10%", "2%", "20%", "0.2%"],
+    correctAnswer: 1,
+    explanation: "Relative precision is a percentage of the expected value: 10% of 20% = 2 percentage points, so d = 2%."
   },
   {
     id: "a12q40",
-    text: "To estimate the mean D-dimer level (SD = 200, precision = 50, Significance = 95%), what is the minimum sample size?",
-    options: ["62", "16", "31", "248"],
-    correctAnswer: 0,
-    explanation: "Using $n = Z^2\\sigma^2/d^2 = 1.96^2 \\times 200^2 / 50^2 \\approx 61.5$, rounded up to 62."
+    text: "To estimate a mean with an expected SD of 10 units, precision of 2 units and 95% confidence (Z = 1.96), what is the minimum sample size?",
+    options: ["96", "97", "49", "20"],
+    correctAnswer: 1,
+    explanation: "$n = 1.96^2 \\times 10^2 / 2^2 = 3.8416 \\times 100 / 4 = 96.04$. Sample sizes are always rounded up, so 97."
   },
   {
     id: "a12q41",
@@ -397,15 +377,10 @@ export const ASSIGNMENT_12_QUESTIONS: Question[] = [
   },
   {
     id: "a12q43",
-    text: "Power of a study refers to:",
-    options: [
-      "The probability of rejecting a null hypothesis when it is false",
-      "The probability of failing to reject a null hypothesis when it is false",
-      "The probability of rejecting null hypothesis when it is true",
-      "The probability of failing to reject a null hypothesis when it is true"
-    ],
-    correctAnswer: 0,
-    explanation: "Power is the probability of rejecting the null hypothesis when it is false, equal to $1-\\beta$."
+    text: "An RCT will compare mean systolic BP between two groups. The SD is 10 mmHg, the difference to detect is 5 mmHg, alpha is 0.05 (two-sided) and power is 80%. Using $n = 2(Z_{1-\\alpha/2} + Z_{1-\\beta})^2\\sigma^2/\\Delta^2$ with Z values 1.96 and 0.84, the sample size per group is",
+    options: ["32", "63", "126", "16"],
+    correctAnswer: 1,
+    explanation: "$n = 2 \\times (1.96 + 0.84)^2 \\times 10^2 / 5^2 = 2 \\times 7.84 \\times 100 / 25 = 62.72$, rounded up to 63 per group (126 in total)."
   },
   {
     id: "a12q44",
@@ -437,11 +412,11 @@ export const ASSIGNMENT_12_QUESTIONS: Question[] = [
     options: [
       "The sample is obtained by means of probability sampling technique",
       "The population is sufficiently large to ignore finite population correction",
-      "The expected proportion ‘p’ is normally distributed",
-      "The sampling is done with replacement"
+      "The sampling distribution of the sample proportion is approximately normal",
+      "Participants are chosen purposively by the investigator"
     ],
     correctAnswer: 3,
-    explanation: "Sample size formulas assume probability sampling, a large population (ignoring finite population correction) and approximate normality of p. Sampling with replacement is not one of the stated assumptions."
+    explanation: "Sample size formulas assume probability sampling, a large population (ignoring finite population correction) and an approximately normal sampling distribution of the estimate. Purposive (non-probability) selection violates these assumptions, so it is the exception."
   },
   {
     id: "a12q47",

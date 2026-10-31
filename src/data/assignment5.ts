@@ -46,7 +46,7 @@ export const ASSIGNMENT_5_QUESTIONS: Question[] = [
   {
     id: "a5q7",
     text: "Which one of the following study designs does not employ comparison groups to answer the primary study objectives?",
-    options: ["Cross-sectional study", "Cohort study", "Ecological study", "Clinical trials"],
+    options: ["Descriptive cross-sectional study", "Cohort study", "Ecological study", "Clinical trials"],
     correctAnswer: 0,
     explanation: "A (descriptive) cross-sectional study estimates prevalence in one population without a comparison group. Cohort, ecological and trial designs all compare groups."
   },
@@ -87,10 +87,10 @@ export const ASSIGNMENT_5_QUESTIONS: Question[] = [
   },
   {
     id: "a5q13",
-    text: "Which of the following study design will be helpful if the department of health wants to know the burden of a particular disease?",
-    options: ["Ecological study", "Cross sectional survey", "Case series", "Case report"],
-    correctAnswer: 1,
-    explanation: "Disease burden is measured as prevalence, which a cross-sectional survey of the population estimates. Ecological studies, case series and case reports cannot measure burden."
+    text: "A state health department wants to know whether the prevalence of anaemia among adolescent girls has changed over the last 15 years. Which descriptive design is most suitable?",
+    options: ["Case report","Case-control study","Repeated cross-sectional surveys","Cohort study"],
+    correctAnswer: 2,
+    explanation: "Repeated cross-sectional surveys of comparable samples at intervals describe how prevalence changes over time. A single case report or case-control study cannot show population trends, and a cohort study is an analytical design."
   },
   {
     id: "a5q14",
@@ -213,80 +213,80 @@ export const ASSIGNMENT_5_QUESTIONS: Question[] = [
   },
   {
     id: "a5q31",
-    text: "Case series are useful-",
-    options: ["To estimate burden of a disease", "To determine risk factor of a disease", "To determine efficacy of a new drug", "To describe uncommon clinical manifestation"],
-    correctAnswer: 3,
-    explanation: "Case series are descriptive and useful to describe uncommon clinical manifestations. They cannot estimate burden, identify risk factors or prove drug efficacy."
+    text: "Which of the following is an advantage of a cross-sectional survey over a cohort study?",
+    options: ["It establishes the temporal sequence of exposure and disease","It is quick and inexpensive to conduct","It measures incidence directly","It is free from non-response bias"],
+    correctAnswer: 1,
+    explanation: "Cross-sectional surveys need no follow-up, so they are quick and inexpensive. They cannot establish temporal sequence or measure incidence, and non-response bias can still occur."
   },
   {
     id: "a5q32",
-    text: "All the following are true about cross-sectional survey, EXCEPT",
-    options: ["Individual is the unit of observation", "Involves only incident cases", "Estimate the burden of a disease", "It can be used to generate hypotheses"],
+    text: "In an ecological study, group-level exposure and outcome data are most often obtained from:",
+    options: ["Individual interviews of each participant","Routine statistics such as census and vital registration data","Randomised allocation records","Case notes of a single patient"],
     correctAnswer: 1,
-    explanation: "Cross-sectional surveys include all existing (prevalent) cases, not only incident cases. The other statements are true."
+    explanation: "Ecological studies use readily available aggregate data such as census counts, vital statistics and routine health information. They do not rely on individual interviews, allocation records or single-patient notes."
   },
   {
     id: "a5q33",
-    text: "A detailed presentation of a single case which is rare and unfamiliar, is called",
-    options: ["Case report", "Case series", "Ecological study", "Cross-sectional study"],
-    correctAnswer: 0,
-    explanation: "A detailed presentation of a single rare or unfamiliar case is a case report; several similar cases form a case series."
+    text: "Which of the following is a descriptive use of routine surveillance data?",
+    options: ["Testing a causal hypothesis by randomisation","Establishing a dose-response relationship in one patient","Proving the efficacy of a new vaccine","Monitoring trends in notified cases over time"],
+    correctAnswer: 3,
+    explanation: "Routine surveillance data are used descriptively to monitor trends, time patterns and geographic spread of notified cases. Causal hypotheses, dose-response and efficacy need analytical or experimental designs."
   },
   {
     id: "a5q34",
-    text: "Which of the following is INCORRECT about ecological study?",
-    options: ["It relates the rate of disease and frequency of exposure", "It is an example of observational study", "It uses individual level data", "It helps in generating hypothesis"],
-    correctAnswer: 2,
-    explanation: "Ecological studies use group-level (aggregate) data, not individual-level data. They are observational, relate disease rates to exposure and generate hypotheses."
+    text: "In an ecological study, comparing disease rates across several countries at one time point is a ___ comparison, while comparing one population across several years is a ___ comparison.",
+    options: ["Multiple-group; time-trend","Time-trend; multiple-group","Case-control; cohort","Cross-sectional; trial"],
+    correctAnswer: 0,
+    explanation: "Ecological designs are either multiple-group (comparing different populations at one time) or time-trend (following one population over time). The other pairs name designs that are not ecological comparison types."
   },
   {
     id: "a5q35",
-    text: "Which of the following is NOT applicable in a case study?",
-    options: ["Clinical features", "Laboratory parameters", "Socio-demographic", "Incidence"],
-    correctAnswer: 3,
-    explanation: "A case study describes one patient's clinical, laboratory and socio-demographic features. Incidence needs a population at risk followed over time, so it cannot be calculated."
+    text: "Dengue cases in a state are clustered in one district and peak during the monsoon months. These observations describe which dimensions of descriptive epidemiology?",
+    options: ["Person and cause","Person and treatment","Place and time","Cause and treatment"],
+    correctAnswer: 2,
+    explanation: "Clustering in one district describes place, and the monsoon peak describes time. Person, place and time are the core dimensions of descriptive epidemiology; cause and treatment need analytical studies."
   },
   {
     id: "a5q36",
-    text: "To determine the association between air pollution and male infertility, data on air quality for 183 countries for the year 2019. What best describes the study?",
-    options: ["Case report", "Case series", "Ecological study", "Cross-sectional study"],
+    text: "In a single cross-sectional survey of a chronic disease, long-duration cases are over-represented while rapidly fatal cases are missed. This distortion is known as:",
+    options: ["Lead-time bias","Recall bias","Prevalence-incidence (Neyman) bias","Confounding by indication"],
     correctAnswer: 2,
-    explanation: "Country-level (aggregate) data on air quality and infertility make this an ecological study. The stem appears truncated, but the intended answer is ecological study."
+    explanation: "Prevalence-incidence (Neyman) bias arises because prevalent cases are sampled, which favours diseases with long duration. Lead-time bias, recall bias and confounding by indication are different problems."
   },
   {
     id: "a5q37",
-    text: "In a medical journal, 18 cases of Creutzfeldt Jakob disease were reported from a tertiary care hospital in Sikkim. The authors of the paper gave a description of the socio-demographic, clinical, and laboratory features of the 18 patients. What best describes this study design?",
-    options: ["Case study", "Case series", "Case control study", "Ecological study"],
-    correctAnswer: 1,
-    explanation: "A description of 18 patients with the same disease, without a comparison group, is a case series. A case study involves only one patient."
+    text: "In a cross-sectional survey, what is the sampling frame?",
+    options: ["The statistical test used to analyse prevalence","The final number of responders","The list from which the sample is drawn","The questionnaire used to collect data"],
+    correctAnswer: 2,
+    explanation: "The sampling frame is the list of units (for example households or registered individuals) from which the sample is selected. It is distinct from the analysis, the responders and the questionnaire."
   },
   {
     id: "a5q38",
-    text: "Which of the following is FALSE about cross-sectional studies?",
-    options: ["Can be used to generate hypothesis", "Can be used to establish temporality of association", "Can be used to estimate disease burden", "Can be used to identify factors associated with outcome"],
-    correctAnswer: 1,
-    explanation: "Exposure and outcome are measured at the same time, so a cross-sectional study cannot establish temporality. It can estimate burden, generate hypotheses and identify associated factors."
+    text: "The National Family Health Survey uses multistage cluster sampling. What is the main practical reason for sampling clusters?",
+    options: ["It reduces cost and fieldwork logistics by sampling groups of households together","It guarantees the sample is free from non-response","It eliminates the need for any sampling frame","It allows direct calculation of incidence rates"],
+    correctAnswer: 0,
+    explanation: "Cluster sampling makes fieldwork cheaper and more practical by visiting groups of households together. It needs a design-effect adjustment in analysis and does not remove non-response or give incidence."
   },
   {
     id: "a5q39",
-    text: "Descriptive cross-sectional study does not have a comparison group",
-    options: ["True", "False"],
+    text: "True or false: case reports and case series, such as early descriptions of thalidomide-associated birth defects, can generate hypotheses that are later tested in analytical studies.",
+    options: ["True","False"],
     correctAnswer: 0,
-    explanation: "True. A descriptive cross-sectional study has no comparison group; comparing subgroups makes it analytical."
+    explanation: "True. Clinical observations of unusual patterns, such as thalidomide-associated limb defects, generate hypotheses that analytical studies then test. Descriptive designs are hypothesis-generating rather than hypothesis-testing."
   },
   {
     id: "a5q40",
-    text: "Which of the following studies can be used to identify the factors associated with an outcome?",
-    options: ["Descriptive cross-sectional study", "Analytical cross-sectional study", "Case study", "Case series"],
+    text: "Which of the following is a strength of a case series over a single case report?",
+    options: ["It can prove causation","It can show the spectrum of features across several patients","It provides a concurrent comparison group","It gives incidence directly"],
     correctAnswer: 1,
-    explanation: "An analytical cross-sectional study compares subgroups to identify factors associated with an outcome. Descriptive surveys, case studies and case series have no comparison."
+    explanation: "A case series describes the range of features across several patients, which a single case report cannot show. It still has no comparison group, cannot prove causation and does not give incidence."
   },
   {
     id: "a5q41",
-    text: "Which of the following study design is useful to describe uncommon clinical manifestation of a particular disease?",
-    options: ["Case series", "Cross sectional study", "Ecological study", "Case control study"],
-    correctAnswer: 0,
-    explanation: "A case series describes a group of patients with an uncommon clinical manifestation of a disease. Other designs measure burden, correlations or risk factors."
+    text: "Prevalence in a cross-sectional study is best described as:",
+    options: ["Number of new cases during a follow-up period","Proportion of the population with the condition at one point in time","Number of cases per person-years of follow-up","Proportion of deaths in the population per year"],
+    correctAnswer: 1,
+    explanation: "Prevalence is the proportion of a defined population that has the condition at a given point in time, which is what a cross-sectional study estimates. New cases over follow-up, person-time rates and deaths describe incidence or mortality."
   },
   {
     id: "a5q42",
@@ -304,10 +304,10 @@ export const ASSIGNMENT_5_QUESTIONS: Question[] = [
   },
   {
     id: "a5q44",
-    text: "Population level information is required in which of the following study designs?",
-    options: ["Case control study", "Ecological study", "Randomized control trial", "Cohort study"],
-    correctAnswer: 1,
-    explanation: "Ecological study. It uses aggregate, population-level data on both exposure and outcome, whereas case-control, cohort and RCT designs collect data on individuals."
+    text: "Which of the following best distinguishes a census from a sample survey?",
+    options: ["Uses a random sample of about 1 percent of the population","Measures incidence in a cohort","Requires a comparison group","Covers every member of the population"],
+    correctAnswer: 3,
+    explanation: "A census attempts to enumerate every member of the population, whereas a sample survey studies a subset. Both can be cross-sectional, and neither inherently measures incidence or needs a comparison group."
   },
   {
     id: "a5q45",
@@ -332,10 +332,10 @@ export const ASSIGNMENT_5_QUESTIONS: Question[] = [
   },
   {
     id: "a5q48",
-    text: "Population census can be classified under which of the following study design?",
-    options: ["Cohort study", "Case control study", "Cross sectional study", "Ecological study"],
-    correctAnswer: 2,
-    explanation: "Cross sectional study. A census measures the whole population at a single point in time, making it a large descriptive cross-sectional survey."
+    text: "A cross-sectional survey finds that smokers have a higher prevalence of chronic cough than non-smokers. The most appropriate use of this finding is to:",
+    options: ["Generate a hypothesis to be tested in an analytical study","Prove that smoking causes cough","Calculate the incidence of cough","Establish that smoking preceded cough"],
+    correctAnswer: 0,
+    explanation: "Cross-sectional associations are hypothesis-generating: they suggest smoking may cause cough but cannot prove causation or temporal order. An analytical study such as a cohort or case-control design is needed to test the hypothesis."
   },
   {
     id: "a5q49",

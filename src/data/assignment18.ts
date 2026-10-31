@@ -108,10 +108,10 @@ export const ASSIGNMENT_18_QUESTIONS: Question[] = [
   },
   {
     id: "a18q11",
-    text: "Multivariate regression models are used during the descriptive stage of analysis",
+    text: "A confounder is a variable that is associated with both the exposure and the outcome and is not on the causal pathway between them.",
     options: ["True", "False"],
-    correctAnswer: 1,
-    explanation: "False. The descriptive stage uses frequencies, proportions and means. Multivariate regression belongs to the analytical stage, where it adjusts for confounders."
+    correctAnswer: 0,
+    explanation: "True. A confounder distorts the exposure-outcome association because it is linked to both. A variable on the causal pathway is an intermediate, not a confounder."
   },
   {
     id: "a18q12",
@@ -122,15 +122,10 @@ export const ASSIGNMENT_18_QUESTIONS: Question[] = [
   },
   {
     id: "a18q13",
-    text: "In a research study the analysis plan depends on",
-    options: [
-      "Objectives and study type",
-      "Allocated budget",
-      "Availability of the statistician",
-      "Existing time for analysis"
-    ],
-    correctAnswer: 0,
-    explanation: "The analysis plan is decided by the study objectives and the study type or design. Budget, the statistician's availability and time are practical constraints, not determinants."
+    text: "Which is the most appropriate measure to summarize the central value of a highly skewed variable such as monthly income?",
+    options: ["Mean", "Median", "Mode", "Range"],
+    correctAnswer: 1,
+    explanation: "The median is not pulled by extreme values, so it represents the typical value of a skewed distribution better than the mean. Range is a measure of spread."
   },
   {
     id: "a18q14",
@@ -201,10 +196,10 @@ export const ASSIGNMENT_18_QUESTIONS: Question[] = [
   },
   {
     id: "a18q20",
-    text: "Spreadsheets are ideal tools for data entry and analysis",
+    text: "If the stratum-specific odds ratios are similar to each other but clearly different from the crude odds ratio, effect modification is present.",
     options: ["True", "False"],
     correctAnswer: 1,
-    explanation: "False. Spreadsheets have no validation or audit trail and are prone to errors. Database and statistical software is preferred for research data entry and analysis."
+    explanation: "False. Similar stratum-specific estimates that differ from the crude estimate indicate confounding. Effect modification is suggested when the stratum-specific estimates differ from each other."
   },
   {
     id: "a18q21",
@@ -241,15 +236,10 @@ export const ASSIGNMENT_18_QUESTIONS: Question[] = [
   },
   {
     id: "a18q25",
-    text: "Identify the correct sequence in the steps of data analysis.",
-    options: [
-      "i, ii, iii, iv",
-      "i. Identify variables, ii. Check data, iv. Examine population, iii. Examine association",
-      "ii, iv, i, iii",
-      "iii, i, ii, iv"
-    ],
+    text: "Arrange the following steps of data analysis in the correct sequence: i. Identify the main variables, ii. Check and clean the data, iii. Examine the exposure-outcome association, iv. Characterize the study population.",
+    options: ["i, ii, iii, iv", "i, ii, iv, iii", "ii, iv, i, iii", "iii, i, ii, iv"],
     correctAnswer: 1,
-    explanation: "The correct sequence is to identify the variables, check and clean the data, describe the population, and then examine associations."
+    explanation: "First identify the variables (i), then check and clean the data (ii), describe the study population (iv), and finally examine associations (iii): i, ii, iv, iii."
   },
   {
     id: "a18q26",
@@ -293,100 +283,80 @@ export const ASSIGNMENT_18_QUESTIONS: Question[] = [
   },
   {
     id: "a18q31",
-    text: "All the following are done to characterize the study population EXCEPT",
-    options: [
-      "Provide frequency distribution of age",
-      "Provide percentages of gender",
-      "Compare baseline characteristics of study groups",
-      "Conduct logistic regression analysis"
-    ],
-    correctAnswer: 3,
-    explanation: "Frequencies, percentages and baseline comparisons describe the study population. Logistic regression is an analytical method for examining and adjusting associations, not for describing the population."
+    text: "The Mantel-Haenszel method in stratified analysis is used to",
+    options: ["Calculate the sample size", "Estimate prevalence", "Obtain a summary odds ratio adjusted for the stratification variable", "Test whether data are normally distributed"],
+    correctAnswer: 2,
+    explanation: "The Mantel-Haenszel estimator combines stratum-specific odds ratios into one summary estimate adjusted for the confounder used to stratify."
   },
   {
     id: "a18q32",
-    text: "Which of the following is the appropriate measure of association in a case-control study?",
-    options: ["Odds ratio", "Prevalence ratio", "Relative risk", "Incidence"],
-    correctAnswer: 0,
-    explanation: "Case-control studies sample participants by outcome, so incidence cannot be measured. The odds ratio, $OR = ad/bc$, compares the odds of exposure in cases and controls."
+    text: "An odds ratio of 1.8 has a 95% confidence interval of 0.9 to 3.6. This means",
+    options: ["The association is statistically significant at the 5% level", "The association is not statistically significant at the 5% level, because the interval includes 1", "The exposure is protective", "The study design is wrong"],
+    correctAnswer: 1,
+    explanation: "An odds ratio of 1 means no association. Because the 95% CI includes 1, the result is not statistically significant at the 5% level."
   },
   {
     id: "a18q33",
-    text: "Prevalence ratio is one of the measures of association calculated in an analytical cross-sectional study.",
+    text: "A p-value of 0.03 means that there is a 3% probability that the null hypothesis is true.",
     options: ["True", "False"],
-    correctAnswer: 0,
-    explanation: "True. An analytical cross-sectional study measures prevalence in exposed and unexposed groups, so the prevalence ratio (or prevalence odds ratio) is its measure of association."
+    correctAnswer: 1,
+    explanation: "False. The p-value is the probability of getting results at least as extreme as those observed if the null hypothesis were true. It is not the probability that the null hypothesis is true."
   },
   {
     id: "a18q34",
-    text: "Hypothesis testing is conducted in an analytical epidemiological study.",
+    text: "The chi-square test is appropriate to test the association between two categorical variables, such as smoking (yes/no) and lung cancer (yes/no).",
     options: ["True", "False"],
     correctAnswer: 0,
-    explanation: "True. Analytical studies include a comparison group and are designed to test hypotheses about exposure-outcome associations. Descriptive studies generate hypotheses."
+    explanation: "True. The chi-square test compares observed and expected frequencies in a contingency table of two categorical variables."
   },
   {
     id: "a18q35",
-    text: "Identify the correct sequence in the steps of data analysis.",
-    options: [
-      "i, ii, iii, iv",
-      "i, ii, iv, iii",
-      "ii, iv, i, iii",
-      "iii, i, ii, iv"
-    ],
-    correctAnswer: 1,
-    explanation: "The correct sequence is to identify the variables, check and clean the data, describe the population, and then examine associations."
+    text: "Which test is appropriate to compare the mean haemoglobin of two independent groups when the data are normally distributed?",
+    options: ["Chi-square test", "Paired t-test", "Mantel-Haenszel test", "Independent (unpaired) t-test"],
+    correctAnswer: 3,
+    explanation: "Means of a normally distributed continuous variable in two independent groups are compared with the unpaired t-test. The paired t-test is for matched or before-after measurements."
   },
   {
     id: "a18q36",
-    text: "Which of the following is NOT done during the analytic stage of data analysis?",
-    options: [
-      "Calculating frequency of the outcome in one group",
-      "Calculating frequency of the outcome by age and gender",
-      "Calculating odds ratio between exposure and outcome",
-      "Applying logistic regression"
-    ],
-    correctAnswer: 0,
-    explanation: "The frequency of the outcome in a single group, with no comparison, is a descriptive statistic. The analytic stage involves comparisons, odds ratios and regression."
+    text: "In a case-control study, the odds ratio for the association between vaccination and disease is 0.4. This indicates",
+    options: ["No association", "Vaccination is associated with higher odds of disease", "Vaccination is associated with lower odds of disease (a protective association)", "Confounding is definitely present"],
+    correctAnswer: 2,
+    explanation: "An odds ratio below 1 means the exposure is less common among cases, suggesting a protective association. Confounding cannot be judged from the crude OR alone."
   },
   {
     id: "a18q37",
-    text: "Relative risk is calculated in which of the following study designs?",
-    options: ["Cross-sectional study", "Cohort study", "Case study", "Case control study"],
+    text: "In a cohort study, the incidence of disease is 30 per 1000 among the exposed and 10 per 1000 among the unexposed. What is the attributable risk (risk difference)?",
+    options: ["3", "20 per 1000", "40 per 1000", "0.33"],
     correctAnswer: 1,
-    explanation: "Relative risk needs incidence in exposed and unexposed groups, which only a cohort study (following people over time) provides."
+    explanation: "Attributable risk = incidence in exposed minus incidence in unexposed = 30 - 10 = 20 per 1000. The value 3 is the relative risk."
   },
   {
     id: "a18q38",
-    text: "Risk ratio can be calculated in a descriptive cross-sectional study.",
+    text: "A type I error is the error of rejecting a null hypothesis that is actually true.",
     options: ["True", "False"],
-    correctAnswer: 1,
-    explanation: "False. A descriptive cross-sectional study only estimates prevalence and has no comparison group. A risk ratio also needs incidence, which requires a cohort design."
+    correctAnswer: 0,
+    explanation: "True. A type I error is a false positive, and its probability is the significance level (alpha). A type II error is failing to reject a false null hypothesis."
   },
   {
     id: "a18q39",
-    text: "In a case-control study to examine the association between mobile phone use and acoustic neuroma, exposure was present among 16 cases and 18 controls out of 24 cases and 72 controls. Calculate the measure of association.",
-    options: ["Odds ratio 1.5", "Relative risk 1.5", "Odds ratio 6", "Relative risk 6"],
-    correctAnswer: 2,
-    explanation: "There are 8 unexposed cases (24−16) and 54 unexposed controls (72−18). The odds ratio is $(16 \\times 54)/(18 \\times 8) = 6$."
+    text: "In a case-control study of 50 cases and 100 controls, 30 cases and 25 controls were exposed. Calculate the measure of association.",
+    options: ["Odds ratio 1.2", "Relative risk 4.5", "Odds ratio 2.4", "Odds ratio 4.5"],
+    correctAnswer: 3,
+    explanation: "The cells are a=30, b=25, c=20 and d=75. OR = (30 x 75)/(25 x 20) = 2250/500 = 4.5. Relative risk cannot be calculated in a case-control study."
   },
   {
     id: "a18q40",
-    text: "In a case control conducted taking 100 autism children and 200 normal children, 90 autism children and 60 normal children had instrumental delivery history. Calculate the association.",
-    options: ["12", "21", "6", "9"],
+    text: "In an analytical cross-sectional study, 40 of 200 smokers and 20 of 400 non-smokers had chronic cough. Calculate the prevalence ratio.",
+    options: ["2", "4", "4.75", "0.25"],
     correctAnswer: 1,
-    explanation: "Using a=90, b=60, c=10 and d=140, the odds ratio is $(90 \\times 140)/(60 \\times 10) = 21$."
+    explanation: "Prevalence in smokers is 40/200 = 0.20 and in non-smokers 20/400 = 0.05, so the prevalence ratio is 0.20/0.05 = 4. The value 4.75 is the prevalence odds ratio."
   },
   {
     id: "a18q41",
-    text: "The plan for data analysis depends on _____________.",
-    options: [
-      "Objective of the study",
-      "Study design",
-      "Type of outcome variable",
-      "All of these"
-    ],
-    correctAnswer: 3,
-    explanation: "The analysis plan depends on the study objective, the study design and the type of outcome variable (categorical or continuous), so all of these apply."
+    text: "Which graph is most appropriate to display the distribution of a continuous variable such as age?",
+    options: ["Histogram", "Pie chart", "Simple bar chart", "Line graph of a time trend"],
+    correctAnswer: 0,
+    explanation: "A histogram shows the frequency distribution of a continuous variable using adjoining bars over class intervals. Pie and bar charts are for categorical data."
   },
   {
     id: "a18q42",
@@ -409,39 +379,24 @@ export const ASSIGNMENT_18_QUESTIONS: Question[] = [
   },
   {
     id: "a18q44",
-    text: "Analytical study is used for ___________.",
-    options: [
-      "Testing of hypothesis",
-      "Estimation of a parameter",
-      "Hypothesis formulation",
-      "Describing a population"
-    ],
-    correctAnswer: 0,
-    explanation: "Analytical studies compare groups to test hypotheses about associations. Describing populations, estimating parameters and generating hypotheses are the roles of descriptive studies."
+    text: "Logistic regression is used when the outcome variable is",
+    options: ["Continuous, such as blood pressure", "A count of hospital beds", "Binary, such as disease present or absent", "The study design"],
+    correctAnswer: 2,
+    explanation: "Logistic regression models a binary outcome and gives adjusted odds ratios. Continuous outcomes are usually modelled with linear regression."
   },
   {
     id: "a18q45",
-    text: "Prevalence ratio is the preferred measure of association in _______________.",
-    options: [
-      "Analytical cross-sectional study",
-      "Cohort study",
-      "Case-control study",
-      "Descriptive cross-sectional study"
-    ],
-    correctAnswer: 0,
-    explanation: "Cross-sectional studies measure prevalence, so when exposed and unexposed groups are compared in an analytical cross-sectional study, the prevalence ratio is the preferred measure."
+    text: "Finding that the odds ratio for lung cancer rises steadily with the number of cigarettes smoked per day supports a causal association through",
+    options: ["Temporality", "Specificity", "Analogy", "Biological gradient (dose-response)"],
+    correctAnswer: 3,
+    explanation: "Increasing risk with increasing dose is the biological gradient criterion of Bradford Hill, which strengthens the case for causation."
   },
   {
     id: "a18q46",
-    text: "What is the correct sequence of data analysis strategy?",
-    options: [
-      "i, v, iii, iv, ii",
-      "v. Identify design, iii. Identify variables, i. Characterize population, iv. Two-way tables, ii. Stratified analysis",
-      "v, i, iii, ii, iv",
-      "iii, v, i, ii, iv"
-    ],
+    text: "Arrange the data analysis strategy steps in the correct order: i. Characterize the study population, ii. Conduct stratified analysis, iii. Identify the main variables, iv. Create two-way tables of exposure and outcome, v. Identify the study design.",
+    options: ["i, v, iii, iv, ii", "v, iii, i, iv, ii", "v, i, iii, ii, iv", "iii, v, i, ii, iv"],
     correctAnswer: 1,
-    explanation: "The sequence is: identify the design, identify the variables, characterize the population, build two-way tables for crude associations, and then do stratified analysis."
+    explanation: "Identify the design (v), then the main variables (iii), characterize the population (i), build two-way tables for crude associations (iv), and then do stratified analysis (ii): v, iii, i, iv, ii."
   },
   {
     id: "a18q47",
@@ -457,17 +412,17 @@ export const ASSIGNMENT_18_QUESTIONS: Question[] = [
   },
   {
     id: "a18q48",
-    text: "The preferred measure of association for a case-control study is _____________.",
-    options: ["Risk ratio", "Odds ratio", "Prevalence ratio", "Prevalence odds ratio"],
-    correctAnswer: 1,
-    explanation: "Case-control studies cannot measure risk, so the odds ratio is the preferred measure of association. Risk ratio belongs to cohort studies and prevalence ratio to cross-sectional studies."
+    text: "Which of the following measures describes the spread of data around the mean?",
+    options: ["Median", "Mode", "Standard deviation", "Odds ratio"],
+    correctAnswer: 2,
+    explanation: "The standard deviation measures how widely values are dispersed around the mean. Median and mode are measures of central tendency."
   },
   {
     id: "a18q49",
-    text: "Spreadsheets are preferred tools for data management and analysis of large quantity of data.",
+    text: "Univariate (crude) analysis examines the association between the outcome and one exposure at a time, without adjusting for other variables.",
     options: ["True", "False"],
-    correctAnswer: 1,
-    explanation: "False. With large datasets, spreadsheets are error-prone and lack validation and an audit trail. Database or statistical software is preferred."
+    correctAnswer: 0,
+    explanation: "True. Crude analysis looks at one exposure at a time. Adjustment for other variables comes later, in stratified and multivariable analysis."
   },
   {
     id: "a18q50",

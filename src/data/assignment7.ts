@@ -102,16 +102,16 @@ export const ASSIGNMENT_7_QUESTIONS: Question[] = [
   {
     id: "a7q15",
     text: "Biased outcome ascertainment results from:",
-    options: ["Participants reporting symptoms or outcomes differently", "Investigators eliciting symptoms or outcomes following a standardized technique", "None of the above", "Both 'a' and 'b'"],
-    correctAnswer: 0,
-    explanation: "Biased outcome ascertainment arises when participants report symptoms or outcomes differently; using a standardized technique reduces rather than causes bias."
+    options: ["Participants reporting symptoms or outcomes differently", "Investigators eliciting symptoms or outcomes differently between study groups", "None of the above", "Both 'a' and 'b'"],
+    correctAnswer: 3,
+    explanation: "Biased outcome ascertainment occurs when participants report outcomes differently or when investigators elicit or record them differently depending on the group; blinding both helps prevent it."
   },
   {
     id: "a7q16",
-    text: "In a clinical trial, what is the main purpose of randomization?",
-    options: ["To get more power for data analysis", "To reduce investigator bias", "To get groups with comparable baseline characteristics", "To ensure optimum number of participants in each trial arm"],
-    correctAnswer: 2,
-    explanation: "The main purpose of randomization is to create groups with comparable baseline characteristics by distributing confounders equally between arms."
+    text: "In which trial design does each participant receive both the intervention and the control, one after the other, separated by a washout period?",
+    options: ["Parallel group trial", "Crossover trial", "Factorial trial", "Cluster randomized trial"],
+    correctAnswer: 1,
+    explanation: "In a crossover trial each participant acts as his or her own control; the washout period between treatments prevents carry-over effects. It suits stable chronic conditions."
   },
   {
     id: "a7q17",
@@ -129,7 +129,7 @@ export const ASSIGNMENT_7_QUESTIONS: Question[] = [
   },
   {
     id: "a7q19",
-    text: "Which of the following trials assesses effectiveness of a new vaccine?",
+    text: "Which of the following trials assesses efficacy of a new vaccine?",
     options: ["Phase 1 trial done in healthy volunteers", "Phase 2 trial done in a susceptible population", "Phase 3 trial done in healthy volunteers", "Phase 3 trial done in a susceptible population"],
     correctAnswer: 3,
     explanation: "Vaccine efficacy is shown in Phase 3 trials in a large susceptible population, where disease can occur and protection can be measured."
@@ -185,10 +185,10 @@ export const ASSIGNMENT_7_QUESTIONS: Question[] = [
   },
   {
     id: "a7q27",
-    text: "Post-marketing surveillance is done in which of the clinical trial phases?",
-    options: ["Phase 1", "Phase 2", "Phase 3", "Phase 4"],
-    correctAnswer: 3,
-    explanation: "Post-marketing surveillance is Phase 4, conducted after drug approval to detect rare and long-term adverse effects in real-world use."
+    text: "The primary objective of a Phase 1 drug trial is to",
+    options: ["Establish efficacy in a large population", "Monitor rare adverse effects after marketing", "Assess safety, tolerability and safe dose range", "Compare the drug with standard treatment in thousands of patients"],
+    correctAnswer: 2,
+    explanation: "Phase 1 trials, usually in a small number of healthy volunteers, study safety, tolerability, pharmacokinetics and dose range before efficacy is tested in later phases."
   },
   {
     id: "a7q28",
@@ -213,73 +213,73 @@ export const ASSIGNMENT_7_QUESTIONS: Question[] = [
   },
   {
     id: "a7q31",
-    text: "State whether True or False. In a randomized controlled trial, the investigator is unaware of the sequence of allocation of the participants to one of the study arms before and until the assignment is complete. This process is known as allocation concealment.",
+    text: "State whether true or false. Clinical equipoise means genuine uncertainty in the expert medical community about which of the trial arms is better.",
     options: ["True", "False"],
     correctAnswer: 0,
-    explanation: "True. Hiding the allocation sequence from the investigator until assignment is complete is allocation concealment, which prevents selection bias."
+    explanation: "True. Equipoise is the ethical basis for randomizing patients; if one treatment were known to be superior, allocating patients to the inferior arm would be unethical."
   },
   {
     id: "a7q32",
-    text: "Which of the following is NOT a feature of randomized controlled trials?",
-    options: ["Simple random sampling", "Randomization", "Allocation concealment", "Blinding"],
-    correctAnswer: 0,
-    explanation: "Simple random sampling is a survey sampling method, not an RCT feature; RCTs use random allocation, allocation concealment, and blinding."
+    text: "Randomizing whole villages, rather than individuals, to receive a community sanitation intervention is an example of a",
+    options: ["Crossover trial", "Factorial trial", "N-of-1 trial", "Cluster randomized trial"],
+    correctAnswer: 3,
+    explanation: "In a cluster randomized trial, groups such as villages, schools or clinics are the units of randomization, which is useful for community-level interventions and to avoid contamination."
   },
   {
     id: "a7q33",
-    text: "A research group from a medical college in Lucknow conducted a study to assess the efficacy of a new herbal medicine for the prevention of pneumonia in elderly. What type of randomized controlled trial is this study?",
-    options: ["Screening RCT", "Diagnostic RCT", "Therapeutic RCT", "Prophylactic RCT"],
-    correctAnswer: 3,
-    explanation: "The herbal medicine is tested to prevent pneumonia in healthy elderly people, making it a prophylactic (preventive) RCT."
+    text: "Participants are randomized to aspirin alone, vitamin E alone, both, or neither, to test two interventions in a single trial. This design is a",
+    options: ["Factorial trial", "Crossover trial", "Cluster randomized trial", "Non-randomized trial"],
+    correctAnswer: 0,
+    explanation: "A 2x2 factorial design tests two interventions simultaneously, and can also examine their interaction, at little extra cost."
   },
   {
     id: "a7q34",
-    text: "In which type of population is a phase-I vaccine trial conducted?",
-    options: ["Healthy volunteers", "High risk group", "Diseased population", "Laboratory animals"],
-    correctAnswer: 0,
-    explanation: "Phase 1 vaccine trials assess safety and immunogenicity in a small number of healthy volunteers."
+    text: "In an RCT, mortality was 20% in the control group and 15% in the intervention group. What is the number needed to treat (NNT) to prevent one death?",
+    options: ["5", "15", "20", "35"],
+    correctAnswer: 2,
+    explanation: "Absolute risk reduction = 0.20 - 0.15 = 0.05, and NNT = 1/ARR = 1/0.05 = 20."
   },
   {
     id: "a7q35",
-    text: "State whether true or false. Randomization is a process, where the participants have an equal chance of being assigned to any one of the study groups.",
+    text: "State whether true or false. A per-protocol analysis includes all randomized participants in the groups to which they were originally assigned.",
     options: ["True", "False"],
-    correctAnswer: 0,
-    explanation: "True. Randomization gives each participant an equal chance of allocation to any study group, independent of investigator or participant choice."
+    correctAnswer: 1,
+    explanation: "False. That describes intention-to-treat analysis; per-protocol analysis includes only participants who completed the treatment as specified, and may lose the benefits of randomization."
   },
   {
     id: "a7q36",
-    text: "Which of the following is NOT an advantage of randomized controlled trials?",
-    options: ["Provides the highest level of evidence", "Controls for selection and confounding bias", "Establishes temporality of association", "Entails minimal ethical issues"],
-    correctAnswer: 3,
-    explanation: "RCTs involve significant ethical issues such as placebo use, equipoise, and withholding treatment, so minimal ethical issues is not an advantage."
+    text: "Which randomization method ensures that the number of participants in each arm is balanced at regular intervals during recruitment?",
+    options: ["Simple randomization", "Block randomization", "Alternate allocation", "Allocation by date of birth"],
+    correctAnswer: 1,
+    explanation: "Block randomization allocates participants in blocks (e.g., of 4 or 6) with equal numbers per arm, keeping group sizes balanced throughout recruitment."
   },
   {
     id: "a7q37",
-    text: "Post-marketing surveillance is done in which of the clinical trial phases?",
-    options: ["Phase 1", "Phase 2", "Phase 3", "Phase 4"],
-    correctAnswer: 3,
-    explanation: "Post-marketing surveillance is Phase 4, conducted after drug approval to detect rare and long-term adverse effects in real-world use."
+    text: "Which of the following is an adequate method of allocation concealment?",
+    options: ["Alternate allocation by order of arrival", "Allocation by hospital record number", "Sequentially numbered, opaque, sealed envelopes", "Allocation by day of the week"],
+    correctAnswer: 2,
+    explanation: "Sequentially numbered opaque sealed envelopes (or central/web-based randomization) hide the next assignment; predictable schemes such as alternation or record numbers allow selection bias."
   },
   {
     id: "a7q38",
-    text: "State whether true or false. Randomized controlled trials are retrospective in nature.",
+    text: "State whether true or false. A non-inferiority trial aims to show that a new treatment is not worse than the standard treatment by more than a pre-specified margin.",
     options: ["True", "False"],
-    correctAnswer: 1,
-    explanation: "False. RCTs are prospective: participants are randomized, given the intervention, and followed forward in time for outcomes."
+    correctAnswer: 0,
+    explanation: "True. Non-inferiority trials are used when a new treatment offers other advantages (cost, safety, convenience), and they require a pre-defined non-inferiority margin."
   },
   {
     id: "a7q39",
-    text: "In a clinical trial conducted by the Orthopaedic department of a medical college in Bhubaneshwar, the investigators compared the wound healing time between conventional suturing technique and stapling technique for open fractures. The investigators, patients and data analysts were aware about the treatment assignment. What best describes this study design?",
-    options: ["Open-label RCT", "Single blind RCT", "Double blind RCT", "Triple blind RCT"],
-    correctAnswer: 0,
-    explanation: "Since investigators, patients, and analysts all knew the treatment assignment, no one was blinded, making it an open-label RCT."
+    text: "Using reduction in blood pressure, instead of the occurrence of stroke, as the outcome of a trial is an example of a",
+    options: ["Hard clinical endpoint", "Surrogate endpoint", "Adverse event", "Baseline variable"],
+    correctAnswer: 1,
+    explanation: "A surrogate endpoint is a measurable marker expected to predict a clinical outcome; it allows smaller, shorter trials but may not always reflect true clinical benefit."
   },
   {
     id: "a7q40",
-    text: "Blinding in a randomized controlled trial addresses which of the following biases?",
-    options: ["Ascertainment bias", "Recall bias", "Volunteer bias", "Attrition bias"],
-    correctAnswer: 0,
-    explanation: "Blinding prevents ascertainment (observer/detection) bias, where knowledge of allocation influences how outcomes are assessed or reported."
+    text: "Which reporting guideline is used for reporting randomized controlled trials?",
+    options: ["STROBE", "PRISMA", "STARD", "CONSORT"],
+    correctAnswer: 3,
+    explanation: "CONSORT provides a checklist and participant flow diagram for RCT reports; STROBE is for observational studies, PRISMA for systematic reviews and STARD for diagnostic accuracy studies."
   },
   {
     id: "a7q41",
@@ -290,17 +290,17 @@ export const ASSIGNMENT_7_QUESTIONS: Question[] = [
   },
   {
     id: "a7q42",
-    text: "The following are a feature of randomized controlled trials EXCEPT",
-    options: ["Randomization", "Simple random sampling", "Allocation concealment", "Blinding"],
-    correctAnswer: 1,
-    explanation: "Simple random sampling is used in surveys to select representative samples; it is not a feature of RCTs, which use random allocation instead."
+    text: "A trial that tests an intervention under routine, real-world conditions in a broad population mainly assesses its",
+    options: ["Efficacy", "Bioavailability", "Effectiveness", "Pharmacokinetics"],
+    correctAnswer: 2,
+    explanation: "Pragmatic trials measure effectiveness (benefit in everyday practice), whereas explanatory trials under ideal, controlled conditions measure efficacy."
   },
   {
     id: "a7q43",
-    text: "State whether true or false. Randomized controlled trials are prospective in nature.",
+    text: "State whether true or false. Phase 2 trials are usually conducted in thousands of participants to detect rare adverse events.",
     options: ["True", "False"],
-    correctAnswer: 0,
-    explanation: "True. RCTs are prospective, enrolling and randomizing participants and then following them forward to observe outcomes."
+    correctAnswer: 1,
+    explanation: "False. Phase 2 trials involve a relatively small number of patients (typically up to a few hundred); rare adverse events are detected mainly in Phase 4 post-marketing surveillance."
   },
   {
     id: "a7q44",
@@ -332,10 +332,10 @@ export const ASSIGNMENT_7_QUESTIONS: Question[] = [
   },
   {
     id: "a7q48",
-    text: "A pharmacologically inactive agent that investigators administer to participants in the control group of a randomized controlled trial is called as:",
-    options: ["Comparator drug", "Conjugate", "Placebo", "Drug under investigation"],
-    correctAnswer: 2,
-    explanation: "A placebo is a pharmacologically inactive agent identical in appearance to the active drug, given to the control group of an RCT."
+    text: "A Phase 2 clinical trial is mainly conducted to",
+    options: ["Assess preliminary efficacy and the optimal dose in a limited number of patients", "Test the drug in laboratory animals", "Detect rare adverse effects after marketing", "Confirm efficacy in several thousand patients"],
+    correctAnswer: 0,
+    explanation: "Phase 2 trials give the first evidence of efficacy in patients with the condition and refine the dose and safety profile before large confirmatory Phase 3 trials."
   },
   {
     id: "a7q49",
