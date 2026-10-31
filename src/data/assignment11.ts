@@ -214,15 +214,15 @@ export const ASSIGNMENT_11_QUESTIONS: Question[] = [
   },
   {
     id: "a11q19",
-    text: "The amount of non-response bias in a survey estimate depends on",
+    text: "Which of the following best describes sampling bias?",
     options: [
-      "Only the sample size",
-      "Only the sampling method",
-      "Both the non-response rate and how much non-respondents differ from respondents",
-      "Only the length of the questionnaire"
+      "Chance variation between one random sample and another",
+      "A systematic difference between the sample and the population because some members had a lower chance of being selected",
+      "Errors made while entering data into the computer",
+      "The difference between the sample size and the population size"
     ],
-    correctAnswer: 2,
-    explanation: "Bias from non-response is roughly the non-response proportion multiplied by the difference between respondents and non-respondents. A high non-response rate matters most when non-respondents differ on the study variables."
+    correctAnswer: 1,
+    explanation: "Sampling bias is a systematic distortion: some units of the target population are less likely to be selected than others. It differs from random sampling error, which varies by chance and shrinks as the sample grows."
   },
   {
     id: "a11q20",
@@ -274,10 +274,15 @@ export const ASSIGNMENT_11_QUESTIONS: Question[] = [
   },
   {
     id: "a11q24",
-    text: "An advantage of systematic sampling over simple random sampling is that it is easy to carry out and spreads the sample evenly across the list.",
-    options: ["True", "False"],
+    text: "Enrolling every consecutive eligible patient who attends a clinic until the required sample size is reached is called",
+    options: [
+      "Consecutive sampling",
+      "Quota sampling",
+      "Snowball sampling",
+      "Cluster sampling"
+    ],
     correctAnswer: 0,
-    explanation: "True. After a random start only every k-th unit has to be picked, which is easy in the field, and the sample covers the whole ordered list. The risk is periodicity in the list."
+    explanation: "Consecutive sampling is a non-probability method in which every eligible person presenting in a defined period is enrolled until the target number is reached; it reduces selection by the investigator but is still not random."
   },
   {
     id: "a11q25",
@@ -407,10 +412,15 @@ export const ASSIGNMENT_11_QUESTIONS: Question[] = [
   },
   {
     id: "a11q43",
-    text: "When disproportionate stratified sampling is used, the data must be weighted to estimate the overall population value.",
-    options: ["True", "False"],
-    correctAnswer: 0,
-    explanation: "True. If some strata are over-sampled, each stratum's results must be weighted by its share of the population; otherwise the over-sampled strata distort the overall estimate."
+    text: "A numerical value that describes a characteristic of the whole population, such as the true mean haemoglobin of all women in a district, is called a",
+    options: [
+      "Statistic",
+      "Parameter",
+      "Variable",
+      "Estimate"
+    ],
+    correctAnswer: 1,
+    explanation: "A parameter describes the population and is usually unknown. A statistic is the corresponding value calculated from a sample and is used as an estimate of the parameter."
   },
   {
     id: "a11q44",
