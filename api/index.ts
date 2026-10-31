@@ -46,16 +46,13 @@ try {
   console.error("Failed to initialize Supabase client:", err);
 }
 
-// --- Token Denylist (in-memory, within single serverless invocation) ---
-const tokenDenylist = new Set<string>();
-
 // --- Helpers ---
 function sanitizeError(err: any): string {
   return err?.message || "Internal server error";
 }
 
-function generateToken(username: string): string {
-  return jwt.sign({ username }, JWT_SECRET, { expiresIn: "1d" });
+function generateToken(username: string, tokenVersion: number): string {
+  return jwt.sign({ username, tv: tokenVersion }, JWT_SECRET, { expiresIn: "1d" });
 }
 
 function setAuthCookie(res: express.Response, token: string) {
@@ -78,7 +75,7 @@ function clearAuthCookie(res: express.Response) {
 }
 
 // --- Auth Middleware ---
-function authenticate(req: express.Request, res: express.Response, next: express.NextFunction) {
+async function authenticate(req: express.Request, res: express.Response, next: express.NextFunction) {
   let token: string | undefined = (req as any).cookies?.auth_token;
   if (!token) {
     const authHeader = req.headers.authorization;
@@ -89,11 +86,16 @@ function authenticate(req: express.Request, res: express.Response, next: express
   if (!token) {
     return res.status(401).json({ error: "Authentication required" });
   }
-  if (tokenDenylist.has(token)) {
-    return res.status(401).json({ error: "Token has been revoked" });
-  }
   try {
-    const decoded = jwt.verify(token, JWT_SECRET) as { username: string };
+    const decoded = jwt.verify(token, JWT_SECRET, { algorithms: ["HS256"] }) as { username: string; tv?: number };
+    const { data } = await supabase
+      .from("users")
+      .select("token_version")
+      .eq("username", decoded.username)
+      .single();
+    if (!data || (data.token_version ?? 0) !== (decoded.tv ?? -1)) {
+      return res.status(401).json({ error: "Token has been revoked" });
+    }
     (req as any).authenticatedUsername = decoded.username;
     (req as any).authToken = token;
     next();
@@ -268,12 +270,12 @@ app.post("/api/signup", authLimiter, signupValidation, async (req, res) => {
         progress: {},
         score: 0,
       }])
-      .select("id, username, full_name, college, place, qualification, email, has_accepted_disclaimer, has_seen_ai_warning, progress, score")
+      .select("id, username, full_name, college, place, qualification, email, has_accepted_disclaimer, has_seen_ai_warning, progress, score, token_version")
       .single();
 
     if (insertError) throw insertError;
 
-    const token = generateToken(username);
+    const token = generateToken(username, newUser.token_version);
     setAuthCookie(res, token);
     res.json({
       id: newUser.id,
@@ -305,7 +307,7 @@ app.post("/api/login", authLimiter, loginValidation, async (req, res) => {
   try {
     const { data: matches, error: fetchError } = await supabase
       .from("users")
-      .select("id, username, password_hash, full_name, college, place, qualification, email, has_accepted_disclaimer, has_seen_ai_warning, progress, score")
+      .select("id, username, password_hash, full_name, college, place, qualification, email, has_accepted_disclaimer, has_seen_ai_warning, progress, score, token_version")
       .ilike("username", escapeLike(username.trim()))
       .limit(10);
     // Prefer the exact-case username; otherwise accept a single case-insensitive match
@@ -316,7 +318,7 @@ app.post("/api/login", authLimiter, loginValidation, async (req, res) => {
     }
 
     if (!user.password_hash) {
-      return res.status(401).json({ error: "This is a legacy account without a password. Please sign up again." });
+      return res.status(401).json({ error: "Invalid username or password" });
     }
 
     const isMatch = await bcrypt.compare(password, user.password_hash);
@@ -324,7 +326,7 @@ app.post("/api/login", authLimiter, loginValidation, async (req, res) => {
       return res.status(401).json({ error: "Invalid username or password" });
     }
 
-    const token = generateToken(user.username);
+    const token = generateToken(user.username, user.token_version);
     setAuthCookie(res, token);
     res.json({
       id: user.id,
@@ -346,24 +348,44 @@ app.post("/api/login", authLimiter, loginValidation, async (req, res) => {
 });
 
 // --- Logout ---
-app.post("/api/logout", authenticate, (req, res) => {
-  const token = (req as any).authToken;
-  if (token) tokenDenylist.add(token);
-  clearAuthCookie(res);
-  res.json({ success: true });
+app.post("/api/logout", authenticate, async (req, res) => {
+  const username = (req as any).authenticatedUsername;
+  try {
+    const { data, error: fetchError } = await supabase
+      .from("users")
+      .select("token_version")
+      .eq("username", username)
+      .single();
+    if (fetchError || !data) throw fetchError || new Error("User not found");
+
+    const { error: updateError } = await supabase
+      .from("users")
+      .update({ token_version: (data.token_version ?? 0) + 1 })
+      .eq("username", username);
+    if (updateError) throw updateError;
+
+    clearAuthCookie(res);
+    res.json({ success: true });
+  } catch (err: any) {
+    console.error(`[Logout] Error for ${username}:`, sanitizeError(err));
+    res.status(500).json({ error: "Failed to log out" });
+  }
 });
 
 // --- Protected Routes ---
 app.post("/api/progress", authenticate, apiLimiter, async (req, res) => {
   const authenticatedUsername = (req as any).authenticatedUsername;
-  const { progress, score, hasAcceptedDisclaimer, hasSeenAIWarning } = req.body;
+  const { progress, hasAcceptedDisclaimer, hasSeenAIWarning } = req.body;
 
   const MAX_SCORE = 1_000_000;
-  if (typeof score !== "number" || !Number.isInteger(score) || score < 0 || score > MAX_SCORE) {
-    return res.status(400).json({ error: "Invalid score" });
-  }
   if (!progress || typeof progress !== "object" || Array.isArray(progress) || JSON.stringify(progress).length > 500_000) {
     return res.status(400).json({ error: "Invalid progress" });
+  }
+  // Derived from progress on the server (same formula as the leaderboard), never taken from the client
+  const score: number = Object.values(progress as Record<string, any>).reduce(
+    (acc: number, p: any) => acc + (Array.isArray(p?.completedQuestionIds) ? p.completedQuestionIds.length : 0), 0);
+  if (score > MAX_SCORE) {
+    return res.status(400).json({ error: "Invalid score" });
   }
   if ((hasAcceptedDisclaimer !== undefined && typeof hasAcceptedDisclaimer !== "boolean") ||
       (hasSeenAIWarning !== undefined && typeof hasSeenAIWarning !== "boolean")) {
