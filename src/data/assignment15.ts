@@ -11,7 +11,7 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "All of the above"
     ],
     correctAnswer: 3,
-    explanation: "All of the above."
+    explanation: "Choosing information elements well requires variables that reflect the concept, standardized case definitions and lab criteria for comparability, and the most accurate collection methods. All of these reduce misclassification."
   },
   {
     id: "a15q2",
@@ -23,7 +23,7 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "Instructions for the interviewer"
     ],
     correctAnswer: 2,
-    explanation: "Incentive for the participant."
+    explanation: "Identifiers, confidentiality statements and interviewer instructions are core parts of a data collection instrument. Incentives, if used at all, belong to the recruitment and ethics plan, not to the instrument."
   },
   {
     id: "a15q3",
@@ -35,7 +35,7 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "Online survey"
     ],
     correctAnswer: 1,
-    explanation: "Face-to-face interview."
+    explanation: "Face-to-face interviews build rapport, allow questions to be clarified and work with illiterate respondents, so they achieve the highest response rate. Mailed and online surveys have the lowest response rates."
   },
   {
     id: "a15q4",
@@ -47,7 +47,7 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "No ethical approval is required"
     ],
     correctAnswer: 1,
-    explanation: "Data collection is inexpensive and quick."
+    explanation: "Existing (secondary) data are already collected, so using them saves time and money. However, they are not tailored to the new question, their quality varies, and ethics approval or a waiver is still needed."
   },
   {
     id: "a15q5",
@@ -59,7 +59,7 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "The study needs to be completed quickly"
     ],
     correctAnswer: 1,
-    explanation: "The possible responses are unknown."
+    explanation: "Open-ended questions let respondents answer freely. This makes them ideal when the range of possible responses is unknown, as in exploratory research. Closed questions are better for quantification and large, quick surveys."
   },
   {
     id: "a15q6",
@@ -71,7 +71,7 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "Checking the instrument for spelling errors"
     ],
     correctAnswer: 1,
-    explanation: "Administering the instrument to a small group similar to the study population."
+    explanation: "Pre-testing means giving the draft instrument to a small group similar to the study population, but not part of it, to check clarity, flow, timing and acceptability before the main study."
   },
   {
     id: "a15q7",
@@ -83,7 +83,7 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "Limited to literate participants"
     ],
     correctAnswer: 1,
-    explanation: "Interviewer bias."
+    explanation: "The interviewer's presence, tone or expectations can influence answers, which causes interviewer bias. Face-to-face interviews otherwise have high response rates, allow questions to be clarified and work with illiterate participants."
   },
   {
     id: "a15q8",
@@ -95,7 +95,7 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "Identify the study site"
     ],
     correctAnswer: 1,
-    explanation: "Link different data collection forms for the same participant."
+    explanation: "A unique identifier links all forms, visits and lab results belonging to the same participant. It also lets names be stored separately, which protects confidentiality."
   },
   {
     id: "a15q9",
@@ -107,7 +107,7 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "Telephone interview"
     ],
     correctAnswer: 1,
-    explanation: "Self-administered questionnaire."
+    explanation: "Self-administered questionnaires give privacy, which reduces embarrassment and social desirability bias, so sensitive behaviours such as sexual practices are reported more honestly than in interviews or group discussions."
   },
   {
     id: "a15q10",
@@ -119,7 +119,7 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "The interview is conducted in a formal setting"
     ],
     correctAnswer: 1,
-    explanation: "The questions and their order are pre-determined."
+    explanation: "In a structured interview, every respondent is asked the same pre-determined questions in the same order and wording. This ensures standardization and comparability."
   },
   {
     id: "a15q11",
@@ -131,7 +131,7 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "Unstructured question"
     ],
     correctAnswer: 3,
-    explanation: "Unstructured question."
+    explanation: "Dichotomous, multiple-choice and Likert-scale questions all offer fixed response options, so they are closed-ended. An unstructured question is open-ended, with no preset answers."
   },
   {
     id: "a15q12",
@@ -143,7 +143,7 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "Feasibility"
     ],
     correctAnswer: 1,
-    explanation: "Consistency."
+    explanation: "Reliability is the consistency or reproducibility of an instrument, meaning it gives the same results on repeated measurement. Accuracy, or measuring what is intended, is validity."
   },
   {
     id: "a15q13",
@@ -155,7 +155,7 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "Increasing the sample size"
     ],
     correctAnswer: 1,
-    explanation: "Using memory aids or records."
+    explanation: "Memory aids (calendars, pictures) and records (vaccination cards, prescriptions) help participants recall past events accurately. Long recall periods worsen recall bias, and a larger sample size does not reduce bias."
   },
   {
     id: "a15q14",
@@ -167,7 +167,7 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "Eliminate the need for ethical approval"
     ],
     correctAnswer: 1,
-    explanation: "Compare results with other studies."
+    explanation: "Standardized instruments measure variables in the same way across studies, so results can be compared and pooled. They do not remove the need for pre-testing or ethics approval."
   },
   {
     id: "a15q15",
@@ -179,7 +179,7 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "Self-reports"
     ],
     correctAnswer: 2,
-    explanation: "Laboratory measurements."
+    explanation: "Laboratory measurements do not depend on the participant's perception or report, so they are objective. Interviews, questionnaires and self-reports are subjective."
   },
   {
     id: "a15q16",
@@ -191,7 +191,7 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "Destroyed after data entry"
     ],
     correctAnswer: 1,
-    explanation: "Brief and focused on the study objectives."
+    explanation: "Forms should collect only what the objectives require. Brief, focused forms reduce respondent fatigue, errors and missing data. Source forms must be retained, not destroyed."
   },
   {
     id: "a15q17",
@@ -203,7 +203,7 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "All of the above"
     ],
     correctAnswer: 3,
-    explanation: "All of the above."
+    explanation: "Training data collectors, supervising fieldwork and running regular quality checks each address different sources of error. Together they ensure data quality during collection."
   },
   {
     id: "a15q18",
@@ -215,7 +215,7 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "Slow data collection"
     ],
     correctAnswer: 1,
-    explanation: "Low response rate among those without internet access."
+    explanation: "Online surveys miss people without internet access or digital literacy, which leads to low response and selection bias in those groups. They are otherwise cheap, fast and need no separate data entry."
   },
   {
     id: "a15q19",
@@ -227,14 +227,14 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "Publish preliminary results"
     ],
     correctAnswer: 2,
-    explanation: "Assess the feasibility of the data collection plan."
+    explanation: "A pilot study is a small-scale rehearsal to assess the feasibility of the procedures, tools, logistics and timing. It is not designed to test the hypothesis."
   },
   {
     id: "a15q20",
     text: "State whether True or False: Informed consent must be obtained before any data collection begins.",
     options: ["True", "False"],
     correctAnswer: 0,
-    explanation: "True."
+    explanation: "Ethical guidelines require voluntary informed consent before any study procedure or data collection. Any waiver, such as for anonymized record review, must be approved in advance by the Ethics Committee."
   },
   {
     id: "a15q21",
@@ -246,7 +246,7 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "Pre-testing the instrument"
     ],
     correctAnswer: 2,
-    explanation: "Analyzing the final data."
+    explanation: "Designing an instrument involves defining the information elements, drafting the questions, and pre-testing and revising. Analyzing the final data happens much later in the research cycle."
   },
   {
     id: "a15q22",
@@ -258,7 +258,7 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "It has been used in a large study"
     ],
     correctAnswer: 1,
-    explanation: "It has been shown to measure what it is intended to measure."
+    explanation: "A questionnaire is validated when evidence shows it measures what it is intended to measure, for example by comparison with a gold standard. Pre-testing, translation or wide use alone do not establish validity."
   },
   {
     id: "a15q23",
@@ -270,7 +270,7 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "All of the above"
     ],
     correctAnswer: 3,
-    explanation: "All of the above."
+    explanation: "Electronic data capture provides real-time validation checks, removes the separate data entry step and cuts transcription errors, so all the options are benefits."
   },
   {
     id: "a15q24",
@@ -282,7 +282,7 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "None of the above"
     ],
     correctAnswer: 1,
-    explanation: "Direct participants to questions that are relevant to them."
+    explanation: "Skip patterns route respondents past questions that do not apply to them, for example skipping smoking details for non-smokers. This keeps the questionnaire relevant and logically consistent."
   },
   {
     id: "a15q25",
@@ -294,7 +294,7 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "All of the above"
     ],
     correctAnswer: 3,
-    explanation: "All of the above."
+    explanation: "Maintaining confidentiality, respecting the right to withdraw and minimizing harm are all core ethical obligations during data collection."
   },
   {
     id: "a15q26",
@@ -306,7 +306,7 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "All of the above"
     ],
     correctAnswer: 3,
-    explanation: "All of the above."
+    explanation: "Pre-testing reveals ambiguous questions, shows how long the questionnaire takes, and exposes difficulties in following instructions or skip patterns, so all the options apply."
   },
   {
     id: "a15q27",
@@ -318,14 +318,14 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "All of the above"
     ],
     correctAnswer: 3,
-    explanation: "All of the above."
+    explanation: "A good interviewer knows the study, stays neutral and non-judgmental to avoid bias, and communicates well to build rapport, so all the options apply."
   },
   {
     id: "a15q28",
     text: "State whether True or False: Quantitative data can be collected using open-ended questions.",
     options: ["True", "False"],
     correctAnswer: 0,
-    explanation: "True (responses can be coded and quantified)."
+    explanation: "Open-ended questions can produce quantitative data, either directly (for example, 'Age: ___') or by coding free-text answers into categories that are counted."
   },
   {
     id: "a15q29",
@@ -337,7 +337,7 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "Is boring for the participant"
     ],
     correctAnswer: 1,
-    explanation: "Asks two questions in one."
+    explanation: "A double-barreled question asks two things at once (for example, 'Is the clinic clean and the staff friendly?'), so the answer cannot be interpreted. It should be split into two questions."
   },
   {
     id: "a15q30",
@@ -349,7 +349,7 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "None of the above"
     ],
     correctAnswer: 1,
-    explanation: "Analyzing data collected by someone else for another purpose."
+    explanation: "Secondary data analysis uses existing data, collected by others for a different purpose, to answer a new research question."
   },
   {
     id: "a15q31",
@@ -361,7 +361,7 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "Conduct a pilot study"
     ],
     correctAnswer: 2,
-    explanation: "Define the information elements required."
+    explanation: "The first step is to define the information elements needed, based on the objectives and analysis plan. Only then are the method chosen, the questions drafted and the tool piloted."
   },
   {
     id: "a15q32",
@@ -373,7 +373,7 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "The research is exploratory"
     ],
     correctAnswer: 0,
-    explanation: "The sample size is large and quick analysis is needed."
+    explanation: "Closed-ended questions are easy to code and analyse, so they suit large samples that need quick analysis. Open questions suit exploratory work or cases where the possible answers are unknown."
   },
   {
     id: "a15q33",
@@ -385,7 +385,7 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "The study objective"
     ],
     correctAnswer: 0,
-    explanation: "A characteristic that takes on different values."
+    explanation: "A variable is a characteristic, such as age or blood pressure, that takes different values across individuals or over time. Something that stays constant is not a variable."
   },
   {
     id: "a15q34",
@@ -397,14 +397,14 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "The cost of the study"
     ],
     correctAnswer: 1,
-    explanation: "Systematic error (bias)."
+    explanation: "Standardized instruments make everyone be measured the same way, which reduces systematic error (measurement bias). Random and sampling errors are reduced mainly by increasing the sample size."
   },
   {
     id: "a15q35",
     text: "State whether True or False: Data collection instruments should be translated back to the original language (back-translation) to ensure accuracy.",
     options: ["True", "False"],
     correctAnswer: 0,
-    explanation: "True."
+    explanation: "Back-translation into the original language, compared against the source, checks that the translated instrument keeps the same meaning. This ensures conceptual equivalence."
   },
   {
     id: "a15q36",
@@ -416,7 +416,7 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "Inability to reach a large population"
     ],
     correctAnswer: 2,
-    explanation: "Low response rate."
+    explanation: "Mailed questionnaires lack personal contact and follow-up, so their response rates are typically low. They are cheap, free of interviewer bias and can reach large populations."
   },
   {
     id: "a15q37",
@@ -428,7 +428,7 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "It is easier to design"
     ],
     correctAnswer: 1,
-    explanation: "It allows for instant data entry and validation."
+    explanation: "Electronic forms enter data directly and validate it instantly through range checks and skip logic, which reduces errors. They are not always cheaper and still need training."
   },
   {
     id: "a15q38",
@@ -440,7 +440,7 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "All of the above"
     ],
     correctAnswer: 3,
-    explanation: "All of the above."
+    explanation: "Reminders, short and easy surveys, and explaining why the study matters all improve response rates, so all the options apply."
   },
   {
     id: "a15q39",
@@ -452,7 +452,7 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "Pre-testing with a large group"
     ],
     correctAnswer: 2,
-    explanation: "Whether it looks like it measures what it's supposed to measure."
+    explanation: "Face validity is a subjective judgement of whether an instrument appears, on inspection, to measure what it is intended to measure. Comparison with a gold standard is criterion validity, not face validity."
   },
   {
     id: "a15q40",
@@ -464,7 +464,7 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "All of the above"
     ],
     correctAnswer: 3,
-    explanation: "All of the above."
+    explanation: "Confidentiality is protected by collecting only the identifiers you need, replacing names with codes, and storing data securely with restricted access. All three are valid safeguards."
   },
   {
     id: "a15q41",
@@ -476,7 +476,7 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "Order of difficulty"
     ],
     correctAnswer: 1,
-    explanation: "Logical flow (e.g., from general to specific)."
+    explanation: "Questions should follow a logical flow, from general and non-sensitive to specific and sensitive, with related items grouped together. This builds rapport and reduces confusion."
   },
   {
     id: "a15q42",
@@ -488,7 +488,7 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "Prevalence of a disease"
     ],
     correctAnswer: 1,
-    explanation: "Attitudes and opinions."
+    explanation: "A Likert scale (e.g., strongly disagree to strongly agree) measures attitudes, opinions and perceptions and gives ordinal data. Physical measurements and prevalence are not measured with it."
   },
   {
     id: "a15q43",
@@ -500,7 +500,7 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "Non-response bias"
     ],
     correctAnswer: 2,
-    explanation: "Standardized definitions."
+    explanation: "Standardized definitions reduce error by making measurements uniform. Interviewer bias, recall bias and non-response bias are all sources of error."
   },
   {
     id: "a15q44",
@@ -512,7 +512,7 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "Both 'b' and 'c'"
     ],
     correctAnswer: 3,
-    explanation: "Both 'b' and 'c'."
+    explanation: "A translated questionnaire should keep the same meaning (conceptual equivalence) and use simple language the local population understands. A literal word-for-word translation can distort meaning."
   },
   {
     id: "a15q45",
@@ -524,7 +524,7 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "All of the above"
     ],
     correctAnswer: 3,
-    explanation: "All of the above."
+    explanation: "The interviewer's manual should include the study objectives, detailed question-by-question instructions, and standard procedures for selecting participants, so that all interviewers work uniformly."
   },
   {
     id: "a15q46",
@@ -536,14 +536,14 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "To analyze the data"
     ],
     correctAnswer: 2,
-    explanation: "To translate qualitative responses into numerical values."
+    explanation: "A coder uses a codebook to convert responses, especially open-ended or qualitative answers, into numerical codes so the data can be entered and analysed."
   },
   {
     id: "a15q47",
     text: "State whether True or False: It is acceptable to change the wording of questions during the study if participants find them difficult.",
     options: ["True", "False"],
     correctAnswer: 1,
-    explanation: "False (this would compromise standardization)."
+    explanation: "False. Changing question wording mid-study breaks standardization and makes responses non-comparable. Wording problems should be fixed during pre-testing."
   },
   {
     id: "a15q48",
@@ -555,7 +555,7 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "The date of birth"
     ],
     correctAnswer: 1,
-    explanation: "A unique code number."
+    explanation: "Each form should carry a unique code number that links a participant's records without revealing their identity. This protects confidentiality and avoids duplicates."
   },
   {
     id: "a15q49",
@@ -567,7 +567,7 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "The participants themselves"
     ],
     correctAnswer: 1,
-    explanation: "The same people who will collect the final data."
+    explanation: "Pre-testing is best done by the same field staff who will collect the final data. They become familiar with the tool and spot practical problems with wording, flow and timing."
   },
   {
     id: "a15q50",
@@ -579,6 +579,6 @@ export const ASSIGNMENT_15_QUESTIONS: Question[] = [
       "All of the above"
     ],
     correctAnswer: 3,
-    explanation: "All of the above."
+    explanation: "A well-designed instrument speeds up data entry, improves data quality and reduces missing information, so all of the options are correct."
   }
 ];

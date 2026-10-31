@@ -1,8 +1,9 @@
 -- BCBR Quiz App: Supabase schema
 -- Run this once in your Supabase project (SQL Editor -> New query -> Run).
 --
--- The server talks to these tables with SUPABASE_ANON_KEY, so row level security
--- is left off. Keep SUPABASE_ANON_KEY server-side only (never in a VITE_ variable).
+-- Row level security is enabled at the end of this file with no policies, so the
+-- tables are reachable only with the secret service_role key that the server uses
+-- (SUPABASE_SERVICE_ROLE_KEY). Never put that key in a VITE_ variable or the repo.
 
 create table if not exists users (
   id bigint generated always as identity primary key,
@@ -52,3 +53,10 @@ create table if not exists feedback (
   contact text,
   created_at timestamptz not null default now()
 );
+
+-- Lock the tables to the server's service_role key (see supabase/enable-rls.sql)
+alter table users        enable row level security;
+alter table explanations enable row level security;
+alter table reports      enable row level security;
+alter table feedback     enable row level security;
+revoke all on users, explanations, reports, feedback from anon, authenticated;
