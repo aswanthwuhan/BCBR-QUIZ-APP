@@ -3,203 +3,288 @@ import { Question } from '../types';
 export const ASSIGNMENT_11_QUESTIONS: Question[] = [
   {
     id: "a11q1",
-    text: "Bias is a __________ error in a study.",
-    options: ["Random", "Systematic", "Sampling", "Non-sampling"],
-    correctAnswer: 1,
-    explanation: "Bias is a systematic error: a consistent deviation from the truth in one direction caused by flaws in design, conduct or analysis. Unlike random error, it is not reduced by increasing the sample size."
+    text: "A sampling method is called a probability sampling method when",
+    options: [
+      "Every unit has a known, non-zero chance of being selected",
+      "Units are selected by the investigator's judgement",
+      "Only volunteers are included",
+      "The sample size exceeds 10% of the population"
+    ],
+    correctAnswer: 0,
+    explanation: "Probability sampling requires that each unit's selection probability is known and greater than zero; the probabilities need not be equal. This is what allows sampling error to be estimated."
   },
   {
     id: "a11q2",
-    text: "Selection bias occurs when",
+    text: "A sample of 250 persons is drawn from a population of 5000. What is the sampling fraction?",
     options: [
-      "The study population is not representative of the target population",
-      "The information collected is incorrect",
-      "The sample size is too small",
-      "The data analysis is wrong"
+      "2%",
+      "20%",
+      "5%",
+      "25%"
     ],
-    correctAnswer: 0,
-    explanation: "Selection bias arises when the way participants are selected or retained makes the study population unrepresentative of the target population, which distorts the observed association."
+    correctAnswer: 2,
+    explanation: "Sampling fraction = n/N = 250/5000 = 0.05, i.e. 5%. Its inverse (20) is the sampling interval if systematic sampling were used."
   },
   {
     id: "a11q3",
-    text: "Information bias occurs when",
+    text: "A town has 6000 adults: 2000 urban-slum and 4000 non-slum residents. With proportional stratified allocation for a total sample of 300, how many slum residents should be sampled?",
     options: [
-      "There are errors in measurement or classification of exposure or outcome",
-      "The study population is selected incorrectly",
-      "The sample size is too small",
-      "The data analysis is wrong"
+      "150",
+      "200",
+      "50",
+      "100"
     ],
-    correctAnswer: 0,
-    explanation: "Information bias results from errors in measuring or classifying exposure or outcome, which leads to misclassification. Recall, interviewer and observer bias are examples."
+    correctAnswer: 3,
+    explanation: "Proportional allocation samples each stratum in proportion to its size: 300 x 2000/6000 = 100 slum residents and 200 non-slum residents."
   },
   {
     id: "a11q4",
-    text: "Recall bias is a type of",
-    options: ["Selection bias", "Information bias", "Confounding", "Random error"],
-    correctAnswer: 1,
-    explanation: "Recall bias occurs when cases and controls remember past exposures with different accuracy. This is an error in the information collected, so it is a type of information bias."
+    text: "In a systematic sample with sampling interval 20 and a random start of 7, which is the third unit selected?",
+    options: [
+      "47",
+      "27",
+      "60",
+      "67"
+    ],
+    correctAnswer: 0,
+    explanation: "Units selected are 7, 7+20 = 27, 7+40 = 47 and so on, so the third unit is number 47."
   },
   {
     id: "a11q5",
-    text: "Interviewer bias is a type of",
-    options: ["Selection bias", "Information bias", "Confounding", "Random error"],
+    text: "The design effect in a cluster survey is the",
+    options: [
+      "Number of clusters divided by cluster size",
+      "Ratio of the variance under the actual design to the variance under simple random sampling of the same size",
+      "Proportion of eligible persons who refuse",
+      "Difference between sample and population means"
+    ],
     correctAnswer: 1,
-    explanation: "Interviewer bias occurs when an interviewer questions or records answers differently depending on the participant's status. This distorts the data collected, making it a type of information bias."
+    explanation: "Design effect compares the variance of the estimate from the complex (e.g. cluster) design with that from an SRS of equal size. A value above 1 means the design is less efficient than SRS."
   },
   {
     id: "a11q6",
-    text: "The 'healthy worker effect' is a type of",
-    options: ["Selection bias", "Information bias", "Confounding", "Random error"],
-    correctAnswer: 0,
-    explanation: "The healthy worker effect is selection bias: employed people are healthier than the general population, so comparisons with the general population underestimate occupational risk."
+    text: "A survey first collects basic information (e.g. a screening question) from a large sample and then collects detailed information from a sub-sample of it. This is called",
+    options: [
+      "Quota sampling",
+      "Snowball sampling",
+      "Multiphase sampling",
+      "Cluster sampling"
+    ],
+    correctAnswer: 2,
+    explanation: "In multiphase (double) sampling the same type of unit is sampled repeatedly: inexpensive data from a large first-phase sample, and detailed data from a sub-sample. Multistage sampling, by contrast, samples different levels of units."
   },
   {
     id: "a11q7",
-    text: "Berkson's bias is a type of",
-    options: ["Selection bias", "Information bias", "Confounding", "Random error"],
-    correctAnswer: 0,
-    explanation: "Berkson's bias arises in hospital-based case-control studies because admission rates differ by exposure and disease. This makes hospital patients unrepresentative, so it is a selection bias."
+    text: "Lot quality assurance sampling (LQAS) is mainly used in public health to",
+    options: [
+      "Estimate the exact prevalence in each village",
+      "Recruit hidden populations through peer referral",
+      "Select participants for qualitative interviews",
+      "Classify supervision areas as reaching or not reaching a performance threshold using small samples"
+    ],
+    correctAnswer: 3,
+    explanation: "LQAS takes a small random sample (e.g. 19) from each lot or area and uses a decision rule to classify it as acceptable or not, for example for immunization coverage. It is a classification tool rather than a precise estimator."
   },
   {
     id: "a11q8",
-    text: "Non-response bias occurs when",
+    text: "Respondent-driven sampling differs from ordinary snowball sampling mainly because it",
     options: [
-      "People who refuse to participate are different from those who do",
-      "The interviewer asks leading questions",
-      "The participants forget their past exposures",
-      "The measurement tool is not calibrated"
+      "Uses tracked, limited referrals (coupons) and statistical weighting to reduce recruitment bias",
+      "Uses a complete sampling frame of the population",
+      "Selects participants with equal probability from a list",
+      "Does not involve peer referral"
     ],
     correctAnswer: 0,
-    explanation: "Non-response bias occurs when people who decline to participate differ systematically from those who take part. The sample then misrepresents the target population, so it is a form of selection bias."
+    explanation: "Respondent-driven sampling controls the recruitment chain (limited coupons, recorded network size) so that estimates can be adjusted for unequal selection. It is used for hidden groups such as people who inject drugs."
   },
   {
     id: "a11q9",
-    text: "Misclassification bias is a type of",
-    options: ["Selection bias", "Information bias", "Confounding", "Random error"],
+    text: "In grounded-theory qualitative research, choosing the next participants based on concepts emerging from the analysis so far is called",
+    options: [
+      "Systematic sampling",
+      "Theoretical sampling",
+      "Probability proportional to size sampling",
+      "Area sampling"
+    ],
     correctAnswer: 1,
-    explanation: "Misclassification bias means participants are wrongly categorized by exposure or outcome status because of measurement or reporting errors, which makes it an information bias."
+    explanation: "Theoretical sampling is iterative: data collection and analysis proceed together, and new participants are chosen to develop or test emerging categories."
   },
   {
     id: "a11q10",
-    text: "Differential misclassification means",
-    options: [
-      "The error in classification is different for cases and controls",
-      "The error in classification is the same for cases and controls",
-      "The error is due to chance",
-      "The error is due to confounding"
-    ],
+    text: "In qualitative research, recruitment of new participants usually stops when data saturation is reached, i.e. new interviews no longer yield new themes.",
+    options: ["True", "False"],
     correctAnswer: 0,
-    explanation: "Differential misclassification means classification errors happen at different rates in cases and controls (or in exposed and unexposed). It can bias results either toward or away from the null."
+    explanation: "True. Sample size in qualitative studies is usually not fixed by a formula; it is guided by saturation, the point at which further data add no new information."
   },
   {
     id: "a11q11",
-    text: "Non-differential misclassification usually",
+    text: "The distribution of a statistic (such as the mean) computed from all possible samples of the same size drawn from a population is called the",
     options: [
-      "Biases the results towards the null",
-      "Biases the results away from the null",
-      "Has no effect on the results",
-      "Makes the results more significant"
+      "Frequency distribution of the sample",
+      "Population distribution",
+      "Sampling distribution",
+      "Normal distribution of the raw data"
     ],
-    correctAnswer: 0,
-    explanation: "When misclassification is equal in all groups, the groups look more alike than they really are. This dilutes the association and usually pushes the effect estimate toward the null (OR/RR toward 1)."
+    correctAnswer: 2,
+    explanation: "The sampling distribution describes how a statistic varies from sample to sample. Its standard deviation is the standard error of that statistic."
   },
   {
     id: "a11q12",
-    text: "Blinding can help reduce",
-    options: ["Selection bias", "Information bias", "Confounding", "Sampling error"],
-    correctAnswer: 1,
-    explanation: "Blinding stops participants, interviewers and assessors from knowing group status, which prevents differences in how outcomes are measured or reported. It therefore reduces information bias."
+    text: "If the sample size of a simple random sample is increased four-fold, the standard error of the mean will",
+    options: [
+      "Become one-fourth",
+      "Double",
+      "Remain the same",
+      "Become half"
+    ],
+    correctAnswer: 3,
+    explanation: "SE = SD/sqrt(n). Multiplying n by 4 multiplies sqrt(n) by 2, so the standard error is halved."
   },
   {
     id: "a11q13",
-    text: "Bias can be completely eliminated by increasing the sample size.",
-    options: ["True", "False"],
-    correctAnswer: 1,
-    explanation: "False. A larger sample size reduces only random error and improves precision. Bias is a systematic error that has to be prevented through good study design and conduct."
+    text: "In sampling without replacement, a unit once selected",
+    options: [
+      "Cannot be selected again",
+      "Is returned to the population and may be selected again",
+      "Is replaced by its neighbour on the list",
+      "Is excluded from analysis"
+    ],
+    correctAnswer: 0,
+    explanation: "Without replacement, each unit can appear in the sample only once. This is the usual practice in health surveys; with replacement the same unit could be drawn more than once."
   },
   {
     id: "a11q14",
-    text: "Bias can lead to incorrect conclusions about the association between exposure and outcome.",
-    options: ["True", "False"],
-    correctAnswer: 0,
-    explanation: "True. Bias systematically distorts estimates. It can create spurious associations, hide real ones, exaggerate or understate their strength, or even reverse their direction, which leads to wrong conclusions."
+    text: "A household survey uses the telephone directory as its sampling frame. The most likely problem is",
+    options: [
+      "Periodicity",
+      "Undercoverage of households without listed telephones",
+      "Overestimation of the design effect",
+      "Too small a sampling interval"
+    ],
+    correctAnswer: 1,
+    explanation: "An incomplete frame leaves out part of the target population (undercoverage). If those excluded differ systematically, e.g. poorer households, the estimates will be biased however large the sample."
   },
   {
     id: "a11q15",
-    text: "Selection bias is more common in case-control studies than in cohort studies.",
-    options: ["True", "False"],
-    correctAnswer: 0,
-    explanation: "True. Case-control studies select participants after the outcome has occurred, so selection can be related to exposure (for example, Berkson's bias). Cohort studies select by exposure before the outcome, which reduces this risk."
+    text: "Selecting the patients who happen to attend the outpatient department on the day of data collection is an example of",
+    options: [
+      "Simple random sampling",
+      "Stratified sampling",
+      "Convenience sampling",
+      "Systematic sampling"
+    ],
+    correctAnswer: 2,
+    explanation: "Convenience (accidental) sampling includes whoever is easily available. It is quick and cheap but there is no known selection probability, so the sample may not represent the target population."
   },
   {
     id: "a11q16",
-    text: "Loss to follow-up can lead to selection bias in cohort studies.",
-    options: ["True", "False"],
-    correctAnswer: 0,
-    explanation: "True. If participants lost to follow-up differ from those who remain in both exposure and outcome, the people left in the analysis are a biased selection. This is the main selection bias in cohort studies."
+    text: "For stratified sampling to improve precision, the stratification variable should be",
+    options: [
+      "Unrelated to the outcome being studied",
+      "Chosen after the data are collected",
+      "Measured only in the sample",
+      "Strongly related to the outcome being studied"
+    ],
+    correctAnswer: 3,
+    explanation: "Stratifying on a variable associated with the outcome (e.g. age for hypertension) makes strata internally homogeneous for the outcome, which reduces the variance of the overall estimate."
   },
   {
     id: "a11q17",
-    text: "A well-designed study should aim to minimize all types of bias.",
-    options: ["True", "False"],
+    text: "Area sampling is a form of cluster sampling in which the clusters are",
+    options: [
+      "Geographic units such as blocks or villages selected from maps",
+      "Groups of patients with the same diagnosis",
+      "Persons referred by earlier participants",
+      "Strata defined by age and sex"
+    ],
     correctAnswer: 0,
-    explanation: "True. Bias cannot be corrected by increasing the sample size and is often impossible to fix during analysis. Good study design should therefore minimize selection and information bias and control confounding."
+    explanation: "In area sampling, the population is divided into geographic areas, which are sampled as clusters. It is useful when no list of individuals exists but maps are available."
   },
   {
     id: "a11q18",
-    text: "Standardizing the data collection process can help reduce information bias.",
-    options: ["True", "False"],
-    correctAnswer: 0,
-    explanation: "True. Using the same protocols, validated tools, calibrated instruments and trained staff for everyone means exposure and outcome are measured uniformly across groups. This reduces information bias."
+    text: "In a two-stage cluster survey selecting villages and then households within selected villages, the villages are the",
+    options: [
+      "Elementary units",
+      "Primary sampling units",
+      "Observation units",
+      "Secondary sampling units"
+    ],
+    correctAnswer: 1,
+    explanation: "The units selected at the first stage are the primary sampling units (here villages); the households selected within them are the secondary sampling units."
   },
   {
     id: "a11q19",
-    text: "Using objective measures (like lab tests) instead of subjective measures (like self-reports) can help reduce information bias.",
-    options: ["True", "False"],
-    correctAnswer: 0,
-    explanation: "True. Self-reports are prone to recall, reporting and social desirability bias. Objective measures such as lab tests are less influenced by participants' memory or perceptions, so they reduce information bias."
+    text: "The amount of non-response bias in a survey estimate depends on",
+    options: [
+      "Only the sample size",
+      "Only the sampling method",
+      "Both the non-response rate and how much non-respondents differ from respondents",
+      "Only the length of the questionnaire"
+    ],
+    correctAnswer: 2,
+    explanation: "Bias from non-response is roughly the non-response proportion multiplied by the difference between respondents and non-respondents. A high non-response rate matters most when non-respondents differ on the study variables."
   },
   {
     id: "a11q20",
-    text: "Bias is the same as confounding.",
-    options: ["True", "False"],
-    correctAnswer: 1,
-    explanation: "False. Selection and information bias arise from flaws in how participants are chosen or data are measured, whereas confounding is distortion by a third variable associated with both exposure and outcome. Some texts class confounding as a type of bias, but the terms are not synonymous, and confounding can be controlled in design or analysis."
+    text: "Using a random number table to select an SRS from a numbered list of 450 persons, the investigator reads three-digit numbers. A number such as 732 should be",
+    options: [
+      "Divided by 450 and the remainder used",
+      "Rounded down to 450",
+      "Used to select person 73",
+      "Ignored, and the next number read"
+    ],
+    correctAnswer: 3,
+    explanation: "Numbers outside the range 001-450 (and repeats, when sampling without replacement) are simply skipped. Modifying them could give some units unequal chances of selection."
   },
   {
     id: "a11q21",
-    text: "Which of the following is a type of information bias?",
-    options: ["Volunteer bias", "Recall bias", "Loss to follow-up", "Berkson's bias"],
-    correctAnswer: 1,
-    explanation: "Recall bias is an error in the information reported (differences in memory of exposures). Volunteer bias, loss to follow-up and Berkson's bias are all selection biases."
+    text: "The main reason for using disproportionate stratified sampling is to",
+    options: [
+      "Obtain enough subjects in a small stratum for precise subgroup estimates",
+      "Avoid the need for a sampling frame",
+      "Make weighting unnecessary",
+      "Save on travel costs by grouping units"
+    ],
+    correctAnswer: 0,
+    explanation: "Small strata (e.g. a minority group) may be oversampled so that their own estimates are precise. Overall estimates then require weighting."
   },
   {
     id: "a11q22",
-    text: "Which of the following is a type of selection bias?",
-    options: ["Interviewer bias", "Recall bias", "Non-response bias", "Misclassification bias"],
-    correctAnswer: 2,
-    explanation: "Non-response bias affects who ends up in the sample, so it is a selection bias. Interviewer, recall and misclassification bias are errors in the data collected, which makes them information biases."
+    text: "In a probability sample, a person's selection probability is 1/50. The sampling (design) weight assigned to that person is",
+    options: [
+      "0.02",
+      "50",
+      "1/2500",
+      "1"
+    ],
+    correctAnswer: 1,
+    explanation: "The design weight is the inverse of the probability of selection: 1 / (1/50) = 50. Each sampled person represents 50 people in the population."
   },
   {
     id: "a11q23",
-    text: "Bias can occur at any stage of a research study.",
-    options: ["True", "False"],
-    correctAnswer: 0,
-    explanation: "True. Bias can enter at any stage of research: planning, sampling, data collection, analysis, interpretation and publication (for example, publication bias)."
+    text: "In optimum (Neyman) allocation for stratified sampling, larger samples are taken from strata that",
+    options: [
+      "Are smaller in size",
+      "Have lower variability",
+      "Are larger in size and/or more variable",
+      "Are closest to the investigator"
+    ],
+    correctAnswer: 2,
+    explanation: "Neyman allocation sets each stratum's sample size in proportion to stratum size times stratum standard deviation. Taking more units from large or highly variable strata minimises the variance of the overall estimate for a given total n."
   },
   {
     id: "a11q24",
-    text: "Internal validity of a study is affected by bias.",
+    text: "An advantage of systematic sampling over simple random sampling is that it is easy to carry out and spreads the sample evenly across the list.",
     options: ["True", "False"],
     correctAnswer: 0,
-    explanation: "True. Internal validity is how accurately the results reflect the truth in the study population. Bias (along with confounding and chance) directly threatens it."
+    explanation: "True. After a random start only every k-th unit has to be picked, which is easy in the field, and the sample covers the whole ordered list. The risk is periodicity in the list."
   },
   {
     id: "a11q25",
-    text: "External validity (generalizability) is affected by selection bias.",
+    text: "The mean of the sampling distribution of the sample mean is equal to the population mean.",
     options: ["True", "False"],
     correctAnswer: 0,
-    explanation: "True. If the sample does not represent the target population, findings may not generalize to it, which reduces external validity. Selection bias can also affect internal validity."
+    explanation: "True. The sample mean is an unbiased estimator: averaged over all possible samples it equals the population mean, even though any single sample mean may differ from it."
   },
   {
     id: "a11q26",
