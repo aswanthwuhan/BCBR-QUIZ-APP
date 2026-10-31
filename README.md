@@ -12,7 +12,7 @@ This project is free to use, modify and host under the [MIT License](LICENSE). I
 
 ## Use it without an account or internet
 
-Every version has an offline mode: all questions, flashcards and progress tracking work with no account and no server. Progress is saved on the device. AI explanations still need internet and your own Gemini key (Settings). The leaderboard, feedback and question reports need an online account.
+The GitHub download (run locally) and the Android app have an offline mode: all questions, flashcards and progress tracking work with no account and no server. Progress is saved on the device. The website needs an internet connection and an account for progress sync. AI explanations still need internet and your own Gemini key (Settings). The leaderboard, feedback and question reports need an online account.
 
 ### On your computer: one-command install
 
@@ -36,7 +36,7 @@ The app opens at http://localhost:3000. Phones on the same Wi-Fi can open the **
 
 ### On your phone
 
-- **Install from the website (Android or iPhone):** open the site in Chrome/Safari → menu → **Add to Home Screen** / **Install app**. After the first visit it works fully offline.
+- **Install from the website (Android or iPhone):** open the site in Chrome/Safari → menu → **Add to Home Screen** / **Install app**. The website needs an internet connection. For offline use, install the Android app or run the GitHub download locally.
 - **Android app (APK):** download the `.apk` from the [latest release](https://github.com/aswanthwuhan/BCBR-QUIZ-APP/releases/latest), open it on your phone and allow "Install unknown apps" when asked. You can also build it yourself (below).
 
 ### Build the Android app
