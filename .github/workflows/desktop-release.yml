@@ -1,0 +1,106 @@
+name: Desktop release
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Release tag to upload the installers to (for example v1.1.0)
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-latest, ubuntu-latest]
+    env:
+      TAG: ${{ github.event.release.tag_name || inputs.tag }}
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            desktop/package-lock.json
+
+      - name: Install root deps
+        run: npm ci
+
+      - name: Install desktop deps
+        working-directory: desktop
+        run: npm ci
+
+      - name: Build web bundle
+        working-directory: desktop
+        run: npm run web
+
+      - name: Install xvfb (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb
+
+      - name: Smoke test (Linux)
+        if: runner.os == 'Linux'
+        working-directory: desktop
+        run: xvfb-run -a npm run smoke
+
+      - name: Smoke test
+        if: runner.os != 'Linux'
+        working-directory: desktop
+        run: npm run smoke
+
+      - name: Package (Windows)
+        if: runner.os == 'Windows'
+        working-directory: desktop
+        run: npm run dist:win
+
+      - name: Package (macOS)
+        if: runner.os == 'macOS'
+        working-directory: desktop
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: "false"
+        run: npx electron-builder --mac dmg --x64 --arm64 --publish never
+
+      - name: Package (Linux)
+        if: runner.os == 'Linux'
+        working-directory: desktop
+        run: npm run dist:linux
+
+      - name: Upload installers to release
+        working-directory: desktop
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          shopt -s nullglob
+          case "$RUNNER_OS" in
+            Windows) files=(dist/*.exe) ;;
+            macOS) files=(dist/*.dmg) ;;
+            Linux) files=(dist/*.AppImage dist/*.deb) ;;
+          esac
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "No installers found in desktop/dist"
+            ls -la dist
+            exit 1
+          fi
+          printf 'Uploading: %s\n' "${files[@]}"
+          gh release upload "$TAG" "${files[@]}" --clobber --repo ${{ github.repository }}

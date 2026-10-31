@@ -1,0 +1,61 @@
+{
+  "name": "bcbr-qbank-desktop",
+  "productName": "BCBR QBank",
+  "version": "1.1.0",
+  "description": "BCBR QBank desktop app (offline quiz bank) built with Electron",
+  "private": true,
+  "main": "main.cjs",
+  "author": "Dr. Aswanth Krishnan",
+  "license": "MIT",
+  "scripts": {
+    "web": "cd .. && npx vite build --mode offline --outDir desktop/web --emptyOutDir",
+    "start": "electron .",
+    "smoke": "node smoke.cjs",
+    "dist:win": "electron-builder --win nsis --publish never",
+    "dist:mac": "electron-builder --mac dmg --publish never",
+    "dist:linux": "electron-builder --linux AppImage deb --publish never"
+  },
+  "devDependencies": {
+    "electron": "^45.2.1",
+    "electron-builder": "^26.18.0"
+  },
+  "build": {
+    "appId": "com.bcbr.prepquiz.desktop",
+    "productName": "BCBR QBank",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.cjs",
+      "web/**/*"
+    ],
+    "artifactName": "BCBR-QBank-${version}-${os}-${arch}.${ext}",
+    "win": {
+      "target": "nsis",
+      "icon": "build/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "BCBR QBank"
+    },
+    "mac": {
+      "target": "dmg",
+      "category": "public.app-category.education",
+      "icon": "build/icon.png"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "category": "Education",
+      "icon": "build/icon.png",
+      "maintainer": "Dr. Aswanth Krishnan"
+    }
+  }
+}

@@ -6,6 +6,14 @@ A free, open-source question bank for students preparing for the BCBR (Basic Cou
 
 📱 **[Download the Android app (APK)](https://github.com/aswanthwuhan/BCBR-QUIZ-APP/releases/latest)**: works offline, no account needed.
 
+## Desktop app (Windows, macOS, Linux)
+
+**[Download the desktop app](https://github.com/aswanthwuhan/BCBR-QUIZ-APP/releases/latest)** from the latest release. It works offline with no account, and your progress stays on your computer.
+
+- **Windows:** run `BCBR-QBank-<version>-win-x64.exe` and follow the setup wizard. If SmartScreen warns, click **More info**, then **Run anyway**.
+- **macOS:** open the `.dmg` (use the `arm64` file for Apple Silicon, `x64` for Intel) and drag the app to Applications. The app is not signed, so the first time, right-click it and choose **Open**. You can also run `xattr -cr "/Applications/BCBR QBank.app"` in Terminal.
+- **Linux:** for the `.AppImage`, run `chmod +x` on the file and then start it. For the `.deb`, run `sudo apt install ./file.deb`.
+
 ## Credits
 
 This project is free to use, modify and host under the [MIT License](LICENSE). If you host your own copy, please keep the license file and the "Created by Dr. Aswanth Krishnan" credit in the app footer and About page.

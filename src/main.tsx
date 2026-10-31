@@ -13,7 +13,7 @@ const OFFLINE_ONLY = import.meta.env.VITE_OFFLINE_ONLY === 'true';
 if ('serviceWorker' in navigator) {
   if (OFFLINE_ONLY) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js');
+      navigator.serviceWorker.register('/sw.js').catch(() => {});
     });
   } else {
     navigator.serviceWorker.getRegistrations().then((regs) => regs.forEach((r) => r.unregister()));
