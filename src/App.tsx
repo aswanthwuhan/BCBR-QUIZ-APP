@@ -1663,7 +1663,7 @@ export default function App() {
           )}
 
           {/* AI QBank Modal */}
-          <AnimatePresence>
+          <AnimatePresence key="ai-modal-presence">
             {showAIModal && (
               <Modal key="ai-modal-overlay" ariaLabel="AI QBank" onClose={() => setShowAIModal(false)} overlayClassName="flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm">
                 <motion.div 
@@ -1740,7 +1740,7 @@ export default function App() {
           </AnimatePresence>
 
           {/* Continue / Restart Modal */}
-          <AnimatePresence>
+          <AnimatePresence key="continue-modal-presence">
             {pendingAssignmentId !== null && (
               <Modal key="continue-modal-overlay" ariaLabel="Resume Assignment" onClose={() => setPendingAssignmentId(null)} overlayClassName="flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm">
                 <motion.div 
@@ -1795,7 +1795,7 @@ export default function App() {
           </AnimatePresence>
 
           {/* Reset Progress Modal */}
-          <AnimatePresence>
+          <AnimatePresence key="reset-modal-presence">
             {showResetModal && (
               <Modal key="reset-modal-overlay" ariaLabel="Reset Progress" onClose={() => setShowResetModal(false)} overlayClassName="flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm">
                 <motion.div 
