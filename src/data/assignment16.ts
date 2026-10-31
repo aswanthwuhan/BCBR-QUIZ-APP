@@ -80,10 +80,10 @@ export const ASSIGNMENT_16_QUESTIONS: Question[] = [
   },
   {
     id: "a16q12",
-    text: "A neurosurgeon is planning for a hospital-based study on the patients coming to the emergency department with head injury. The collected data should be",
-    options: ["Complete", "Readable", "Consistent", "All of the above"],
-    correctAnswer: 3,
-    explanation: "In any setting, including an emergency department study, collected data must be complete, readable and consistent."
+    text: "Information taken from hospital records that were already maintained for routine patient care, and later used for a research study, is an example of",
+    options: ["Primary data", "Secondary data", "Experimental data", "Qualitative data"],
+    correctAnswer: 1,
+    explanation: "Secondary data were originally collected for another purpose, such as routine hospital records, and are reused for research. Primary data are collected by the investigator specifically for the study."
   },
   {
     id: "a16q13",
@@ -108,24 +108,24 @@ export const ASSIGNMENT_16_QUESTIONS: Question[] = [
   },
   {
     id: "a16q16",
-    text: "Time pressure during data collection may result in dilution of the data quality",
+    text: "Once data collectors have been trained, there is no need to monitor them during data collection.",
     options: ["True", "False"],
-    correctAnswer: 0,
-    explanation: "True. Rushed data collection causes omissions, recording errors and poor probing, which reduces data quality."
+    correctAnswer: 1,
+    explanation: "False. Training must be followed by ongoing monitoring and supportive supervision, because errors and drift in technique can appear at any time during fieldwork."
   },
   {
     id: "a16q17",
-    text: "Which one of the following is the proper way of validating the data?",
-    options: ["Repetition of full data collection in the same population", "Data collection in a new population", "Repetition of data collection in a randomly selected subset in the same population", "Repeat data collection not required"],
-    correctAnswer: 2,
-    explanation: "Data are validated by repeating collection on a randomly selected subset of the same participants and comparing the results with the original data."
+    text: "Which method of data collection is most appropriate for exploring, in depth, people's beliefs and perceptions about a disease?",
+    options: ["Self-administered closed-ended questionnaire", "Review of medical records", "Laboratory measurement", "In-depth interview"],
+    correctAnswer: 3,
+    explanation: "In-depth interviews are a qualitative method that lets participants express beliefs and perceptions in their own words. Closed-ended questionnaires, record reviews and laboratory tests cannot capture this depth."
   },
   {
     id: "a16q18",
-    text: "Which of the following statement is true regarding data collection for an epidemiological study?",
-    options: ["Reliability refers to consistency of information", "Accuracy is the ability of a measurement to be correct on an average", "Both ‘a’ and ‘b’", "None of the above"],
-    correctAnswer: 2,
-    explanation: "Both statements are true: reliability is consistency of information, and accuracy is being correct on average (close to the true value)."
+    text: "A weighing scale consistently reads 0.5 kg more than the true weight every time the same person is weighed. The scale is",
+    options: ["Reliable but not valid", "Valid but not reliable", "Both valid and reliable", "Neither reliable nor valid"],
+    correctAnswer: 0,
+    explanation: "The readings are consistent, so the scale is reliable, but they are systematically away from the true value, so it is not valid (accurate). Such systematic error can be corrected by calibration."
   },
   {
     id: "a16q19",
@@ -150,10 +150,10 @@ export const ASSIGNMENT_16_QUESTIONS: Question[] = [
   },
   {
     id: "a16q22",
-    text: "A diagnostic test found a mean value of 90 mg/dL (SD 5). The gold standard test found 88 mg/dL (SD 4.7). What can be said about the test?",
+    text: "In the same group of patients, a new diagnostic test gave a mean value of 90 mg/dL (SD 5) and the gold standard test gave 88 mg/dL (SD 4.7). Judging only by this agreement with the gold standard, what can be said about the new test?",
     options: ["The new diagnostic test is valid", "The new diagnostic test is reliable", "The new diagnostic test is valid and reliable", "The new diagnostic test is invalid and unreliable"],
     correctAnswer: 0,
-    explanation: "The test's mean (90 mg/dL) is close to the gold standard's (88 mg/dL), so the test is considered valid. Reliability would need repeated measurements, which are not given. Strictly, similar means alone do not prove validity."
+    explanation: "Agreement with a gold standard is evidence of validity, which is how the course frames this item. Reliability would need repeated measurements, which are not given. In practice validity is better shown by individual-level agreement, not means alone."
   },
   {
     id: "a16q23",
@@ -178,10 +178,10 @@ export const ASSIGNMENT_16_QUESTIONS: Question[] = [
   },
   {
     id: "a16q26",
-    text: "Which of the following is the correct sequence of steps of data collection?",
-    options: ["i, iv, iii, ii", "ii, iii, iv, i", "i, iii, ii, iv", "iii, i, iv, iii"],
+    text: "Arrange the steps of data collection in the correct order: i. Prepare the data collection guide, ii. Check filled forms for completeness and quality, iii. Train the data collectors, iv. Validate the data in a randomly selected subset.",
+    options: ["i, iv, iii, ii", "ii, iii, iv, i", "i, iii, ii, iv", "iii, i, iv, ii"],
     correctAnswer: 2,
-    explanation: "The logical sequence is preparing the guide (i), training collectors (iii), checking forms for completeness (ii), and then validating the data (iv)."
+    explanation: "The guide is prepared first (i), collectors are then trained using it (iii), filled forms are checked during collection (ii), and finally the data are validated in a random subset (iv): i, iii, ii, iv."
   },
   {
     id: "a16q27",
@@ -213,73 +213,73 @@ export const ASSIGNMENT_16_QUESTIONS: Question[] = [
   },
   {
     id: "a16q31",
-    text: "The ability of an instrument to produce similar results on repeated measurement is called",
-    options: ["Validity", "Reliability", "Accuracy", "Sensitivity"],
-    correctAnswer: 1,
-    explanation: "Reliability is an instrument's ability to give similar results on repeated measurement. Validity and accuracy refer to correctness, and sensitivity is the true-positive rate."
+    text: "The difference in measurements when two different interviewers record the same participant is called",
+    options: ["Sampling error", "Selection bias", "Intra-observer variation", "Inter-observer variation"],
+    correctAnswer: 3,
+    explanation: "Variation between different observers measuring the same subject is inter-observer variation. Intra-observer variation is when the same observer gets different results on repeated measurement."
   },
   {
     id: "a16q32",
-    text: "A test yielding values close to a gold standard test is considered:",
-    options: ["Valid", "Reliable", "Valid and reliable", "Invalid and unreliable"],
-    correctAnswer: 0,
-    explanation: "Agreement with a gold standard shows validity. Reliability would require repeated measurements showing consistency."
+    text: "A self-administered questionnaire is least suitable when",
+    options: ["Participants are literate", "The study population has low literacy", "The questions are simple", "Anonymity of responses is desired"],
+    correctAnswer: 1,
+    explanation: "Self-administered questionnaires require respondents to read and write. In populations with low literacy, interviewer-administered questionnaires should be used instead."
   },
   {
     id: "a16q33",
-    text: "Which of the following is NOT used as a criterion to judge the quality of data collected in a study?",
-    options: ["Accuracy", "Repeatability", "Precision", "External validity"],
-    correctAnswer: 3,
-    explanation: "Accuracy, repeatability and precision describe the quality of collected data. External validity is about whether study findings generalise to other populations, not about data quality."
+    text: "Which is an advantage of electronic data capture (for example, tablet-based forms) over paper forms?",
+    options: ["Built-in range and skip checks reduce entry errors at the point of collection", "Data collectors no longer need training", "Data validation becomes unnecessary", "Informed consent is no longer required"],
+    correctAnswer: 0,
+    explanation: "Electronic forms can enforce range, legal-value and skip checks while data are being collected, which reduces errors. Training, validation and consent are still required."
   },
   {
     id: "a16q34",
-    text: "Which of the following should NOT be done during data collection in a study?",
-    options: ["Referring to the data collection guide", "Checking the quality of data", "Modifying the study objectives", "Validating the data collection process"],
+    text: "Before using a questionnaire developed in English in a Tamil-speaking population, the recommended process is",
+    options: ["Use the English version directly", "Let each interviewer translate the questions on the spot", "Forward translation, back-translation and pre-testing", "Translate only the consent form"],
     correctAnswer: 2,
-    explanation: "Study objectives are fixed in the approved protocol and must not be changed during data collection. Using the guide, checking quality and validating are all appropriate."
+    explanation: "Forward translation, back-translation and pre-testing ensure that the translated questions keep their original meaning. On-the-spot translation by each interviewer introduces variation and bias."
   },
   {
     id: "a16q35",
-    text: "Accuracy of an instrument is the ability to measure what it intends to measure.",
+    text: "Pre-testing of a questionnaire should be done on the same participants who will be included in the main study sample.",
     options: ["True", "False"],
-    correctAnswer: 0,
-    explanation: "True per the course. The ability to measure what is intended is validity, which the course treats as equivalent to accuracy (closeness to the true value)."
+    correctAnswer: 1,
+    explanation: "False. Pre-testing is done on people similar to the study population but not included in the main sample, so that the main study participants are not influenced by earlier exposure to the questions."
   },
   {
     id: "a16q36",
-    text: "What is the correct sequence: Preparation, Training, Checking, Validating?",
-    options: ["i, iv, iii, ii", "ii, iii, iv, i", "i, iii, ii, iv", "iii, i, iv, iii"],
-    correctAnswer: 2,
-    explanation: "The correct order is Preparation (i), Training (iii), Checking (ii), Validating (iv), which is option i, iii, ii, iv."
+    text: "Recall bias is most likely when data collection relies on",
+    options: ["Laboratory measurement of biomarkers", "Participants' memory of past exposures", "Direct observation of behaviour", "Readings from calibrated instruments"],
+    correctAnswer: 1,
+    explanation: "Recall bias arises when participants remember past exposures inaccurately or differently, for example cases recalling exposures better than controls. Objective measurements are not affected by memory."
   },
   {
     id: "a16q37",
-    text: "A data collection guidebook can be revised time to time as issues are identified.",
+    text: "Instruments such as weighing scales and BP apparatus should be calibrated and checked regularly during data collection.",
     options: ["True", "False"],
     correctAnswer: 0,
-    explanation: "True. The data collection guidebook is a living document. It can be updated with clarifications as field issues arise, and the updates are shared with all collectors."
+    explanation: "True. Regular calibration prevents systematic measurement error, so readings remain accurate throughout the data collection period."
   },
   {
     id: "a16q38",
-    text: "Which should NOT be done during collector training?",
-    options: ["Simulating the procedure", "Discussing objectives", "Using an early questionnaire version", "Revising the guide based on queries"],
-    correctAnswer: 2,
-    explanation: "Collectors should be trained on the final instrument. Using an early questionnaire version teaches outdated content and leads to errors."
+    text: "In an interview, the question 'You don't smoke, do you?' is an example of a",
+    options: ["Open-ended question", "Double-barrelled question", "Filter question", "Leading question"],
+    correctAnswer: 3,
+    explanation: "A leading question suggests the expected answer and pushes respondents towards it, causing bias. Questions should be neutrally worded, such as 'Do you smoke?'."
   },
   {
     id: "a16q39",
-    text: "Which does NOT apply to checking quality of filled forms?",
-    options: ["Completeness", "Consistency", "Readability", "Statistical significance"],
-    correctAnswer: 3,
-    explanation: "Form quality checks cover completeness, consistency and readability. Statistical significance belongs to the analysis phase."
+    text: "Assigning a unique study identification number to each participant during data collection mainly helps in",
+    options: ["Linking records while protecting participants' confidentiality", "Increasing the sample size", "Avoiding the need for informed consent", "Eliminating measurement error"],
+    correctAnswer: 0,
+    explanation: "A unique study ID allows forms and records to be linked without using names, which protects confidentiality. It does not affect sample size, consent requirements or measurement error."
   },
   {
     id: "a16q40",
-    text: "If a participant refuses one question, the collector should:",
-    options: ["End the interview", "Continue with remaining questions", "Ask family", "Persuade"],
-    correctAnswer: 1,
-    explanation: "Respect the refusal, record it, and continue with the remaining questions. This respects autonomy and keeps the rest of the data."
+    text: "The Hawthorne effect in data collection refers to",
+    options: ["The interviewer's expectations influencing the recorded responses", "Errors introduced during data entry", "Participants changing their behaviour because they know they are being observed", "Loss of participants to follow-up"],
+    correctAnswer: 2,
+    explanation: "The Hawthorne effect is a change in participants' behaviour simply because they know they are being studied or observed. It can distort data on practices such as hand washing."
   },
   {
     id: "a16q41",
@@ -332,23 +332,23 @@ export const ASSIGNMENT_16_QUESTIONS: Question[] = [
   },
   {
     id: "a16q48",
-    text: "All the following checks to be conducted in the data collection forms EXCEPT?",
-    options: ["Consistency", "Readability", "Completeness", "Significance"],
-    correctAnswer: 3,
-    explanation: "Data collection forms are checked for completeness, consistency and readability. Statistical significance belongs to the analysis stage and is not a form-level check."
+    text: "Which of the following is a closed-ended question?",
+    options: ["Describe your experience at the health centre.", "Have you ever smoked tobacco? (Yes/No)", "What problems do you face in accessing care?", "Why did you stop your treatment?"],
+    correctAnswer: 1,
+    explanation: "A closed-ended question offers fixed response options such as Yes/No, which makes coding and analysis easy. The other questions are open-ended and invite free-text answers."
   },
   {
     id: "a16q49",
-    text: "Which statement is TRUE about validation of data collection process?",
-    options: ["All the study participant should be interviewed", "A subset of study participants can be interviewed on convenience", "Randomly selected subset of study participants can be interviewed", "Interview a different population with the same tool"],
-    correctAnswer: 2,
-    explanation: "To validate data collection, a randomly selected subset of participants is re-interviewed and the answers are compared. Random selection keeps the check representative and unbiased, and interviewing everyone is not feasible."
+    text: "What is a key advantage of using the same standardized data collection forms at all sites of a multicentre study?",
+    options: ["It removes the need for supervision", "It guarantees statistically significant results", "It removes the need for ethics approval", "Data are comparable across sites"],
+    correctAnswer: 3,
+    explanation: "Standardized forms ensure the same information is collected in the same way everywhere, so data from different sites can be combined and compared. Supervision and ethics approval are still required."
   },
   {
     id: "a16q50",
-    text: "Question by question guide can be revised as and when issues arise.",
+    text: "Interviewer bias can be reduced by keeping the data collector unaware (blinded) of the participant's exposure or case status.",
     options: ["True", "False"],
     correctAnswer: 0,
-    explanation: "True. The question-by-question guide is a living document. It is updated as field issues arise, and the changes are shared with all investigators to keep data collection standardized."
+    explanation: "True. If interviewers do not know whether a participant is a case or control (or exposed or not), they cannot probe or record differently between groups."
   }
 ];

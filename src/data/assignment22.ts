@@ -86,7 +86,12 @@ export const ASSIGNMENT_22_QUESTIONS: Question[] = [
   {
     id: "a22q12",
     text: "It is ideal that the first draft of the protocol",
-    options: ["Exceeds >2000 words", "Does not exceed >2000 words", "Exceeds >3000 words", "Does not exceed >3000 words"],
+    options: [
+      "Exceeds 2000 words",
+      "Does not exceed 2000 words",
+      "Exceeds 3000 words",
+      "Is as long as possible"
+    ],
     correctAnswer: 1,
     explanation: "The first draft of the protocol should be concise, ideally within about 2000 words. Extra detail such as forms and SOPs goes into annexures."
   },
@@ -214,7 +219,7 @@ export const ASSIGNMENT_22_QUESTIONS: Question[] = [
   },
   {
     id: "a22q29",
-    text: "The number of study participants required for a research study can be decided by",
+    text: "Which of the following can contribute to deciding the number of participants required for a study (directly, or by supplying parameters or adjustments to the calculation)?",
     options: ["Pilot study", "Sample size calculation", "Sampling procedure", "All the above"],
     correctAnswer: 3,
     explanation: "The required number of participants depends on the sample size calculation, on parameters estimated from a pilot study, and on adjustments for the sampling procedure (for example, the design effect in cluster sampling)."
@@ -228,73 +233,113 @@ export const ASSIGNMENT_22_QUESTIONS: Question[] = [
   },
   {
     id: "a22q31",
-    text: "Which of the following is NOT an appropriate step of protocol development?",
-    options: ["Development of research question", "Preparation of the analysis plan", "Development of study tool", "Initiation of data collection"],
-    correctAnswer: 3,
-    explanation: "Protocol development is the planning stage: research question, study tools and analysis plan. Data collection starts only after the protocol is finalized and ethics approval is received."
+    text: "Which guideline lists the recommended items to be included in a clinical trial protocol?",
+    options: [
+      "CONSORT",
+      "SPIRIT",
+      "STROBE",
+      "PRISMA"
+    ],
+    correctAnswer: 1,
+    explanation: "SPIRIT (Standard Protocol Items: Recommendations for Interventional Trials) is the guideline for trial protocols. CONSORT, STROBE and PRISMA are reporting guidelines for completed studies."
   },
   {
     id: "a22q32",
-    text: "In which of the following section of a protocol, is the analysis plan written?",
-    options: ["Objective", "Results", "Budget", "Methods"],
-    correctAnswer: 3,
-    explanation: "The analysis plan, which lists the statistical methods for each objective, is written in the Methods section. A protocol has no Results section."
+    text: "Which tool is commonly used in a protocol to show the timeline of project activities?",
+    options: [
+      "Forest plot",
+      "Kaplan-Meier curve",
+      "Gantt chart",
+      "Funnel plot"
+    ],
+    correctAnswer: 2,
+    explanation: "A Gantt chart shows each activity against time and is used for the project timeline. The other plots are used to present analysis results."
   },
   {
     id: "a22q33",
-    text: "Study population and the study sample are same.",
+    text: "Pre-testing of a data collection tool is unnecessary if the tool has been newly developed by the investigator.",
     options: ["True", "False"],
     correctAnswer: 1,
-    explanation: "False. The study population is the whole eligible group the results are meant to apply to. The sample is the subset actually selected from that population and studied."
+    explanation: "False. A newly developed tool especially needs pre-testing to check clarity, flow and timing before the main data collection."
   },
   {
     id: "a22q34",
-    text: "Which of the following is CORRECT about operational definitions in a study protocol?",
-    options: ["It is part of the background section", "It spells out the key research gaps", "It should be broad and non-specific", "It may be supported by appropriate references"],
+    text: "In a study protocol, the 'primary outcome' refers to:",
+    options: [
+      "Any outcome measured first in time",
+      "The outcome with the most significant result",
+      "An outcome added after data analysis",
+      "The outcome that answers the main objective and is used to calculate sample size"
+    ],
     correctAnswer: 3,
-    explanation: "Operational definitions are specific, measurable definitions in Methods and are often taken from standard sources, so they can be supported by references. They are neither broad nor a description of research gaps."
+    explanation: "The primary outcome is pre-specified, answers the main objective and drives the sample size. Choosing it after seeing results would be selective reporting."
   },
   {
     id: "a22q35",
-    text: "Which of the following component is LEAST appropriate for a project implementation plan?",
-    options: ["Calculating sample size", "Coordinating project activities", "Assigning job responsibilities", "Preparing project timeline"],
-    correctAnswer: 0,
-    explanation: "Project implementation covers coordinating activities, assigning roles and setting the timeline. Sample size calculation is a methodological step that belongs in Methods."
+    text: "A protocol aims to estimate the prevalence of anaemia in a district at one point in time. Which study design is most appropriate?",
+    options: [
+      "Randomized controlled trial",
+      "Cohort study",
+      "Cross-sectional study",
+      "Case-control study"
+    ],
+    correctAnswer: 2,
+    explanation: "Prevalence at a single point in time is measured with a cross-sectional design. Trials, cohort and case-control studies address interventions, incidence or risk factors."
   },
   {
     id: "a22q36",
-    text: "Human subjects are protected by all the following mechanisms, EXCEPT",
-    options: ["Obtaining informed consent from the participants", "Reviewing proposal by the ethics committee", "Incentivizing target population for participation", "Compensating participants for loss of wages"],
-    correctAnswer: 2,
-    explanation: "Informed consent, ethics committee review and compensation for lost wages all protect participants. Incentivizing participation can become undue inducement, which undermines voluntary consent."
+    text: "Why should each revised version of a protocol carry a version number and date?",
+    options: [
+      "To track amendments and ensure the approved version is followed",
+      "To increase the word count",
+      "Because the abstract requires it",
+      "Because it replaces ethics approval"
+    ],
+    correctAnswer: 0,
+    explanation: "Version control shows which version the ethics committee approved and documents later amendments, so the team always follows the current approved protocol."
   },
   {
     id: "a22q37",
-    text: "Which section of a protocol describes the need to maintain anonymity of study participants while sharing data to others?",
-    options: ["Human subject protection", "Data collection methods", "Data analysis plan", "Expected benefits"],
-    correctAnswer: 0,
-    explanation: "Keeping participants anonymous and their data confidential when sharing it is an ethical safeguard, so it is described under Human subject protection."
+    text: "In an RCT protocol, describing who will be kept unaware of group assignment (participants, investigators, outcome assessors) refers to:",
+    options: [
+      "Randomization",
+      "Blinding",
+      "Allocation concealment",
+      "Stratification"
+    ],
+    correctAnswer: 1,
+    explanation: "Blinding keeps participants and/or study staff unaware of the assigned group after allocation. Allocation concealment protects the sequence before assignment."
   },
   {
     id: "a22q38",
-    text: "In the methods section of a protocol, a researcher can include all the following, EXCEPT",
-    options: ["Analysis plan", "Supportive reference", "Expected benefits", "Quality assurance"],
-    correctAnswer: 2,
-    explanation: "Methods can include the analysis plan, supporting references and quality assurance. Expected benefits is a separate section of the protocol."
+    text: "In a protocol for a large clinical trial, the independent body that periodically reviews accumulating safety data is the:",
+    options: [
+      "Institutional animal ethics committee",
+      "Journal editorial board",
+      "Funding agency finance committee",
+      "Data and Safety Monitoring Board"
+    ],
+    correctAnswer: 3,
+    explanation: "A Data and Safety Monitoring Board independently reviews interim safety and efficacy data and can recommend stopping or modifying the trial."
   },
   {
     id: "a22q39",
-    text: "The number of study participants required for a research study can be decided by",
-    options: ["Pilot study", "Sample size calculation", "Sampling procedure", "All the above"],
-    correctAnswer: 3,
-    explanation: "The required number of participants depends on the sample size calculation, on parameters estimated from a pilot study, and on adjustments for the sampling procedure (for example, the design effect in cluster sampling)."
+    text: "Inflating the calculated sample size to allow for expected non-response or loss to follow-up is:",
+    options: [
+      "Unnecessary in a protocol",
+      "A form of data manipulation",
+      "Recommended and should be stated in the protocol",
+      "Done only after data collection is over"
+    ],
+    correctAnswer: 2,
+    explanation: "Adding an allowance for non-response or attrition keeps the study adequately powered, and the adjustment should be stated in the protocol in advance."
   },
   {
     id: "a22q40",
-    text: "Researchers can amend a research protocol after re-obtaining the ethics committee clearance for the amendments made.",
+    text: "The reference list of a protocol should include only the sources that are actually cited in the text.",
     options: ["True", "False"],
     correctAnswer: 0,
-    explanation: "True. A protocol can be amended, but each amendment must be approved by the ethics committee before it is implemented."
+    explanation: "True. Every listed reference should correspond to a citation in the text, following a standard style such as Vancouver."
   },
   {
     id: "a22q41",
@@ -312,10 +357,15 @@ export const ASSIGNMENT_22_QUESTIONS: Question[] = [
   },
   {
     id: "a22q43",
-    text: "Detailed plan for conducting the study is documented in which of the following section of the protocol?",
-    options: ["Introduction", "Expected Benefits", "Methods", "Conclusions"],
-    correctAnswer: 2,
-    explanation: "The Methods section documents the detailed plan for conducting the study. A protocol has no Conclusions because the study has not been done yet."
+    text: "Which of the following is usually attached as an annexure rather than written in the main text of the protocol?",
+    options: [
+      "Statement of objectives",
+      "Background and justification",
+      "Sample size calculation",
+      "Participant information sheet and informed consent form"
+    ],
+    correctAnswer: 3,
+    explanation: "The participant information sheet and consent form are full documents attached as annexures. Objectives, background and the sample size calculation are part of the main text."
   },
   {
     id: "a22q44",
@@ -333,8 +383,13 @@ export const ASSIGNMENT_22_QUESTIONS: Question[] = [
   },
   {
     id: "a22q46",
-    text: "Which of the following factors decide the sample size of a study?",
-    options: ["Study objective and sampling method", "Study population and study design", "Data analysis plan and expected outcome", "Inclusion and exclusion criteria"],
+    text: "Which of the following pairs of factors decide the sample size of a study?",
+    options: [
+      "Study objective and sampling method",
+      "Budget heads and study timeline",
+      "Expected benefits and key references",
+      "Inclusion and exclusion criteria"
+    ],
     correctAnswer: 0,
     explanation: "The study objective determines which formula and parameters are used (for example, estimating a prevalence versus comparing groups). The sampling method changes the size further, for example through the design effect in cluster sampling."
   },

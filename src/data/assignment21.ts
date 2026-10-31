@@ -127,10 +127,10 @@ export const ASSIGNMENT_21_QUESTIONS: Question[] = [
   },
   {
     id: "a21q13",
-    text: "The first step for writing a research proposal is to frame the study objectives.",
+    text: "An early key step in writing a research proposal, once the research question has been identified, is to frame the study objectives.",
     options: ["True", "False"],
     correctAnswer: 0,
-    explanation: "True, per the key. Clear objectives decide the design, sample size, methods and analysis, so framing them comes first when writing the proposal. Strictly, the research question is defined just before the objectives."
+    explanation: "True. After the topic and research question are identified, the objectives are framed; they then decide the design, sample size, methods and analysis."
   },
   {
     id: "a21q14",
@@ -251,15 +251,15 @@ export const ASSIGNMENT_21_QUESTIONS: Question[] = [
   },
   {
     id: "a21q25",
-    text: "Sampling strategy is discussed in which of the following section of a concept paper?",
+    text: "What is the usual recommended length of a concept paper?",
     options: [
-      "Background",
-      "Objectives",
-      "Methodology",
-      "Results"
+      "About 10-15 pages",
+      "About 2-3 pages",
+      "About 25 pages",
+      "No limit; longer is better"
     ],
-    correctAnswer: 2,
-    explanation: "The sampling strategy (method, sample size and selection criteria) is described in the methodology section. A concept paper has no results section."
+    correctAnswer: 1,
+    explanation: "A concept paper is a brief document of about 2-3 pages that funders can screen quickly. Detail is reserved for the full protocol."
   },
   {
     id: "a21q26",
@@ -323,123 +323,123 @@ export const ASSIGNMENT_21_QUESTIONS: Question[] = [
   },
   {
     id: "a21q31",
-    text: "Which of the following is NOT included in the background section of a concept paper?",
+    text: "A good title for a concept paper should ideally:",
     options: [
-      "Importance of a health problem",
-      "Known fact about the health problem",
-      "Prior contribution of the researcher in the topic",
-      "Knowledge gap in that topic"
+      "Be long and list every study detail",
+      "Use abbreviations to save space",
+      "Concisely reflect the study design, population and setting",
+      "Mention the expected results"
     ],
     correctAnswer: 2,
-    explanation: "The background covers the importance of the problem, the known facts and the knowledge gap. The researcher's prior contributions belong in an investigator profile, not the background."
+    explanation: "A good title is concise and informative, indicating the design, population and setting. Results are not known yet and unexplained abbreviations reduce clarity."
   },
   {
     id: "a21q32",
-    text: "The methods section of the concept paper contains the following:",
+    text: "For a case-control study, which element must the methods section of the concept paper specify?",
     options: [
-      "Key operational definitions",
-      "Conclusions",
-      "Context of study",
-      "Novelty of the study"
+      "Randomization procedure",
+      "Definitions of cases and controls",
+      "Allocation concealment",
+      "Duration of follow-up of the exposed cohort"
     ],
-    correctAnswer: 0,
-    explanation: "The methods section includes key operational definitions of the study variables. Conclusions are not possible before the study, and the context and novelty belong in the background."
+    correctAnswer: 1,
+    explanation: "A case-control study selects participants by outcome status, so clear case and control definitions are essential. Randomization and concealment apply to trials, and follow-up of exposed groups to cohort studies."
   },
   {
     id: "a21q33",
-    text: "Which of the following best describes the 'Expected Benefits' section of a concept paper?",
+    text: "Objectives in a concept paper should ideally be:",
     options: [
-      "Financial benefit to the funding agency",
-      "Policy/practice changes based on the study findings",
-      "Financial benefit to the researcher",
-      "Academic improvement of the researchers"
+      "Broad and open-ended",
+      "Written only as hypotheses",
+      "As many as possible to cover all aspects",
+      "Specific, measurable, achievable, relevant and time-bound (SMART)"
     ],
-    correctAnswer: 1,
-    explanation: "Expected benefits describe the value of the study to society and science, such as policy changes based on its findings. Financial or academic gains for the researchers or funders do not count."
+    correctAnswer: 3,
+    explanation: "Objectives should be SMART so that they can be measured and achieved within the study. Broad or numerous objectives make the study unfocused."
   },
   {
     id: "a21q34",
-    text: "Which of the following are components of a concept paper?",
+    text: "In the PICO format used to frame the research question for an intervention study, 'C' stands for:",
     options: [
-      "Study title and references",
-      "Study title, abstract and references",
-      "Abstract and references",
-      "Study title, results and references"
+      "Cohort",
+      "Comparison",
+      "Confounder",
+      "Cost"
     ],
-    correctAnswer: 0,
-    explanation: "The study title and references are standard components of a concept paper. It has no abstract because it is already a brief summary, and it has no results because the study has not been done."
+    correctAnswer: 1,
+    explanation: "PICO stands for Population, Intervention, Comparison and Outcome. The comparison is the control or alternative against which the intervention is judged."
   },
   {
     id: "a21q35",
-    text: "Sampling strategy is discussed in which of the following section of a concept paper?",
+    text: "In the methods of a concept paper, the analysis plan should be linked to:",
     options: [
-      "Background",
-      "Objectives",
-      "Methodology",
-      "Results"
+      "The budget heads",
+      "The list of references",
+      "The investigators' CVs",
+      "Each study objective"
     ],
-    correctAnswer: 2,
-    explanation: "The sampling strategy (method, sample size and selection criteria) is described in the methodology section. A concept paper has no results section."
+    correctAnswer: 3,
+    explanation: "The analysis plan states how the data will be analysed to answer each objective, so it must map onto the objectives."
   },
   {
     id: "a21q36",
-    text: "Which of the following statement is true about the 'Reference' section of a concept paper?",
+    text: "Who is the primary audience of a concept paper submitted to a funding agency?",
     options: [
-      "References must be written following standard guidelines",
-      "Unlimited references are preferred in a concept paper",
-      "Reference section is usually an optional component",
-      "References are usually required for the results section"
+      "Study participants",
+      "Reviewers at the funding agency",
+      "Journal editors",
+      "The general public"
     ],
-    correctAnswer: 0,
-    explanation: "References in a concept paper must follow standard guidelines. They should be few and focused, they are a required section, and there are no results to support."
+    correctAnswer: 1,
+    explanation: "A concept paper is written mainly for the funding agency's reviewers, who use it to decide whether to invite a full proposal."
   },
   {
     id: "a21q37",
-    text: "A post graduate has mentioned the estimated budget for her thesis to be 50,000 INR in the concept paper. Which of the following components of the budget may not be justified?",
+    text: "The justification part of the background in a concept paper mainly explains:",
     options: [
-      "Salary for data collectors",
-      "Travel cost for data collection",
-      "Equipment cost",
-      "Remuneration for the thesis guide"
+      "How the data will be entered",
+      "The salary structure of project staff",
+      "Why the study is needed, given the knowledge gap",
+      "The full informed consent form"
     ],
-    correctAnswer: 3,
-    explanation: "Guiding a postgraduate thesis is part of the faculty's academic duty, so a fee for the guide is not a justified budget item. Data collectors, travel and equipment are legitimate costs."
+    correctAnswer: 2,
+    explanation: "The justification argues why the study is needed by pointing to the gap in knowledge. Data entry, salaries and consent forms belong elsewhere."
   },
   {
     id: "a21q38",
-    text: "Identify the INCORRECT statement about protocol writing.",
+    text: "At the concept paper stage, detailed data collection tools and informed consent forms are usually:",
     options: [
-      "A protocol is a must for obtaining the ethics committee approval",
-      "A well-written protocol is often helpful to draft a one-page concept proposal",
-      "All known facts in a protocol must be supported by appropriate reference",
-      "Peer review helps in improving the quality of a protocol"
+      "Included in full in the concept paper",
+      "Not included; they are developed for the full protocol",
+      "Placed in the background section",
+      "Placed in the expected benefits section"
     ],
     correctAnswer: 1,
-    explanation: "This statement is incorrect because the order is reversed. The concept proposal is written first and is later expanded into the full protocol."
+    explanation: "A concept paper is a short outline, so detailed tools and consent forms are prepared later as annexures to the full protocol."
   },
   {
     id: "a21q39",
-    text: "All the followings are recommended while writing a concept paper, EXCEPT:",
+    text: "'Study setting' in the methods of a concept paper describes:",
     options: [
-      "Preparing a concise document",
-      "Presenting mostly in bullet forms",
-      "Describing the methods section in detail",
-      "Restricting the number of objectives"
+      "Why the study is important",
+      "What is unknown in the literature",
+      "How results will change policy",
+      "Where the study will be conducted"
     ],
-    correctAnswer: 2,
-    explanation: "A concept paper should be concise, so the methods are given only as key elements, not in detail. Keeping it brief, using bullet points and limiting the number of objectives are all recommended."
+    correctAnswer: 3,
+    explanation: "The study setting states the place and context where the study will be done. Importance and gaps belong to the background, and policy impact to expected benefits."
   },
   {
     id: "a21q40",
-    text: "Which of the following is a consideration in framing the objectives of a concept paper?",
+    text: "Which of the following is the BEST example of a specific objective in a concept paper?",
     options: [
-      "Choosing appropriate action verbs",
-      "Calculating sample size based on the secondary objectives",
-      "Stating broad objectives",
-      "All the above"
+      "To study diabetes",
+      "To estimate the prevalence of diabetes among adults aged 30 years and above in district X in 2025",
+      "To understand everything about diabetes",
+      "To improve diabetes care in India"
     ],
-    correctAnswer: 0,
-    explanation: "Objectives should start with measurable action verbs such as estimate, compare or determine. Sample size is based on the primary objective, not the secondary ones, and objectives should be specific rather than broad."
+    correctAnswer: 1,
+    explanation: "A specific objective names a measurable action (estimate), the outcome, the population, the place and the time. The other options are vague or describe broad goals."
   },
   {
     id: "a21q41",
@@ -491,7 +491,7 @@ export const ASSIGNMENT_21_QUESTIONS: Question[] = [
   },
   {
     id: "a21q45",
-    text: "Which of the following are components of a concept paper?",
+    text: "Which of the following is a core component of a concept paper?",
     options: [
       "Abstract",
       "Objectives and Methods",
@@ -499,7 +499,7 @@ export const ASSIGNMENT_21_QUESTIONS: Question[] = [
       "Discussion"
     ],
     correctAnswer: 1,
-    explanation: "The study title and references are standard components of a concept paper. It has no abstract because it is already a brief summary, and it has no results because the study has not been done."
+    explanation: "Objectives and methods are core components of a concept paper. It has no abstract, conclusion or discussion because the study has not yet been done."
   },
   {
     id: "a21q46",
@@ -541,7 +541,7 @@ export const ASSIGNMENT_21_QUESTIONS: Question[] = [
   },
   {
     id: "a21q50",
-    text: "All the followings are recommended while writing a concept paper EXCEPT:",
+    text: "While writing a concept paper, all the following are recommended EXCEPT (note that the study has not yet been conducted):",
     options: [
       "Preparing a concise document",
       "Presenting mostly in bullet forms",

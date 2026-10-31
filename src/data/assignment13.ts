@@ -121,15 +121,10 @@ export const ASSIGNMENT_13_QUESTIONS: Question[] = [
   },
   {
     id: "a13q15",
-    text: "Reasons for interference with the success of follow-up in a study may include",
-    options: [
-      "Out-migration of some study participants from the study area",
-      "Marriage of some of the female study participants because of which they might move out of the study area",
-      "Refusals for follow-up",
-      "All of the above"
-    ],
-    correctAnswer: 3,
-    explanation: "Follow-up can fail due to migration, relocation after marriage, or refusal to continue, so all the listed reasons apply."
+    text: "Recruiting participants by a newspaper advertisement that invites volunteers is most likely to introduce",
+    options: ["Recall bias", "Interviewer bias", "Volunteer (self-selection) bias", "Measurement bias"],
+    correctAnswer: 2,
+    explanation: "People who volunteer tend to differ from the general population in health, education and motivation. Self-selection therefore makes the sample unrepresentative."
   },
   {
     id: "a13q16",
@@ -140,15 +135,10 @@ export const ASSIGNMENT_13_QUESTIONS: Question[] = [
   },
   {
     id: "a13q17",
-    text: "The external validity in a research study means",
-    options: [
-      "The degree to which the observed findings lead to correct inferences about phenomena taking place in the study sample",
-      "The degree to which a test actually measures what it is designed to measure",
-      "The degree to which the inferences drawn from a study can be generalized to a broader population beyond the study population",
-      "The degree to which the findings are reliable"
-    ],
-    correctAnswer: 2,
-    explanation: "External validity is the degree to which inferences from a study can be generalized to a broader population beyond the study population."
+    text: "A major limitation of selecting study participants from a tertiary care hospital is that",
+    options: ["Patients tend to be more severe or referred cases, which limits generalizability to the community", "Random sampling is impossible in a hospital", "Sample size cannot be calculated", "Informed consent is not required"],
+    correctAnswer: 0,
+    explanation: "Tertiary hospitals see a selected, often sicker, referred population, so findings may not apply to patients in the community. Hospitals are nevertheless convenient for recruiting patients with specific conditions."
   },
   {
     id: "a13q18",
@@ -159,17 +149,17 @@ export const ASSIGNMENT_13_QUESTIONS: Question[] = [
   },
   {
     id: "a13q19",
-    text: "Which factor is important to consider while choosing the accessible population and the sampling approach?",
-    options: ["Feasibility", "Sensitivity", "Specificity", "Reliability"],
-    correctAnswer: 0,
-    explanation: "Feasibility is the important factor when choosing the accessible population and sampling approach. Sensitivity and specificity are diagnostic test properties, and reliability refers to measurement consistency."
+    text: "In a clinical trial, a run-in period before randomization is used mainly to",
+    options: ["Calculate the sample size", "Identify and exclude participants who are likely to be non-adherent", "Blind the outcome assessors", "Improve generalizability of the results"],
+    correctAnswer: 1,
+    explanation: "During a run-in period all candidates receive placebo or the active drug, and those who do not adhere or who have early adverse effects are excluded before randomization. This improves adherence but may reduce generalizability."
   },
   {
     id: "a13q20",
-    text: "The participants may be excluded from the study because of",
-    options: ["Interference with the success of study follow-up", "Ethical concerns", "Interference with the quality of data collection", "All of the above"],
+    text: "In a case-control study, controls should ideally be selected from",
+    options: ["People who have the disease", "Hospital staff only", "Anyone convenient, irrespective of where the cases came from", "The same source population that gave rise to the cases"],
     correctAnswer: 3,
-    explanation: "Exclusion criteria remove eligible people who would threaten follow-up, raise ethical concerns, or compromise data quality. All three are valid reasons to exclude someone."
+    explanation: "Controls should represent the exposure distribution of the population from which the cases arose. Selecting them from a different population introduces selection bias."
   },
   {
     id: "a13q21",
@@ -245,7 +235,7 @@ export const ASSIGNMENT_13_QUESTIONS: Question[] = [
     text: "State whether true or false: Biases can affect both internal and external validity.",
     options: ["True", "False"],
     correctAnswer: 0,
-    explanation: "Biases such as confounding and information bias distort results within the study (internal validity). Selection bias and non-response limit generalizability (external validity)."
+    explanation: "True. Selection bias, information bias and confounding can all distort the association within the study, threatening internal validity. Selection bias (including non-response) can also make the sample unrepresentative, limiting external validity."
   },
   {
     id: "a13q29",
@@ -273,103 +263,73 @@ export const ASSIGNMENT_13_QUESTIONS: Question[] = [
   },
   {
     id: "a13q31",
-    text: "Which of the following helps to minimize the random error in a research study?",
-    options: ["Limited study duration", "Adequate sample size", "Adequate budget", "More than six investigators"],
-    correctAnswer: 1,
-    explanation: "Random error is variation due to chance. It decreases as sample size increases, because the standard error shrinks with larger n. Budget, duration and number of investigators do not directly reduce it."
+    text: "Matching cases and controls on age and sex during participant selection is primarily done to",
+    options: ["Control confounding by age and sex", "Increase the response rate", "Reduce recall bias", "Improve generalizability"],
+    correctAnswer: 0,
+    explanation: "Matching makes the compared groups similar on the matching variables, so those variables cannot confound the association. Matched variables can no longer be studied as risk factors."
   },
   {
     id: "a13q32",
-    text: "Representativeness of the study participants similar to the population of interest can help in which of the following aspects of a research study?",
-    options: ["Generalizability of the findings", "Internal validity", "Reduce information bias", "Minimize recall bias"],
-    correctAnswer: 0,
-    explanation: "When participants resemble the population of interest, the results can be extended to that population. This is generalizability, also called external validity."
+    text: "In clinical research, enrolling every patient who meets the eligibility criteria over a specified period is called",
+    options: ["Convenience sampling", "Consecutive sampling", "Snowball sampling", "Quota sampling"],
+    correctAnswer: 1,
+    explanation: "Consecutive sampling takes all accessible eligible patients in a defined time, in order of presentation. It is the best non-probability method for clinical studies because it limits investigator choice."
   },
   {
     id: "a13q33",
-    text: "An investigator intends to estimate the prevalence of Urinary Tract Infection (UTI) among circumcised children (<5 years old) in Jaipur city. However, the researcher selects the study participants from one government hospital. Which of the following is the target population in this study?",
-    options: [
-      "All children aged <5years in the city",
-      "All circumcised children aged <5 years in the city",
-      "All circumcised children aged <5 years attending the government hospital",
-      "All children having UTI in the city"
-    ],
+    text: "Which of the following is an example of a temporal criterion used in selecting study participants?",
+    options: ["Patients aged 18 to 60 years", "Patients attending the OPD between January and June 2024", "Patients with type 2 diabetes", "Patients residing in Delhi"],
     correctAnswer: 1,
-    explanation: "The target population is the group the research question wants to draw conclusions about: all circumcised children under 5 years in Jaipur city."
+    explanation: "A temporal criterion restricts participants by time period. Age is demographic, diagnosis is clinical, and residence is geographic."
   },
   {
     id: "a13q34",
-    text: "Which of the following is the accessible population in the above study?",
-    options: [
-      "All children aged <5years in the city",
-      "All circumcised children aged <5years in the city",
-      "All circumcised children aged <5 years attending the government hospital",
-      "All children having UTI in the city"
-    ],
+    text: "Making inclusion criteria very narrow so that the sample is highly homogeneous generally",
+    options: ["Increases generalizability of the findings", "Removes the need for a sample size calculation", "Reduces generalizability, though it may improve internal validity and efficiency", "Has no effect on the study"],
     correctAnswer: 2,
-    explanation: "The accessible population is the part of the target population the researcher can actually reach. Here that is circumcised children under 5 attending the selected government hospital."
+    explanation: "A homogeneous sample reduces variability and confounding, which helps internal validity and statistical efficiency. However, results may not apply to the wider range of patients seen in practice."
   },
   {
     id: "a13q35",
-    text: "State whether true or false: High non-response rate in a study may affect the internal validity.",
+    text: "Exclusion criteria are applied to people who already satisfy the inclusion criteria.",
     options: ["True", "False"],
     correctAnswer: 0,
-    explanation: "Non-responders often differ systematically from responders. This introduces selection bias that can distort the study's own estimates, so non-response can harm internal validity as well as generalizability."
+    explanation: "True. Inclusion criteria define who is eligible; exclusion criteria then remove a subset of those eligible people who would be unsafe, unreliable or unsuitable to study."
   },
   {
     id: "a13q36",
-    text: "Which of the following is TRUE about study validity?",
-    options: [
-      "An internally valid study result is always generalizable to the target population",
-      "An internally valid study result may or may not be generalizable to the target population",
-      "An externally valid study result is not generalizable to the target population",
-      "A study without internal validity can be generalized to the target population"
-    ],
-    correctAnswer: 1,
-    explanation: "Internal validity is necessary but not sufficient for generalization. A result that is valid within a study may not apply to the target population if the sample is not representative."
+    text: "According to the ICMR (2017) ethical guidelines, excluding a vulnerable group such as pregnant women from a study",
+    options: ["Is always mandatory", "Requires no justification", "Should be justified, because vulnerable groups should not be denied the benefits of research without good reason", "Is never permitted"],
+    correctAnswer: 2,
+    explanation: "ICMR 2017 calls for special protection of vulnerable groups but also for fair inclusion. Excluding them must be scientifically or ethically justified so that they are not deprived of research benefits."
   },
   {
     id: "a13q37",
-    text: "Which of the following statements on study populations is TRUE?",
-    options: [
-      "Study sample is a subset of the accessible population",
-      "Target population is a subset of the accessible population",
-      "Accessible population is a subset of the study sample",
-      "Target population is a subset of the study sample"
-    ],
+    text: "Which approach helps an investigator judge whether non-response has biased the study?",
+    options: ["Comparing available characteristics of responders and non-responders", "Increasing the sample size", "Blinding the data analyst", "Omitting non-responders from the report"],
     correctAnswer: 0,
-    explanation: "The populations are nested: the target population contains the accessible population, and the study sample is drawn from the accessible population."
+    explanation: "If basic data (e.g., age, sex, area) are available for non-responders, comparing them with responders shows whether the two groups differ systematically. Increasing sample size does not correct this bias."
   },
   {
     id: "a13q38",
-    text: "State whether true or false: Biases can affect both internal and external validity.",
+    text: "A very large sample size compensates for a non-representative selection of study participants.",
     options: ["True", "False"],
-    correctAnswer: 0,
-    explanation: "Biases such as confounding and information bias distort results within the study (internal validity). Selection bias and non-response limit generalizability (external validity)."
+    correctAnswer: 1,
+    explanation: "False. A larger sample reduces random error only. If selection is biased, a larger sample just gives a more precise estimate of the wrong value."
   },
   {
     id: "a13q39",
-    text: "In a community based vaccine trial, which aims to compare the 1 year incidence of intussusception in children receiving/not receiving rotavirus vaccine, which of the following can be a likely exclusion criterion?",
-    options: [
-      "Children who may leave the study area within a month",
-      "Children aged 0month to 24 months",
-      "Children without pre-existing intestinal anomalies",
-      "Children who have not received rotavirus vaccine previously"
-    ],
-    correctAnswer: 0,
-    explanation: "The trial follows children for one year. Children likely to leave the area would be lost to follow-up, so they are excluded. The other options describe inclusion conditions."
+    text: "Selecting prevalent (existing) cases instead of newly diagnosed (incident) cases in a case-control study can lead to",
+    options: ["Interviewer bias", "Lead-time bias", "Prevalence-incidence (Neyman) bias, because cases who died or recovered quickly are missed", "No bias at all"],
+    correctAnswer: 2,
+    explanation: "Prevalent cases over-represent people who survive long with the disease, so exposures linked to survival rather than causation can appear as risk factors. Using incident cases avoids this selection bias."
   },
   {
     id: "a13q40",
-    text: "In a cohort study planned to estimate the incidence of birth defects among Zika virus infected pregnant women in Chennai city, which of the following CANNOT be an inclusion criterion?",
-    options: [
-      "First trimester pregnant women with lab-confirmed Zika virus infection",
-      "Pregnant women who are permanent residents of Chennai city",
-      "Pregnant women aged above 18years",
-      "Pregnant women taking drugs known to cause birth defects"
-    ],
+    text: "Reporting the numbers screened, eligible, enrolled and excluded (with reasons), for example in a CONSORT or STROBE flow diagram, mainly helps readers judge",
+    options: ["The sample size formula used", "The p-value of the main result", "The reliability of the questionnaire", "How representative the study participants are"],
     correctAnswer: 3,
-    explanation: "Teratogenic drugs independently cause birth defects and would confound the Zika–birth defect association. Women taking them should be excluded, not included."
+    explanation: "A participant flow diagram shows how many people were lost at each step of selection and why. Readers can then assess selection bias and the generalizability of the results."
   },
   {
     id: "a13q41",
@@ -452,15 +412,10 @@ export const ASSIGNMENT_13_QUESTIONS: Question[] = [
   },
   {
     id: "a13q48",
-    text: "Which of the following is true about study population?",
-    options: [
-      "Study sample is a subset of the accessible population",
-      "Target population is a subset of the accessible population",
-      "Accessible population is a subset of the study sample",
-      "Target population is a subset of the study sample"
-    ],
-    correctAnswer: 0,
-    explanation: "The study sample is drawn from the accessible population, which in turn is part of the target population."
+    text: "Pilot testing the recruitment procedures before the main study mainly helps to",
+    options: ["Guarantee a statistically significant result", "Assess feasibility of recruitment and refine the eligibility criteria", "Replace the sample size calculation", "Avoid the need for ethics committee approval"],
+    correctAnswer: 1,
+    explanation: "A pilot shows whether enough eligible participants can be recruited in time and whether the criteria are workable, so problems can be fixed before the main study begins."
   },
   {
     id: "a13q49",

@@ -72,7 +72,7 @@ export const ASSIGNMENT_1_QUESTIONS: Question[] = [
   },
   {
     id: "a1q8",
-    text: "The policy makers want to know whether introduction of pentavalent vaccine in the national program is resulting in reduction in the number of Haemophilus influenzae cases. Which of the following studies will they have to conduct to find an answer?",
+    text: "The policy makers want to test whether the introduction of pentavalent vaccine in the national program reduces the number of Haemophilus influenzae cases. Which of the following studies will they have to conduct to find an answer?",
     options: ["Case-control study", "Field trial", "Ecological study", "Case series"],
     correctAnswer: 1,
     explanation: "Testing whether a vaccine reduces disease in a healthy community calls for an experimental study done in the field, which is a field trial. Case-control, ecological and case-series designs give weaker evidence of impact."
@@ -112,24 +112,24 @@ export const ASSIGNMENT_1_QUESTIONS: Question[] = [
   },
   {
     id: "a1q13",
-    text: "A study was conducted to assess the extrapyramidal side effects of a new antipsychotic drug in patients with schizophrenia. Many of these patients were smokers and some of them were on anticholinergic drugs. What was the role of the anticholinergic drugs in this study?",
+    text: "A study was conducted to assess the extrapyramidal side effects (EPS) of a new antipsychotic drug in patients with schizophrenia. The effect of the drug on EPS was found to differ between patients who were on anticholinergic drugs and those who were not. What was the role of the anticholinergic drugs in this study?",
     options: ["Confounder", "Random Variable", "Effect Modifier", "Independent Variable"],
     correctAnswer: 2,
     explanation: "Anticholinergic drugs reduce extrapyramidal symptoms, so the antipsychotic-EPS association differs between patients who take them and those who do not. This makes them an effect modifier."
   },
   {
     id: "a1q14",
-    text: "Before initiating a study involving primary data collection, the Principal Investigator must ensure that various approvals are obtained. Which of the following approvals is absolutely mandatory?",
-    options: ["Scientific committee approval", "Ethics committee approval", "Technical committee approval", "Regulatory authority approval"],
+    text: "Research that aims to solve a specific practical health problem, with findings used directly to guide action, is called:",
+    options: ["Basic research", "Applied research", "Theoretical research", "Historical research"],
     correctAnswer: 1,
-    explanation: "Ethics committee approval is mandatory for every study collecting primary data from human participants. Scientific, technical and regulatory approvals are required only in some institutions or situations."
+    explanation: "Applied research is carried out to solve a specific practical problem, so its findings guide action. Basic research aims to generate knowledge without an immediate application."
   },
   {
     id: "a1q15",
-    text: "The policy makers want to know whether introduction of a new rotavirus vaccine in the national immunization programme is resulting in reduction of morbidity and mortality from rotavirus disease. Which of the following studies will they have to conduct to find an answer?",
-    options: ["Case-control study", "Ecological study", "Field randomized trial", "Case-series"],
-    correctAnswer: 2,
-    explanation: "To find out whether a vaccine reduces rotavirus morbidity and mortality in the community, the strongest design is a randomized experimental study in a field setting, which is a field randomized trial."
+    text: "Which of the following is the first step in the research cycle?",
+    options: ["Identifying the research problem", "Data analysis", "Writing the research report", "Dissemination of findings"],
+    correctAnswer: 0,
+    explanation: "The research cycle begins with identifying and defining a clear research problem. Analysis, reporting and dissemination come later in the cycle."
   },
   {
     id: "a1q16",
@@ -150,12 +150,12 @@ export const ASSIGNMENT_1_QUESTIONS: Question[] = [
     text: "The following statements describe confounding and effect modification. Which of the statement is/are correct?",
     options: [
       "In a study of relationship between coffee drinking and Oro-pharyngeal cancer; smoking is a confounder.",
-      "In a study to explore relationship between hepatitis B infection and post-infection hepatic sequelae, habit of alcohol drinking acts as an effect modifier and patients with this habit may be excluded from the study",
+      "In a study to explore relationship between hepatitis B infection and post-infection hepatic sequelae, habit of alcohol drinking acts as an effect modifier, so its effect should be stratified and reported rather than excluding these patients from the study",
       "‘a’ and ‘b’ Correct",
       "‘a’ and ‘b’ Wrong"
     ],
     correctAnswer: 2,
-    explanation: "Smoking is linked to coffee drinking and independently causes oropharyngeal cancer, so it is a confounder. Alcohol changes how much liver damage hepatitis B causes, so it is an effect modifier. Both statements are accepted as correct."
+    explanation: "Smoking is linked to coffee drinking and independently causes oropharyngeal cancer, so it is a confounder. Alcohol changes how much liver damage hepatitis B causes, so it is an effect modifier that should be stratified and reported rather than used to exclude patients. Both statements are correct."
   },
   {
     id: "a1q19",
@@ -187,10 +187,10 @@ export const ASSIGNMENT_1_QUESTIONS: Question[] = [
   },
   {
     id: "a1q23",
-    text: "Which of the following is NOT a type of study design?",
-    options: ["Qualitative study", "Observational study", "Retrospective study", "Translational study"],
-    correctAnswer: 3,
-    explanation: "Translational research is a stage of research that moves findings from bench to bedside to community. It is not a study design. Qualitative, observational and retrospective studies are design classifications."
+    text: "A measurement tool gives the same result when the same measurement is repeated under the same conditions. This property of the tool is called:",
+    options: ["Validity", "Reliability", "Bias", "Confounding"],
+    correctAnswer: 1,
+    explanation: "Reliability (repeatability) describes whether a measurement gives consistent results under the same conditions. Validity describes whether the tool measures what it is intended to measure."
   },
   {
     id: "a1q24",
@@ -253,83 +253,73 @@ export const ASSIGNMENT_1_QUESTIONS: Question[] = [
   },
   {
     id: "a1q31",
-    text: "Which of the following best describes a study done in a laboratory setting using animals?",
-    options: ["Translational research", "Bench-based research", "Theoretical research", "Preventive research"],
-    correctAnswer: 1,
-    explanation: "Laboratory studies using animals, cells or tissues are bench-based (pre-clinical) research."
+    text: "In a case-control study of diet and disease, cases recall their past diet more thoroughly than controls, which distorts the comparison. This error is best described as:",
+    options: ["Confounding", "Random error", "Selection bias", "Recall bias"],
+    correctAnswer: 3,
+    explanation: "Recall bias is an information bias that arises when participants with the disease remember past exposures differently from those without it. Selection bias concerns how participants are chosen."
   },
   {
     id: "a1q32",
-    text: "Which of the following review is NOT essential before initiating a research study?",
-    options: ["Scientific review", "Peer review", "Regulatory review", "Ethics review"],
-    correctAnswer: 1,
-    explanation: "Scientific, ethics and regulatory reviews are required before a study starts. Peer review is mainly for funding and publication and is not a mandatory step before starting."
+    text: "A study enrols only patients attending a tertiary hospital, and milder cases rarely attend there, so the sample is not representative of all cases. This error is an example of:",
+    options: ["Information bias", "Chance", "Selection bias", "Effect modification"],
+    correctAnswer: 2,
+    explanation: "Selection bias occurs when the way participants are chosen makes the sample differ systematically from the target population. Here the hospital setting excludes many milder cases."
   },
   {
     id: "a1q33",
-    text: "Which of the following is NOT a type of study design?",
-    options: ["Qualitative study", "Observational study", "Retrospective study", "Translational study"],
-    correctAnswer: 3,
-    explanation: "Translational research is a stage of research that moves findings from bench to bedside to community. It is not a study design. Qualitative, observational and retrospective studies are design classifications."
+    text: "Repeated weight measurements on the same person are very close to one another, but every reading is 3 kg higher than the true weight. The measurements are:",
+    options: ["Precise but inaccurate", "Accurate but imprecise", "Both precise and accurate", "Neither precise nor accurate"],
+    correctAnswer: 0,
+    explanation: "The readings agree closely with each other, so they are precise, but they consistently differ from the true value, so they are inaccurate. This pattern usually reflects systematic error, such as a miscalibrated scale."
   },
   {
     id: "a1q34",
-    text: "Which of the following statements is NOT correct regarding errors in a health research?",
-    options: [
-      "Random error is due to chance",
-      "Systematic error is due to bias",
-      "Random errors can be eliminated by random sampling",
-      "Bias distorts the study results in one direction"
-    ],
+    text: "A case-control study finds that cases changed their diet after diagnosis, and the change may have been caused by early, undiagnosed disease rather than being a cause of it. This is an example of:",
+    options: ["Confounding", "Effect modification", "Reverse causation", "Random error"],
     correctAnswer: 2,
-    explanation: "Random error is due to chance. A larger sample size can reduce it, but no design can eliminate it. The other statements about errors are correct."
+    explanation: "Reverse causation occurs when the assumed exposure is actually a consequence of the disease. Confounding, effect modification and random error describe different problems."
   },
   {
     id: "a1q35",
-    text: "Assigning roles and responsibilities to the team members is one of the fundamental principles of a research",
+    text: "Blinding of participants and outcome assessors is mainly used to reduce selection bias at enrolment.",
     options: ["True", "False"],
-    correctAnswer: 0,
-    explanation: "Assigning clear roles and responsibilities gives accountability, efficiency and quality control. It is a basic principle of well-conducted research."
+    correctAnswer: 1,
+    explanation: "Blinding reduces information, performance and detection bias, which arise after participants are enrolled. Selection bias is controlled mainly through how participants are chosen and allocated."
   },
   {
     id: "a1q36",
-    text: "Health research is usually focused on which of the following areas?",
-    options: ["Estimation of disease burden in a population", "Prevention of common diseases in the community", "Evaluation of public health programs", "All the above"],
+    text: "Which of the following is NOT one of Bradford Hill's criteria for judging a causal association?",
+    options: ["Strength of association", "Temporality", "Biological gradient", "Statistical significance (p < 0.05)"],
     correctAnswer: 3,
-    explanation: "Health research focuses on estimating disease burden, preventing common diseases and evaluating public health programmes, so all of the options are correct."
+    explanation: "Bradford Hill's criteria include strength, consistency, specificity, temporality, biological gradient, plausibility and coherence. A p-value below 0.05 shows that chance is unlikely, but it is not a causal criterion."
   },
   {
     id: "a1q37",
-    text: "Which of the following is NOT a component of a research study?",
-    options: ["Setting up the institute scientific committee", "Calculating sample size", "Development of a study tool", "Framing the research question"],
-    correctAnswer: 0,
-    explanation: "Framing the question, calculating sample size and developing study tools are parts of a research study. Setting up an institutional scientific committee is an administrative task for the institution."
+    text: "Which of the following is NOT typically a component of a research protocol?",
+    options: ["Background and rationale", "Study objectives", "Final published discussion of results", "Statistical analysis plan"],
+    correctAnswer: 2,
+    explanation: "A research protocol describes the planned study, including its background, objectives and statistical analysis plan. The discussion of results is written only after the study is completed."
   },
   {
     id: "a1q38",
-    text: "A researcher wants to study the relationship between COVID-19 infection in pregnancy and birth weight. Currently, there is no evidence on this topic. Which of the following options is the scope of this health research?",
-    options: ["Verifying and confirming known information", "Getting additional or new information", "Evaluating ongoing programs", "All of the above"],
-    correctAnswer: 1,
-    explanation: "There is no existing evidence on this topic, so the study's scope is to generate new information rather than to verify known findings or evaluate a programme."
+    text: "Which of the following is a core element of informed consent?",
+    options: ["Voluntary participation, with the right to withdraw at any time", "Compulsory participation in order to receive free care", "Consent obtained only after data collection is complete", "Consent signed by the investigator on behalf of the participant"],
+    correctAnswer: 0,
+    explanation: "Informed consent requires that participation is voluntary, that participants understand the study, and that they may withdraw at any time without penalty. The other options contradict these principles."
   },
   {
     id: "a1q39",
-    text: "Which of the following is NOT a critical consideration in planning a health research?",
-    options: ["Adequate justification", "Clear and focussed research question", "Standard case definitions", "Financial gain"],
-    correctAnswer: 3,
-    explanation: "Justification, a clear research question and standard case definitions are critical to planning research. Financial gain is not a scientific consideration and may be a conflict of interest."
+    text: "A study examines how an existing health service can be made to work more efficiently using the resources already available. This type of research is called:",
+    options: ["Basic research", "Operational research", "Clinical trial", "Case series"],
+    correctAnswer: 1,
+    explanation: "Operational research studies how to improve the delivery and efficiency of services and programmes using existing resources. Basic research seeks new knowledge without an immediate application."
   },
   {
     id: "a1q40",
-    text: "Identify the CORRECT statement about implementation of a research",
-    options: [
-      "Research findings must be approved by the funder",
-      "Research finding must be error free",
-      "Adequate sample size is a prerequisite",
-      "Pilot study can be done during data analysis stage"
-    ],
-    correctAnswer: 2,
-    explanation: "An adequate sample size is needed for statistical power. Findings never need funder approval, no study is completely error-free, and pilot studies are done before the main study, not during analysis."
+    text: "Random allocation of participants to intervention and control groups is the key feature that distinguishes which study design?",
+    options: ["Cohort study", "Case-control study", "Cross-sectional study", "Randomized controlled trial"],
+    correctAnswer: 3,
+    explanation: "A randomized controlled trial allocates participants to groups by chance, which separates it from observational designs. Cohort, case-control and cross-sectional studies do not randomize the exposure."
   },
   {
     id: "a1q41",
@@ -376,7 +366,7 @@ export const ASSIGNMENT_1_QUESTIONS: Question[] = [
   {
     id: "a1q47",
     text: "How can systematic errors be minimized?",
-    options: ["By increasing sample size", "By increasing precision", "By calibrating the instrument", "By stratification"],
+    options: ["By increasing sample size", "By increasing precision", "By calibrating the instrument", "By recording the outcome to more decimal places"],
     correctAnswer: 2,
     explanation: "Systematic error (bias) is reduced by better design and measurement, for example by calibrating instruments. A larger sample or higher precision only reduces random error."
   },
@@ -389,14 +379,14 @@ export const ASSIGNMENT_1_QUESTIONS: Question[] = [
   },
   {
     id: "a1q49",
-    text: "Choose whether the following statement is true or false. ‘Inclusion and Exclusion criteria should be mutually exclusive”.",
+    text: "Choose whether the following statement is true or false. ‘Inclusion and exclusion criteria should be mutually exclusive’.",
     options: ["True", "False"],
     correctAnswer: 0,
     explanation: "Inclusion and exclusion criteria should not overlap or contradict each other. Exclusion criteria apply only to people who already meet the inclusion criteria."
   },
   {
     id: "a1q50",
-    text: "What is the term used to denote ‘a variable that can alter the relationship between the study variable and outcome by independently affecting outcome’ called?",
+    text: "What is the term used to denote ‘a third variable across whose levels the effect of the study variable on the outcome differs’ called?",
     options: ["Confounder", "Effect modifier", "Intervening variable", "Outcome variable"],
     correctAnswer: 1,
     explanation: "An effect modifier changes the strength or direction of the relationship between the study variable and the outcome across its levels. A confounder, by contrast, creates a spurious association."

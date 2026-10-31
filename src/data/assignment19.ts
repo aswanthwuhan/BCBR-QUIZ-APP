@@ -10,10 +10,10 @@ export const ASSIGNMENT_19_QUESTIONS: Question[] = [
   },
   {
     id: "a19q2",
-    text: "In which type of the following study/studies is (are) informed consent not necessary?",
-    options: ["Investigation of an outbreak", "Analysis of mortality data of 2001-2010", "Using verbal autopsy to determine the cause of death", "All of the above"],
+    text: "In which of the following studies may the ethics committee waive the requirement for informed consent?",
+    options: ["Interviewing outbreak cases for a research study", "Retrospective analysis of anonymized mortality data of 2001-2010", "Verbal autopsy interviews with family members to determine the cause of death", "All of the above"],
     correctAnswer: 1,
-    explanation: "Analyzing anonymized mortality records from the past involves no contact with participants and minimal risk, so the ethics committee can waive informed consent. Outbreak investigations and verbal autopsies involve interviewing people."
+    explanation: "Retrospective analysis of anonymized records involves no contact with people and minimal risk, so the ethics committee may waive consent. Research interviews with cases or families require consent."
   },
   {
     id: "a19q3",
@@ -52,10 +52,10 @@ export const ASSIGNMENT_19_QUESTIONS: Question[] = [
   },
   {
     id: "a19q8",
-    text: "Genetic research that involves human participants and conducted by a private research institute should follow",
-    options: ["ICMR Guidelines", "Genome Policy and Genetic Research [2000]", "Both 'a' and 'b'", "Neither 'a' nor 'b'"],
+    text: "Genetic research that involves human participants and is conducted by a private research institute should follow",
+    options: ["ICMR Guidelines", "DBT Ethical Policies on the Human Genome, Genetic Research and Services (2002)", "Both 'a' and 'b'", "Neither 'a' nor 'b'"],
     correctAnswer: 2,
-    explanation: "Human research in India, whether public or private, must follow the ICMR guidelines, and genetic research must also follow the specific genetic research guidelines, so both apply."
+    explanation: "Human research in India, whether public or private, must follow the ICMR guidelines, and genetic research must also follow the specific human genome and genetic research policy, so both apply."
   },
   {
     id: "a19q9",
@@ -80,17 +80,17 @@ export const ASSIGNMENT_19_QUESTIONS: Question[] = [
   },
   {
     id: "a19q12",
-    text: "A study participant can be forced by the investigator to continue in a trial against his will. This is in conflict with which of the following ethical principles?",
-    options: ["Autonomy", "Justice", "Beneficence", "None of the above"],
-    correctAnswer: 0,
-    explanation: "Forcing a participant to continue against their will violates autonomy, which guarantees the right to withdraw from research at any time."
+    text: "Which of the following are considered vulnerable groups in research as per the ICMR National Ethical Guidelines (2017)?",
+    options: ["Children", "Prisoners", "Persons with mental illness", "All of the above"],
+    correctAnswer: 3,
+    explanation: "ICMR 2017 lists children, prisoners and persons with mental illness, among others, as vulnerable. Research with them needs additional safeguards and justification."
   },
   {
     id: "a19q13",
-    text: "The physician should do what is medically indicated, do good than possible harm. This principle is encompassed in the ethical dimension of:",
+    text: "The physician should do what is medically indicated and act in the best interest of the patient, so that good is done and benefits outweigh possible harm. This principle is encompassed in the ethical dimension of:",
     options: ["Beneficence", "Justice", "Nonmaleficence", "Autonomy"],
-    correctAnswer: 2,
-    explanation: "The key gives non-maleficence, emphasizing avoidance of harm. Note that 'do what is medically indicated, do good' is usually defined as beneficence, so the key is debatable."
+    correctAnswer: 0,
+    explanation: "Beneficence is the positive duty to do good and act in the participant's or patient's best interest, maximising benefits relative to harms. Non-maleficence is the narrower duty to avoid causing harm."
   },
   {
     id: "a19q14",
@@ -150,10 +150,10 @@ export const ASSIGNMENT_19_QUESTIONS: Question[] = [
   },
   {
     id: "a19q22",
-    text: "A participant wants to withdraw from a study before its completion. Which of the following principles of ethics entitles him/her to do so?",
-    options: ["Autonomy", "Justice", "Beneficence", "Non-maleficence"],
-    correctAnswer: 0,
-    explanation: "Autonomy (respect for persons) gives participants the right to decide voluntarily. This includes withdrawing at any time without giving reasons and without any penalty."
+    text: "A researcher holds shares in the company that manufactures the drug being tested in his trial. This is an example of",
+    options: ["Plagiarism", "Undue inducement", "Conflict of interest that must be disclosed to the ethics committee", "Breach of confidentiality"],
+    correctAnswer: 2,
+    explanation: "A financial interest in the outcome can bias the research, so it is a conflict of interest. It must be declared to the ethics committee, which decides how to manage it."
   },
   {
     id: "a19q23",
@@ -171,10 +171,10 @@ export const ASSIGNMENT_19_QUESTIONS: Question[] = [
   },
   {
     id: "a19q25",
-    text: "Non-Maleficence means",
-    options: ["Self-respect", "Do no harm", "Fair and correct", "Doing good"],
-    correctAnswer: 1,
-    explanation: "Non-maleficence means 'do no harm' (primum non nocere). Doing good is beneficence, and being fair and correct is justice."
+    text: "In research misconduct, 'fabrication' refers to",
+    options: ["Using another person's words or ideas without credit", "Manipulating research materials or data so that results are misrepresented", "Making up data or results and recording or reporting them", "Publishing the same results twice"],
+    correctAnswer: 2,
+    explanation: "Fabrication is inventing data or results. Manipulating data is falsification, using others' work without credit is plagiarism, and repeat publication is duplicate publication."
   },
   {
     id: "a19q26",
@@ -206,80 +206,80 @@ export const ASSIGNMENT_19_QUESTIONS: Question[] = [
   },
   {
     id: "a19q30",
-    text: "When a particular ethnic group is excluded from a research study without any valid, scientific reason(s), this is breach of -",
-    options: ["Autonomy", "Justice", "Beneficence", "Non maleficence"],
+    text: "As per the ICMR 2017 guidelines, which member of an ethics committee mainly represents the perspective of the community?",
+    options: ["Sponsor representative", "Lay person", "Principal investigator of the study under review", "Drug company employee"],
     correctAnswer: 1,
-    explanation: "Justice requires fair selection of participants. Excluding an ethnic group without a scientific reason denies that group the benefits of the research."
+    explanation: "An ethics committee must include a lay person from the community, who brings the participants' perspective. Sponsors and the investigator of the study have conflicts of interest."
   },
   {
     id: "a19q31",
-    text: "State whether true or false. Review of health records for research does not require approval of institute ethics committee",
+    text: "An ethics committee member who is the investigator of a proposal should not take part in the decision on that proposal.",
     options: ["True", "False"],
-    correctAnswer: 1,
-    explanation: "Research using health records involves human data, so it requires ethics committee submission. The committee decides on any exemption or waiver of consent."
+    correctAnswer: 0,
+    explanation: "True. Members with a conflict of interest, such as being the investigator, must declare it and withdraw from decision-making on that proposal."
   },
   {
     id: "a19q32",
-    text: "A participant enrolled in a study wants to withdraw from the study half way through the study. Which of the following principles of ethics entitles him/her to do so?",
-    options: ["Autonomy", "Justice", "Beneficence", "Non-maleficence"],
+    text: "Which practice best maintains the confidentiality of research participants?",
+    options: ["Using coded IDs and keeping the linking key securely with restricted access", "Publishing participants' names in reports", "Discussing participants by name with colleagues outside the study", "Storing filled forms on an open shelf"],
     correctAnswer: 0,
-    explanation: "Autonomy gives participants the right to withdraw at any point in a study, without giving reasons and without penalty."
+    explanation: "Coding identities and restricting access to the linking key protects confidentiality. Names should never appear in reports or be discussed outside the study."
   },
   {
     id: "a19q33",
-    text: "Which of the following does NOT describe ethical principles in research?",
-    options: ["Nuremberg code", "Helsinki declaration", "Council for International Organization and Medical Sciences", "Bhore report"],
+    text: "In India, clinical trials must be prospectively registered, before enrolment of the first participant, with",
+    options: ["PubMed", "Census of India", "Indian Council of Medical Research library", "Clinical Trials Registry - India (CTRI)"],
     correctAnswer: 3,
-    explanation: "The Bhore Committee Report (1946) planned India's public health system. The Nuremberg Code, the Declaration of Helsinki and the CIOMS guidelines are research ethics documents."
+    explanation: "Prospective registration in CTRI is mandatory for clinical trials in India. It promotes transparency and reduces selective reporting of results."
   },
   {
     id: "a19q34",
-    text: "When a research study is planned among adolescents (12-18 years), the following is NOT taken?",
-    options: ["Assent from participant", "Consent from participant", "Consent from parent", "Consent from legally accepted representative"],
+    text: "Clinical equipoise, the ethical basis for randomizing participants, means",
+    options: ["The investigator is sure the new drug is better", "There is genuine uncertainty in the expert community about the comparative merits of the interventions being compared", "Equal numbers of participants are placed in each arm", "All participants receive equal payment"],
     correctAnswer: 1,
-    explanation: "Minors under 18 cannot give legal consent. Assent is taken from the adolescent, and consent is taken from the parent or legally acceptable representative."
+    explanation: "Randomization is ethical only when experts genuinely do not know which intervention is better. If one is known to be superior, assigning people to the inferior one is unethical."
   },
   {
     id: "a19q35",
-    text: "Non-Maleficence means",
-    options: ["Self-respect", "Do no harm", "Fair and correct", "Doing good"],
-    correctAnswer: 1,
-    explanation: "Non-maleficence means 'do no harm' (primum non nocere). Doing good is beneficence, and being fair and correct is justice."
+    text: "'Post-trial access' refers to",
+    options: ["Access of investigators to data after the trial", "Access of the sponsor to participants' medical records", "Publication of trial results", "Continued access for participants to an intervention found beneficial in the trial, after the trial ends"],
+    correctAnswer: 3,
+    explanation: "Post-trial access means making a beneficial intervention available to participants after the study ends. Its arrangements should be described in the protocol and consent document."
   },
   {
     id: "a19q36",
-    text: "State whether true or false. Once a participant has provided informed consent, it cannot be changed.",
+    text: "Biological samples collected for one study can be used for unrelated future research without any consent or ethics committee approval.",
     options: ["True", "False"],
     correctAnswer: 1,
-    explanation: "Consent is dynamic. Participants may change or withdraw it at any time, and investigators must re-consent them when new information emerges."
+    explanation: "False. Future use of stored samples needs the participant's consent (often broad consent obtained at collection) and ethics committee approval for each new study."
   },
   {
     id: "a19q37",
-    text: "Which of these is NOT a part of informed consent process?",
-    options: ["Confidentiality", "Disclosure of risks and benefits", "Compensation for lost wages", "Encouraging the person to consent"],
-    correctAnswer: 3,
-    explanation: "Consent must be voluntary, so encouraging or persuading a person to join is undue influence. Confidentiality, disclosure of risks and benefits, and compensation details are proper parts of the consent process."
+    text: "A waiver of informed consent in a research study can be granted by",
+    options: ["The principal investigator", "The ethics committee", "The sponsor", "The data entry operator"],
+    correctAnswer: 1,
+    explanation: "Only the ethics committee can waive consent, and only under specified conditions such as minimal risk where obtaining consent is impracticable. Investigators cannot decide this themselves."
   },
   {
     id: "a19q38",
-    text: "Which of the following statement is NOT correct?",
-    options: ["Compensation for participants is offered for trial related injury", "Research participants can be paid for travel expenses", "Payment can be offered to encourage participation", "Wage loss of the participants can be compensated"],
-    correctAnswer: 2,
-    explanation: "Paying people to encourage participation is undue inducement. Compensation for injury and reimbursement of travel costs and lost wages are acceptable."
+    text: "As per the New Drugs and Clinical Trials Rules, 2019, who is responsible for providing compensation for clinical trial-related injury or death?",
+    options: ["The sponsor (or its representative)", "The participant", "The ethics committee", "The hospital pharmacy"],
+    correctAnswer: 0,
+    explanation: "Under NDCT Rules 2019, the sponsor must provide medical management and financial compensation for trial-related injury or death."
   },
   {
     id: "a19q39",
-    text: "Which of the following is NOT a responsibility of the Institutional Ethics Committee?",
-    options: ["Evaluate the potential benefit from the study to the community", "Protect the rights of the study participants", "Sanction funding for the study", "Re-evaluate the study if and when modified"],
+    text: "'Therapeutic misconception' among research participants means",
+    options: ["Investigators misreporting the results", "Using a wrong dose of the study drug", "Participants believing that research procedures are designed mainly for their own individual therapeutic benefit", "The placebo effect"],
     correctAnswer: 2,
-    explanation: "The ethics committee protects participants' rights, weighs risks against benefits and reviews amendments. Funding is decided by sponsors or funding agencies, not the committee."
+    explanation: "Therapeutic misconception is when participants confuse research with personal treatment. The consent process should make clear that research aims to generate knowledge."
   },
   {
     id: "a19q40",
-    text: "When a particular ethnic group is excluded from a research study without any valid, scientific reason(s), this is breach of -",
-    options: ["Autonomy", "Justice", "Beneficence", "Non maleficence"],
+    text: "Interviewing a participant about sexual behaviour in a separate room where others cannot overhear primarily protects the participant's",
+    options: ["Right to compensation", "Privacy", "Fair selection (justice)", "Post-trial access"],
     correctAnswer: 1,
-    explanation: "Justice requires fair selection of participants. Excluding an ethnic group without a scientific reason denies that group the benefits of the research."
+    explanation: "Privacy is the participant's control over who sees or hears personal information. Confidentiality then covers how the recorded information is protected afterwards."
   },
   {
     id: "a19q41",
@@ -297,17 +297,17 @@ export const ASSIGNMENT_19_QUESTIONS: Question[] = [
   },
   {
     id: "a19q43",
-    text: "Which of the following context will fall under the breach of ‘Justice’, one of the basic ethical principles?",
-    options: ["Disclosing personal identity of the study participants", "Conveying insufficient information about the study", "Excluding a particular gender from participation in a study without any valid reason", "Failing to provide the required ‘safety measures’ of the participant"],
-    correctAnswer: 2,
-    explanation: "Justice requires fair, non-discriminatory selection, so excluding a gender without a valid reason breaches it. Disclosing identity breaches confidentiality, giving insufficient information breaches autonomy, and failing to provide safety measures breaches non-maleficence."
+    text: "Expedited review by an ethics committee is appropriate for",
+    options: ["A first-in-human phase I trial", "Research with high risk to vulnerable participants", "Any study the investigator wants approved quickly", "Research involving no more than minimal risk, or minor amendments to approved protocols"],
+    correctAnswer: 3,
+    explanation: "Under ICMR 2017, expedited review is used for minimal-risk research and minor amendments. Higher-risk research needs full committee review."
   },
   {
     id: "a19q44",
-    text: "‘Do no harm’ implies to which of the following ethical principle?",
-    options: ["Beneficence", "Non maleficence", "Autonomy", "Justice"],
-    correctAnswer: 1,
-    explanation: "'Do no harm' is the principle of non-maleficence. Beneficence is the separate, positive duty to do good."
+    text: "Which international research ethics document was issued by the World Medical Association?",
+    options: ["Nuremberg Code", "Belmont Report", "Declaration of Helsinki", "CIOMS guidelines"],
+    correctAnswer: 2,
+    explanation: "The World Medical Association adopted the Declaration of Helsinki in 1964 and has revised it several times. The Belmont Report is a US document and CIOMS is a separate international organization."
   },
   {
     id: "a19q45",
@@ -332,17 +332,17 @@ export const ASSIGNMENT_19_QUESTIONS: Question[] = [
   },
   {
     id: "a19q48",
-    text: "State whether True or False: It is not advisable to repeat the informed consent process during the study.",
+    text: "An ethics committee has the authority to suspend or terminate an approved study if the safety of participants is at risk.",
     options: ["True", "False"],
-    correctAnswer: 1,
-    explanation: "Repeating the consent process is advisable and often required. It should be done when new information or protocol changes arise, or in long studies."
+    correctAnswer: 0,
+    explanation: "True. Ethics committees continue to review approved studies and can suspend or terminate them for safety concerns or serious non-compliance."
   },
   {
     id: "a19q49",
-    text: "Which of the following statement is INCORRECT about informed consent?",
-    options: ["Informed consent process can be repeated if required during the conduct of the study", "Individual consent is not required in presence of a group consent is obtained from a study group", "Informed consent must have the complete details of the proposed research", "Contact information of the principal investigator is a must in the information sheet"],
+    text: "Which of the following is an unethical authorship practice?",
+    options: ["Acknowledging contributors who do not meet authorship criteria", "Granting gift (honorary) authorship to a person who did not contribute to the work", "All authors approving the final manuscript", "Each author taking public responsibility for appropriate portions of the content"],
     correctAnswer: 1,
-    explanation: "Group or community permission may be needed in some settings, but it never replaces individual informed consent. Every participant must still consent personally."
+    explanation: "Authorship must be based on substantial contribution. Gift or honorary authorship misrepresents who did the work, while the other options are recommended practices."
   },
   {
     id: "a19q50",

@@ -99,7 +99,7 @@ export const ASSIGNMENT_10_QUESTIONS: Question[] = [
   },
   {
     id: "a10q14",
-    text: "A researcher measures fasting blood level of glucose of 100 participants. The mean blood sugar level was measured as 110 mg/dl. The standard deviation was 11 mg/dl. Calculate the coefficient of variance.",
+    text: "A researcher measures fasting blood level of glucose of 100 participants. The mean blood sugar level was measured as 110 mg/dl. The standard deviation was 11 mg/dl. Calculate the coefficient of variation.",
     options: ["20%", "14%", "10%", "25%"],
     correctAnswer: 2,
     explanation: "Coefficient of variation = (SD/Mean) x 100 = $(11/110) \\times 100 = 10\\%$."
@@ -189,16 +189,16 @@ export const ASSIGNMENT_10_QUESTIONS: Question[] = [
   {
     id: "a10q26",
     text: "What is the appropriate measure of dispersion to report when median is reported as the measure of central tendency for a given set of data?",
-    options: ["Standard deviation", "Inter-quartile range", "Variance", "Coefficient of variance"],
+    options: ["Standard deviation", "Inter-quartile range", "Variance", "Coefficient of variation"],
     correctAnswer: 1,
     explanation: "The median is paired with the interquartile range because both are percentile-based and robust to outliers; SD, variance and CV pair with the mean."
   },
   {
     id: "a10q27",
-    text: "In the NCD clinic of a primary health Centre, fasting blood sugar (in g/dL) of 11 patients was measured. The following values were obtained - (85, 93, 104, 108, 105, 120, 129, 202, 160, 400, 410). What is the most appropriate measure of central tendency for this data?",
-    options: ["Mean=120", "Median=120", "Mean=174.1", "Median=174.1"],
+    text: "In the NCD clinic of a primary health Centre, fasting blood sugar (in mg/dL) of 11 patients was measured. The following values were obtained - (85, 93, 104, 108, 105, 120, 129, 202, 160, 400, 410). What is the most appropriate measure of central tendency for this data?",
+    options: ["Mean=120", "Median=120", "Mean=174.2", "Median=174.2"],
     correctAnswer: 1,
-    explanation: "The data are skewed by extreme values (400, 410), so the median is most appropriate. Sorted, the 6th of 11 values is 120."
+    explanation: "The data are skewed by extreme values (400, 410), so the median is most appropriate. Sorted, the 6th of 11 values is 120; the mean (1916/11 = 174.2) is pulled up by the outliers."
   },
   {
     id: "a10q28",
@@ -228,45 +228,45 @@ export const ASSIGNMENT_10_QUESTIONS: Question[] = [
   },
   {
     id: "a10q31",
-    text: "When the dataset contains too many extreme values, the most representative average value is..",
-    options: ["Mean", "Mode", "Median", "Variance"],
+    text: "In a positively (right) skewed distribution, the usual relationship between the measures of central tendency is",
+    options: ["Mean = Median = Mode", "Mean < Median < Mode", "Mean > Median > Mode", "Median > Mean > Mode"],
     correctAnswer: 2,
-    explanation: "The median depends only on the rank order of values, not their magnitude, so extreme values (outliers) barely affect it. The mean is pulled toward extremes, making the median the most representative average for skewed data."
+    explanation: "A long right tail of high values pulls the mean upwards most, then the median, so typically mean > median > mode; in a symmetric distribution all three are equal."
   },
   {
     id: "a10q32",
-    text: "Ages of ten pregnant women who visited an ANC clinic are given below. What is the mean age of this group? (26, 31, 25, 26, 30, 27, 25, 32, 25 and 33 years).",
-    options: ["45", "28", "25", "32"],
+    text: "In a normal distribution, approximately what percentage of observations lie within the mean plus or minus 2 standard deviations?",
+    options: ["68%", "95%", "99.7%", "50%"],
     correctAnswer: 1,
-    explanation: "The sum of the ten ages is 280, and dividing by 10 gives a mean of 28 years. 25 is the mode, and 45 is impossible because a mean cannot exceed the maximum value."
+    explanation: "By the empirical rule, about 68%, 95% and 99.7% of observations lie within 1, 2 and 3 SD of the mean respectively."
   },
   {
     id: "a10q33",
-    text: "Which of the following is a relative measure of dispersion when comparing variables which are measured in different units?",
-    options: ["Inter-quartile range", "Coefficient of variation", "Range", "Standard deviation"],
-    correctAnswer: 1,
-    explanation: "The coefficient of variation (SD/mean x 100) is unit-free, so it can compare dispersion of variables measured in different units."
+    text: "A sample of 100 participants has a standard deviation of 10 mmHg for systolic blood pressure. What is the standard error of the mean?",
+    options: ["10", "0.1", "100", "1"],
+    correctAnswer: 3,
+    explanation: "Standard error = SD / square root of n = 10 / 10 = 1 mmHg. It measures the precision of the sample mean, not the spread of individual values."
   },
   {
     id: "a10q34",
-    text: "(5, 3, 6, 8, 7, 8, 3, 11, 6, 3) What is the median score of this group?",
-    options: ["3", "6", "8", "11"],
-    correctAnswer: 1,
-    explanation: "Sorted, the data are 3, 3, 3, 5, 6, 6, 7, 8, 8, 11. With n = 10 (even), the median is the average of the 5th and 6th values: (6 + 6)/2 = 6."
+    text: "If the standard deviation of a set of observations is 4, what is the variance?",
+    options: ["2", "8", "16", "64"],
+    correctAnswer: 2,
+    explanation: "Variance is the square of the standard deviation: 4 x 4 = 16 (in squared units)."
   },
   {
     id: "a10q35",
-    text: "'Height of the students in a particular class' is an example of a continuous variable",
+    text: "State whether true or false. Adding a constant of 5 to every observation in a data set changes its standard deviation.",
     options: ["True", "False"],
-    correctAnswer: 0,
-    explanation: "Height can take any value within a range, including fractions (e.g., 160.5 cm), limited only by measurement precision. Measured variables like this are continuous, unlike counted (discrete) variables."
+    correctAnswer: 1,
+    explanation: "False. Adding a constant shifts every value and the mean by the same amount, so the deviations from the mean, and hence the SD, are unchanged."
   },
   {
     id: "a10q36",
-    text: "What is the appropriate measure of dispersion to report when median is reported as the measure of central tendency for a given set of data?",
-    options: ["Standard deviation", "Inter-quartile range", "Variance", "Coefficient of variance"],
-    correctAnswer: 1,
-    explanation: "The median is paired with the interquartile range because both are percentile-based and robust to outliers; SD, variance and CV pair with the mean."
+    text: "Body temperature measured in degrees Celsius, which has no true zero point, is an example of which scale of measurement?",
+    options: ["Nominal", "Ordinal", "Interval", "Ratio"],
+    correctAnswer: 2,
+    explanation: "An interval scale has equal intervals between values but an arbitrary zero, so ratios are meaningless (40 degrees C is not twice as hot as 20 degrees C)."
   },
   {
     id: "a10q37",
@@ -277,29 +277,24 @@ export const ASSIGNMENT_10_QUESTIONS: Question[] = [
   },
   {
     id: "a10q38",
-    text: "Which of the following about 'Range' is TRUE?",
-    options: [
-      "It indicates the way in which values cluster about a particular point",
-      "It gives the number of observations bearing the same value",
-      "It is the difference between the minimum and maximum value",
-      "It shows the degree to which the mean value differs from its expected value"
-    ],
-    correctAnswer: 2,
-    explanation: "Range is the difference between the maximum and minimum values of a data set."
+    text: "The most appropriate graph to display the frequency distribution of a continuous variable such as birth weight is a",
+    options: ["Histogram", "Pie chart", "Simple bar chart", "Pictogram"],
+    correctAnswer: 0,
+    explanation: "A histogram shows class intervals of a continuous variable as adjacent bars whose areas represent frequencies; bar and pie charts suit categorical data."
   },
   {
     id: "a10q39",
-    text: "In a survey, socio-economic status (SES) was collected in the following manner - 'Lower, Lower Middle, Upper Middle and Upper'. What type of variable is SES?",
-    options: ["Ordinal", "Nominal", "Continuous", "Discrete"],
-    correctAnswer: 0,
-    explanation: "SES categories (lower to upper) have a clear rank order but unequal intervals, making SES an ordinal variable."
+    text: "For nominal data such as blood group, the only appropriate measure of central tendency is the",
+    options: ["Mean", "Median", "Geometric mean", "Mode"],
+    correctAnswer: 3,
+    explanation: "Nominal categories cannot be ordered or added, so only the most frequent category (mode) can be reported."
   },
   {
     id: "a10q40",
-    text: "Calculate the interquartile range of the following body weight (in Kg) of children who attended a paediatric OPD. (7, 12, 11, 13.5, 8.5, 16, 7, 11, 12)",
+    text: "Using Tukey's hinges (the lower and upper halves each include the median), Q1 and Q3 of the following body weights (in kg) of children who attended a paediatric OPD are: (7, 12, 11, 13.5, 8.5, 16, 7, 11, 12)",
     options: ["7, 16", "8.5, 12", "11, 12", "12, 13.5"],
     correctAnswer: 1,
-    explanation: "Sorted: 7, 7, 8.5, 11, 11, 12, 12, 13.5, 16. The median is 11. The median of the lower half gives Q1 = 8.5 and the median of the upper half gives Q3 = 12, so the IQR runs from 8.5 to 12 (width 3.5 kg)."
+    explanation: "Sorted: 7, 7, 8.5, 11, 11, 12, 12, 13.5, 16; the median is 11. The lower half including the median (7, 7, 8.5, 11, 11) gives Q1 = 8.5 and the upper half (11, 12, 12, 13.5, 16) gives Q3 = 12, so the IQR runs from 8.5 to 12 (width 3.5 kg). Other quartile methods give slightly different values."
   },
   {
     id: "a10q41",
@@ -317,8 +312,8 @@ export const ASSIGNMENT_10_QUESTIONS: Question[] = [
   },
   {
     id: "a10q43",
-    text: "Variance is always preferred to calculate deviations from",
-    options: ["Mode", "Variance", "Median", "Mean"],
+    text: "Variance is calculated from the squared deviations of the observations around the",
+    options: ["Mode", "Range", "Median", "Mean"],
     correctAnswer: 3,
     explanation: "Variance is defined as the average squared deviation from the arithmetic mean. The sum of squared deviations is smallest around the mean (the least-squares property)."
   },
@@ -331,10 +326,10 @@ export const ASSIGNMENT_10_QUESTIONS: Question[] = [
   },
   {
     id: "a10q45",
-    text: "State whether true or false. 'Height of a student in a particular class is 60 inches' is an example of a continuous variable.",
+    text: "State whether true or false. A variable with only two possible categories, such as alive or dead, is called a dichotomous (binary) variable.",
     options: ["True", "False"],
     correctAnswer: 0,
-    explanation: "Height is a continuous variable because it can take any value within a range. Recording one observation as a whole number (60 inches) is just rounding and does not make the variable discrete."
+    explanation: "True. Dichotomous variables are categorical variables with exactly two categories and are commonly summarized as proportions."
   },
   {
     id: "a10q46",
@@ -352,15 +347,10 @@ export const ASSIGNMENT_10_QUESTIONS: Question[] = [
   },
   {
     id: "a10q48",
-    text: "Which of the following about 'Range' is true?",
-    options: [
-      "It indicates the way in which values cluster about a particular point",
-      "It gives the number of observations bearing the same value",
-      "It is the difference between the minimum and maximum value",
-      "It shows the degree to which the mean value differs from its expected value."
-    ],
-    correctAnswer: 2,
-    explanation: "Range is the difference between the maximum and minimum values. It is the simplest measure of dispersion but is very sensitive to outliers. The other options describe central tendency, frequency or bias."
+    text: "The following observations were recorded: 2, 3, 3, 5, 7, 7, 9. Which statement about the mode is correct?",
+    options: ["The distribution is unimodal with mode 3", "The distribution is bimodal with modes 3 and 7", "The distribution is bimodal with modes 5 and 7", "The distribution has no mode"],
+    correctAnswer: 1,
+    explanation: "Both 3 and 7 occur twice while every other value occurs once, so the data have two modes (bimodal)."
   },
   {
     id: "a10q49",
@@ -371,9 +361,9 @@ export const ASSIGNMENT_10_QUESTIONS: Question[] = [
   },
   {
     id: "a10q50",
-    text: "All the following are examples of a nominal variable EXCEPT",
-    options: ["Gender", "Age", "Place of residence", "Colour of eyes"],
-    correctAnswer: 1,
-    explanation: "Age is a quantitative (numerical) variable. Gender, place of residence and eye colour are unordered categories, i.e., nominal variables."
+    text: "Which of the following variables is measured on a ratio scale?",
+    options: ["Blood group", "Temperature in degrees Celsius", "Pain severity graded as mild, moderate or severe", "Body weight in kg"],
+    correctAnswer: 3,
+    explanation: "Weight has equal intervals and a true zero, so ratios are meaningful (80 kg is twice 40 kg); blood group is nominal, pain grade ordinal and Celsius temperature interval."
   }
 ];

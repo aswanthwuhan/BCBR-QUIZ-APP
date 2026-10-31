@@ -207,15 +207,10 @@ export const ASSIGNMENT_14_QUESTIONS: Question[] = [
   },
   {
     id: "a14q18",
-    text: "In a study to evaluate a new medication, which of the following will generate a stronger evidence?",
-    options: [
-      "Comparing outcomes among those receiving medication with those not receiving it",
-      "Comparing outcomes among those receiving higher doses with those receiving lower doses",
-      "Comparing adverse events among those receiving medication and those not",
-      "All of the above"
-    ],
+    text: "In a study to evaluate a new medication, which of the following comparisons contribute evidence about its effects?",
+    options: ["Comparing outcomes among those receiving medication with those not receiving it", "Comparing outcomes among those receiving higher doses with those receiving lower doses", "Comparing adverse events among those receiving medication and those not", "All of the above"],
     correctAnswer: 3,
-    explanation: "Comparing treated with untreated outcomes, showing a dose-response relationship and comparing adverse events together give the strongest evidence for both efficacy and safety."
+    explanation: "Each comparison adds evidence: treated versus untreated outcomes show efficacy, a dose-response gradient supports causality, and comparing adverse events shows safety."
   },
   {
     id: "a14q19",
@@ -323,83 +318,73 @@ export const ASSIGNMENT_14_QUESTIONS: Question[] = [
   },
   {
     id: "a14q31",
-    text: "Which of the following is ideally the first step in developing a study?",
-    options: ["Fixing the title", "Formulating the research question", "Writing the background", "Planning for analysis"],
+    text: "In project management, a milestone is",
+    options: ["The total budget of the project", "A significant checkpoint marking completion of a key stage, such as completion of recruitment", "A routine daily task of field staff", "A variable in the data collection form"],
     correctAnswer: 1,
-    explanation: "Formulating the research question is the first step. The background, objectives, design, analysis plan and title all follow from it."
+    explanation: "Milestones are key events (for example ethics approval or completion of data collection) used to check whether a project is on schedule. They mark points in time rather than ongoing activities."
   },
   {
     id: "a14q32",
-    text: "Which of the following is a reason for the failure of a study?",
-    options: ["Poorly stated research question", "Unrealistic timeline", "Inadequate supervision", "All the above"],
-    correctAnswer: 3,
-    explanation: "A poorly stated research question, an unrealistic timeline and inadequate supervision can each cause a study to fail."
+    text: "Dummy (shell) tables prepared during study planning are",
+    options: ["Empty tables showing how the results will be presented, prepared before data collection", "Tables filled with assumed data to be published", "The final tables of the published paper", "Tables listing the budget heads"],
+    correctAnswer: 0,
+    explanation: "Dummy tables have titles, rows and columns but no data. Preparing them early clarifies which variables and categories must be collected to meet each objective."
   },
   {
     id: "a14q33",
-    text: "Which of the following represents the correct sequence in the life cycle of a study?",
-    options: [
-      "Developing research question, Data collection, Data analysis, Planning analysis",
-      "Developing research question, Planning the data analysis, Data collection, Data analysis",
-      "Developing research question, Data collection, Planning analysis, Data analysis",
-      "Planning analysis, Data collection, Data analysis, Developing research question"
-    ],
-    correctAnswer: 1,
-    explanation: "The analysis should be planned before data are collected, so that the right variables are captured. The correct order is research question, analysis plan, data collection, then analysis."
+    text: "Including a contingency provision in a research budget and timeline is meant to",
+    options: ["Pay investigators an extra honorarium", "Fund additional objectives added later", "Cover unforeseen events such as price rises or field delays", "Replace the need for monitoring"],
+    correctAnswer: 2,
+    explanation: "A contingency margin of time and money absorbs unexpected problems, such as cost increases or recruitment delays, without derailing the project. It is not meant for new objectives or extra payments."
   },
   {
     id: "a14q34",
-    text: "Which of the following factor is NOT essential for effective planning and management of a study?",
-    options: ["Time management", "Financial management", "Reduction of sample size", "Team work"],
-    correctAnswer: 2,
-    explanation: "Effective study management relies on time management, financial management and teamwork. Sample size is set statistically, and reducing it is not a management principle."
+    text: "Well-framed study objectives are often described as SMART. This stands for",
+    options: ["Simple, Meaningful, Accurate, Reliable, Timely", "Specific, Manageable, Accurate, Random, Tested", "Statistical, Measurable, Approved, Reliable, Targeted", "Specific, Measurable, Achievable, Relevant, Time-bound"],
+    correctAnswer: 3,
+    explanation: "SMART objectives are Specific, Measurable, Achievable, Relevant and Time-bound, which makes it clear what will be measured and by when."
   },
   {
     id: "a14q35",
-    text: "Which of the following is to be followed while collecting the information elements?",
-    options: [
-      "Use of variables that best reflect the information element",
-      "Standardized case definitions",
-      "Use of validated and standardized methods",
-      "All the above"
-    ],
-    correctAnswer: 3,
-    explanation: "Information should be collected using variables that best reflect each element, standardized case definitions, and validated, standardized methods."
+    text: "In project scheduling, the 'critical path' refers to",
+    options: ["The longest sequence of dependent activities, which determines the minimum time needed to complete the project", "The single shortest activity in the project", "The budget head with the highest cost", "The route for obtaining ethics approval"],
+    correctAnswer: 0,
+    explanation: "Activities on the critical path have no slack, so any delay in them delays the whole project. Managers watch these activities most closely."
   },
   {
     id: "a14q36",
-    text: "State whether true or false: Framing several study objectives improves the study planning and management.",
+    text: "Ethics committee approval should be obtained before recruitment of study participants begins.",
     options: ["True", "False"],
-    correctAnswer: 1,
-    explanation: "Too many objectives make a study complex and hard to manage. A few clear objectives, with one primary objective, are preferred."
+    correctAnswer: 0,
+    explanation: "True. ICMR 2017 guidelines require prior ethics committee review and approval; no participant may be enrolled before approval is granted."
   },
   {
     id: "a14q37",
-    text: "State whether true or false: Selection of study design should be related to the objectives.",
+    text: "Planning for data management (data entry, cleaning and storage) can safely be postponed until all data have been collected.",
     options: ["True", "False"],
-    correctAnswer: 0,
-    explanation: "The study design must match the objectives. For example, prevalence needs a cross-sectional design and efficacy needs an RCT."
+    correctAnswer: 1,
+    explanation: "False. Data entry formats, checks and storage should be planned in advance and run alongside data collection, so that errors are caught while they can still be corrected."
   },
   {
     id: "a14q38",
-    text: "Which of the following is a part of the planning and program management of a community based thesis?",
-    options: ["Calculating sample size", "Arranging transport to community", "Writing thesis", "All the above"],
-    correctAnswer: 3,
-    explanation: "Planning and program management covers the whole project. That includes technical planning (sample size), field logistics (transport to the community) and scheduling the final output (thesis writing), so all the options apply."
+    text: "Regularly comparing a study's actual progress with its planned timeline mainly helps to",
+    options: ["Change the primary objective midway", "Detect delays early and take corrective action", "Increase the alpha level", "Avoid the need for ethics approval"],
+    correctAnswer: 1,
+    explanation: "Monitoring progress against the plan shows which activities are lagging, so resources or schedules can be adjusted before the delay threatens the project."
   },
   {
     id: "a14q39",
-    text: "Which of the following can be used to represent the duration, timeline and sequence of activities?",
-    options: ["Bar chart", "Histogram", "Gantt chart", "Pie chart"],
-    correctAnswer: 2,
-    explanation: "A Gantt chart uses horizontal bars plotted against time to show the duration, timeline and sequence of project activities."
+    text: "Training field investigators before data collection primarily helps to",
+    options: ["Standardize procedures and reduce variation between observers", "Increase the sample size", "Remove the need for supervision", "Reduce the number of objectives"],
+    correctAnswer: 0,
+    explanation: "Training ensures all investigators apply the same definitions, techniques and questions, which improves data quality and consistency. Supervision is still needed afterwards."
   },
   {
     id: "a14q40",
-    text: "Who is primarily responsible for resource allocation and time management in a study?",
-    options: ["Institute", "Principal investigator", "Funding agency", "Scientific committee"],
-    correctAnswer: 1,
-    explanation: "The principal investigator is accountable for running the study, which includes allocating staff, funds and equipment and keeping activities on schedule. Institutes, funders and committees support or oversee the study but do not manage it day to day."
+    text: "In a clinical trial, a Data Safety Monitoring Board (DSMB) is primarily responsible for",
+    options: ["Recruiting participants", "Writing the study protocol", "Independent periodic review of accumulating safety and efficacy data", "Entering data into the database"],
+    correctAnswer: 2,
+    explanation: "A DSMB is an independent expert group that reviews interim data and can recommend continuing, modifying or stopping the trial to protect participants."
   },
   {
     id: "a14q41",
@@ -429,15 +414,10 @@ export const ASSIGNMENT_14_QUESTIONS: Question[] = [
   },
   {
     id: "a14q44",
-    text: "All of the following are advantages of having an analysis plan EXCEPT.",
-    options: [
-      "Analyzable information is collected",
-      "Early dissemination of study results",
-      "Helps to avoid comparison not related to the objectives",
-      "Good quality data can be obtained"
-    ],
+    text: "All of the following are advantages of preparing an analysis plan at the planning stage EXCEPT",
+    options: ["Only analyzable information relevant to the objectives is collected", "Dummy tables show which variables must be collected and in what form", "Helps to avoid comparisons not related to the objectives", "It guarantees that the results will be statistically significant"],
     correctAnswer: 3,
-    explanation: "An analysis plan ensures only analyzable, objective-related data are collected and allows early analysis and dissemination. Data quality, however, depends on validated tools, training and supervision during collection, not on the analysis plan."
+    explanation: "An analysis plan ensures the right variables are collected in analyzable form and keeps analysis tied to the objectives. No plan can guarantee statistical significance, which depends on the true effect and the data."
   },
   {
     id: "a14q45",
@@ -472,10 +452,10 @@ export const ASSIGNMENT_14_QUESTIONS: Question[] = [
   },
   {
     id: "a14q48",
-    text: "Which of the following is NOT a part of project management?",
+    text: "Once a protocol has been approved, which of the following is NOT a project management function during study implementation?",
     options: ["Time management", "Resource allocation", "Monitoring and supervision", "Protocol development"],
     correctAnswer: 3,
-    explanation: "Project management deals with carrying out an approved study through time management, resource allocation, and monitoring and supervision. Protocol development belongs to the earlier scientific design phase."
+    explanation: "During implementation, project management covers keeping to the timeline, allocating resources, and monitoring and supervising field work. Protocol development is done earlier, before approval."
   },
   {
     id: "a14q49",
