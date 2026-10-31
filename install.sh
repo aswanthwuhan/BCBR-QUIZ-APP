@@ -24,6 +24,12 @@ echo "Downloading BCBR QBank..."
 TMP="$(mktemp -d)"
 curl -fsSL "https://github.com/$REPO/archive/refs/heads/main.tar.gz" | tar -xz -C "$TMP"
 SRC="$(find "$TMP" -mindepth 1 -maxdepth 1 -type d | head -n 1)"
+# Stop before anything is deleted if the download came back empty
+if [ -z "$SRC" ] || [ ! -d "$SRC" ]; then
+  echo "Download failed: no files were received. Nothing was changed."
+  rm -rf "$TMP"
+  exit 1
+fi
 
 # Update in place: replace the code but keep already-installed node_modules.
 # Refuse to clear a folder that isn't empty and isn't an existing BCBR QBank install.

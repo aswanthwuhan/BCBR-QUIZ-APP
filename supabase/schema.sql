@@ -18,6 +18,7 @@ create table if not exists users (
   has_seen_ai_warning boolean not null default false,
   progress jsonb not null default '{}'::jsonb,
   score integer not null default 0,
+  token_version integer not null default 0,
   created_at timestamptz not null default now()
 );
 
@@ -60,3 +61,6 @@ alter table explanations enable row level security;
 alter table reports      enable row level security;
 alter table feedback     enable row level security;
 revoke all on users, explanations, reports, feedback from anon, authenticated;
+
+-- Bumped on logout to invalidate existing JWTs (idempotent for existing databases)
+alter table users add column if not exists token_version integer not null default 0;
