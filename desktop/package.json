@@ -3,6 +3,11 @@
   "productName": "BCBR QBank",
   "version": "1.1.0",
   "description": "BCBR QBank desktop app (offline quiz bank) built with Electron",
+  "homepage": "https://github.com/aswanthwuhan/BCBR-QUIZ-APP",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aswanthwuhan/BCBR-QUIZ-APP.git"
+  },
   "private": true,
   "main": "main.cjs",
   "author": "Dr. Aswanth Krishnan",

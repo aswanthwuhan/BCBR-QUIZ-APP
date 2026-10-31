@@ -9,6 +9,11 @@ on:
         description: Release tag to upload the installers to (for example v1.1.0)
         required: true
         type: string
+      ref:
+        description: Branch or commit to build (defaults to the tag)
+        required: false
+        type: string
+        default: ""
 
 permissions:
   contents: write
@@ -29,12 +34,12 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
-          ref: ${{ inputs.tag }}
+          ref: ${{ inputs.ref || inputs.tag }}
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: npm
