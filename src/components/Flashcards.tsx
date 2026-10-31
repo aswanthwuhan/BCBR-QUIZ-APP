@@ -37,7 +37,11 @@ const GRADES: Array<{ grade: FlashcardGrade; label: string; tone: string }> = [
 
 /** Shared shell for both card faces: premium glass with a layered soft shadow. */
 const FACE_CLASS =
-  'relative flex h-full min-h-[220px] max-[359px]:min-h-[190px] sm:min-h-[380px] flex-col rounded-3xl bg-white/90 dark:bg-slate-900/90 p-4 sm:p-10 backdrop-blur-xl ring-1 ring-slate-900/5 dark:ring-white/10 shadow-[0_20px_60px_-15px_rgb(2_132_199/0.15)] dark:shadow-[0_20px_60px_-15px_rgb(2_6_23/0.6)] [backface-visibility:hidden]';
+  'relative flex h-full min-h-[260px] max-[359px]:min-h-[210px] sm:min-h-[400px] flex-col overflow-hidden rounded-[28px] bg-white dark:bg-slate-900 p-5 pt-6 sm:p-10 sm:pt-11 ring-1 ring-slate-900/[0.06] dark:ring-white/10 shadow-[0_1px_2px_rgb(15_23_42/0.04),0_24px_48px_-24px_rgb(15_23_42/0.22)] dark:shadow-[0_24px_48px_-24px_rgb(0_0_0/0.7)] [backface-visibility:hidden]';
+
+/** Thin accent strip across the top of a face: teal for the question, emerald for the answer. */
+const STRIP_FRONT = 'pointer-events-none absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-sky-400 via-sky-500 to-indigo-500';
+const STRIP_BACK = 'pointer-events-none absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-emerald-400 to-teal-500';
 
 /**
  * Scrollable content wrapper INSIDE each face. Long answer/key-facts content
@@ -47,7 +51,7 @@ const FACE_CLASS =
 const FACE_CONTENT_CLASS = 'min-h-0 flex-1 overflow-y-auto';
 
 /** Micro-label above the front/back content ("Question", "Answer", ...). */
-const MICROLABEL_CLASS = 'text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400 dark:text-slate-500';
+const MICROLABEL_CLASS = 'text-[11px] font-bold uppercase tracking-[0.2em] text-sky-600 dark:text-sky-400';
 
 /**
  * Renders card text (question / answer / explanation) as Markdown with LaTeX
@@ -82,17 +86,17 @@ const GRADE_HELP_LINES: Array<{ word: string; tone: string; rest: string }> = [
   { word: 'Easy', tone: 'text-sky-700 dark:text-sky-300', rest: ' — recalled instantly. Much longer interval.' },
 ];
 
-const CHIP_CLASS = 'text-[10px] font-semibold uppercase tracking-wide px-2 py-0.5 rounded-full';
+const CHIP_CLASS = 'text-[10px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-full';
 
 /** Header pill toggle variants (Shuffle / Due-first). */
 const PILL_ACTIVE =
   'bg-sky-600 text-white shadow-sm hover:bg-sky-700 dark:bg-sky-600 dark:hover:bg-sky-500';
 const PILL_INACTIVE =
-  'bg-white/50 dark:bg-slate-900/50 backdrop-blur text-slate-600 dark:text-slate-300 ring-1 ring-slate-900/10 dark:ring-white/10 hover:bg-white/80 dark:hover:bg-slate-800/70';
+  'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 ring-1 ring-slate-900/10 dark:ring-white/10 hover:bg-slate-50 dark:hover:bg-slate-800';
 
 /** Nav pill (Prev / Next) shared classes. */
 const NAV_PILL_CLASS =
-  'inline-flex items-center gap-1 rounded-full px-3.5 sm:px-5 py-1.5 sm:py-2 text-sm font-medium text-slate-700 dark:text-slate-200 bg-white/70 dark:bg-slate-900/60 backdrop-blur ring-1 ring-slate-900/10 dark:ring-white/10 shadow-sm hover:-translate-y-0.5 hover:bg-white dark:hover:bg-slate-800 active:scale-[0.98] transition-all duration-150 disabled:opacity-30 disabled:pointer-events-none';
+  'inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-900 ring-1 ring-slate-900/10 dark:ring-white/10 shadow-sm hover:bg-slate-50 dark:hover:bg-slate-800 active:scale-95 transition-all duration-150 disabled:opacity-30 disabled:pointer-events-none';
 
 /** Spring used for the 3D flip — smooth, nothing bouncy. */
 const FLIP_SPRING = { type: 'spring' as const, stiffness: 260, damping: 26 };
@@ -263,11 +267,16 @@ export const Flashcards: React.FC<FlashcardsProps> = ({
       } else if (e.key === ' ' || e.key === 'Enter') {
         e.preventDefault();
         setFlipped(f => !f);
+      } else if (onGradeCard && flipped && card && ['1', '2', '3', '4'].includes(e.key)) {
+        e.preventDefault();
+        onGradeCard(card.id, Number(e.key) as FlashcardGrade);
+        setIndex(current => clampIndex(current, 1, order.length));
+        setFlipped(false);
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [order, goNext, goPrev]);
+  }, [order, goNext, goPrev, onGradeCard, flipped, card]);
 
   // Mobile swipe. Horizontal-dominant gestures navigate; vertical ones are
   // ignored so page scrolling still works.
@@ -309,7 +318,7 @@ export const Flashcards: React.FC<FlashcardsProps> = ({
 
   /** Subtle bottom hint row shared by both faces. */
   const flipHint = (label: string) => (
-    <div className="pointer-events-none mt-auto hidden max-[379px]:flex items-center justify-center gap-1.5 pt-3 text-[11px] font-medium text-slate-400 dark:text-slate-500 sm:pt-6">
+    <div className="pointer-events-none mt-auto flex items-center justify-center gap-1.5 pt-4 text-[11px] font-medium text-slate-400 dark:text-slate-500 sm:pt-6">
       <RefreshCw size={12} aria-hidden="true" />
       <span>{label}</span>
     </div>
@@ -327,6 +336,7 @@ export const Flashcards: React.FC<FlashcardsProps> = ({
       aria-hidden={flipped}
       className={`${FACE_CLASS} [grid-area:1/1] ${rotate180 ? '[transform:rotateY(180deg)]' : ''} ${hidden ? 'invisible pointer-events-none' : ''}`}
     >
+      <div className={STRIP_FRONT} aria-hidden="true" />
       {(card?.tag || dueChip || isKnown) && (
         <div className="flex items-start justify-between gap-2">
           <div className="flex flex-wrap items-center gap-1.5">
@@ -359,7 +369,7 @@ export const Flashcards: React.FC<FlashcardsProps> = ({
         <p className={`${MICROLABEL_CLASS} mt-3 sm:mt-5`}>{frontLabel}</p>
         <MathText
           text={card?.front ?? ''}
-          className="mt-2 text-base font-semibold leading-snug text-slate-900 dark:text-white sm:text-2xl"
+          className="mt-3 text-lg font-semibold leading-snug tracking-tight text-slate-900 dark:text-white sm:text-[26px] sm:leading-[1.35]"
         />
       </div>
       {flipHint('Tap to flip')}
@@ -371,14 +381,15 @@ export const Flashcards: React.FC<FlashcardsProps> = ({
       aria-hidden={!flipped}
       className={`${FACE_CLASS} [grid-area:1/1] ${rotate180 ? '[transform:rotateY(180deg)]' : ''} ${hidden ? 'invisible pointer-events-none' : ''}`}
     >
+      <div className={STRIP_BACK} aria-hidden="true" />
       <div className={FACE_CONTENT_CLASS}>
         <p className={`${MICROLABEL_CLASS} text-emerald-600 dark:text-emerald-400`}>{backLabel}</p>
         <MathText
           text={card?.back ?? ''}
-          className="mt-2 text-base font-bold leading-snug text-slate-900 dark:text-white sm:text-xl"
+          className="mt-3 text-lg font-bold leading-snug text-slate-900 dark:text-white sm:text-2xl sm:leading-[1.35]"
         />
         {card?.note && (
-          <div className="mt-4 rounded-2xl bg-slate-50 p-3 ring-1 ring-slate-900/5 dark:bg-slate-800/50 dark:ring-white/5 sm:p-4">
+          <div className="mt-5 rounded-2xl border-l-4 border-emerald-400 bg-emerald-50/60 p-3.5 ring-1 ring-emerald-900/5 dark:bg-slate-800/60 dark:ring-white/5 sm:p-4">
           <p className="mb-1.5 flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wide text-sky-700 dark:text-sky-400">
             <Info size={12} aria-hidden="true" />
             Explanation
@@ -418,9 +429,12 @@ export const Flashcards: React.FC<FlashcardsProps> = ({
         >
           <ChevronLeft size={20} />
         </button>
-        <h2 className="min-w-0 flex-1 truncate text-sm font-semibold text-slate-800 dark:text-slate-100 sm:text-base">
-          {deckTitle}
-        </h2>
+        <div className="min-w-0 flex-1">
+          <h2 className="truncate text-sm font-bold text-slate-900 dark:text-slate-100 sm:text-base">{deckTitle}</h2>
+          <p className="text-[11px] tabular-nums text-slate-500 dark:text-slate-400">
+            {order.length > 0 ? `Card ${index + 1} of ${order.length}` : 'Empty deck'}
+          </p>
+        </div>
         <button
           onClick={toggleShuffle}
           aria-pressed={shuffled}
@@ -446,13 +460,14 @@ export const Flashcards: React.FC<FlashcardsProps> = ({
         )}
       </div>
 
-      {/* Brief usage hint — hidden on the smallest phones to save vertical space */}
-      <p className="-mt-1 hidden min-[380px]:block text-center text-[11px] text-slate-400 dark:text-slate-500">
-        Tap the card to flip it · Swipe or use the arrows to move · Mark cards you know with “Got it”
+      {/* Keyboard hint on desktop (touch users get the swipe/tap affordances) */}
+      <p className="hidden sm:block text-center text-[11px] text-slate-400 dark:text-slate-500">
+        <kbd className="rounded bg-slate-100 px-1.5 py-0.5 font-sans dark:bg-slate-800">Space</kbd> flip · <kbd className="rounded bg-slate-100 px-1.5 py-0.5 font-sans dark:bg-slate-800">←</kbd> <kbd className="rounded bg-slate-100 px-1.5 py-0.5 font-sans dark:bg-slate-800">→</kbd> move
+        {onGradeCard ? <> · <kbd className="rounded bg-slate-100 px-1.5 py-0.5 font-sans dark:bg-slate-800">1–4</kbd> grade</> : null}
       </p>
 
       {order.length === 0 || !card ? (
-        <div className="rounded-3xl bg-white/90 p-10 text-center shadow-[0_20px_60px_-15px_rgb(2_132_199/0.15)] ring-1 ring-slate-900/5 backdrop-blur-xl dark:bg-slate-900/90 dark:shadow-[0_20px_60px_-15px_rgb(2_6_23/0.6)] dark:ring-white/10">
+        <div className="rounded-3xl bg-white p-10 text-center shadow-sm ring-1 ring-slate-900/5 dark:bg-slate-900 dark:ring-white/10">
           <p className="text-sm font-medium text-slate-500 dark:text-slate-400">No cards in this deck.</p>
         </div>
       ) : (
@@ -460,7 +475,7 @@ export const Flashcards: React.FC<FlashcardsProps> = ({
           {/* Progress: slim bar + stats line */}
           <div className="space-y-1">
             <div
-              className="h-1.5 w-full overflow-hidden rounded-full bg-slate-200/60 dark:bg-slate-800"
+              className="h-2 w-full overflow-hidden rounded-full bg-slate-200/70 dark:bg-slate-800"
               role="progressbar"
               aria-valuenow={Math.round(progressPercent)}
               aria-valuemin={0}
@@ -472,12 +487,14 @@ export const Flashcards: React.FC<FlashcardsProps> = ({
                 style={{ width: `${Math.min(progressPercent, 100)}%` }}
               />
             </div>
-            <p className="text-[10px] tabular-nums text-slate-400 dark:text-slate-500 sm:text-[11px]">
-              {knownCount} known{dueCount !== null ? ` · ${dueCount} due` : ''} · {cards.length} total
-            </p>
-            {hasSrs && dueFirst && (
-              <p className="text-[10px] text-slate-400 dark:text-slate-500 sm:text-[11px]">Studying due cards first</p>
-            )}
+            <div className="flex flex-wrap items-center gap-1.5 pt-0.5 text-[11px] font-semibold tabular-nums">
+              <span className="rounded-full bg-emerald-50 px-2.5 py-0.5 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-300">{knownCount} known</span>
+              {dueCount !== null && (
+                <span className="rounded-full bg-amber-50 px-2.5 py-0.5 text-amber-700 dark:bg-amber-500/10 dark:text-amber-300">{dueCount} due</span>
+              )}
+              <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-slate-600 dark:bg-slate-800 dark:text-slate-300">{cards.length} total</span>
+              {hasSrs && dueFirst && <span className="font-medium text-slate-400 dark:text-slate-500">· due first</span>}
+            </div>
           </div>
 
           {/* Card: perspective container wraps the 3D-flipping faces */}
@@ -537,26 +554,20 @@ export const Flashcards: React.FC<FlashcardsProps> = ({
             </AnimatePresence>
           </div>
 
-          {/* Prev / counter / Next */}
-          <div className="flex items-center gap-2 sm:gap-3">
-            <button
-              onClick={goPrev}
-              disabled={index === 0}
-              className={NAV_PILL_CLASS}
-            >
-              <ChevronLeft size={16} aria-hidden="true" />
-              Previous
+          {/* Prev / flip / Next */}
+          <div className="flex items-center gap-3">
+            <button onClick={goPrev} disabled={index === 0} aria-label="Previous card" className={NAV_PILL_CLASS}>
+              <ChevronLeft size={20} aria-hidden="true" />
             </button>
-            <span className="flex-1 whitespace-nowrap text-center text-xs tabular-nums text-slate-500 dark:text-slate-400 sm:text-sm">
-              Card {index + 1} of {order.length}
-            </span>
             <button
-              onClick={goNext}
-              disabled={index === order.length - 1}
-              className={NAV_PILL_CLASS}
+              onClick={() => setFlipped(f => !f)}
+              className="flex h-11 flex-1 items-center justify-center gap-2 rounded-full bg-slate-900 text-sm font-semibold text-white shadow-sm transition-all hover:bg-slate-800 active:scale-[0.98] dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100"
             >
-              Next
-              <ChevronRight size={16} aria-hidden="true" />
+              <RefreshCw size={15} aria-hidden="true" />
+              {flipped ? 'Show question' : 'Show answer'}
+            </button>
+            <button onClick={goNext} disabled={index === order.length - 1} aria-label="Next card" className={NAV_PILL_CLASS}>
+              <ChevronRight size={20} aria-hidden="true" />
             </button>
           </div>
 
@@ -597,9 +608,9 @@ export const Flashcards: React.FC<FlashcardsProps> = ({
                     e.stopPropagation();
                     handleGrade(grade);
                   }}
-                  className={`flex flex-col items-center gap-0.5 rounded-2xl px-1 py-2 text-xs font-semibold ring-1 ring-inset transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md active:scale-[0.98] sm:gap-1 sm:py-3.5 sm:text-sm ${tone}`}
+                  className={`flex flex-col items-center gap-0.5 rounded-2xl px-1 py-2.5 text-xs font-semibold ring-1 ring-inset transition-all duration-150 hover:shadow-md active:scale-[0.98] sm:gap-1 sm:py-3.5 sm:text-sm ${tone}`}
                 >
-                  <span>{label}</span>
+                  <span className="text-sm">{label}</span>
                   <span className="text-[10px] font-normal tabular-nums opacity-80">
                     {formatNextInterval(srs?.[card?.id ?? ''], grade)}
                   </span>
@@ -612,14 +623,14 @@ export const Flashcards: React.FC<FlashcardsProps> = ({
             <div className="grid grid-cols-2 gap-1.5 sm:gap-3">
               <button
                 onClick={handleGotIt}
-                className="flex items-center justify-center gap-2 rounded-2xl bg-emerald-600 py-2.5 text-sm font-semibold text-white shadow-sm shadow-emerald-600/20 transition-all duration-150 hover:-translate-y-0.5 hover:bg-emerald-700 active:scale-[0.98] sm:py-3.5"
+                className="flex items-center justify-center gap-2 rounded-2xl bg-emerald-600 py-3 text-sm font-semibold text-white shadow-sm shadow-emerald-600/20 transition-all duration-150 hover:bg-emerald-700 active:scale-[0.98] sm:py-3.5"
               >
                 <Check size={16} aria-hidden="true" />
                 Got it
               </button>
               <button
                 onClick={handleReviewAgain}
-                className="flex items-center justify-center gap-2 rounded-2xl bg-white/70 py-2.5 text-sm font-semibold text-amber-700 ring-1 ring-slate-900/10 backdrop-blur transition-all duration-150 hover:-translate-y-0.5 hover:bg-white active:scale-[0.98] dark:bg-slate-900/60 dark:text-amber-400 dark:ring-white/10 dark:hover:bg-slate-800 sm:py-3.5"
+                className="flex items-center justify-center gap-2 rounded-2xl bg-white py-3 text-sm font-semibold text-amber-700 ring-1 ring-slate-900/10 transition-all duration-150 hover:bg-amber-50 active:scale-[0.98] dark:bg-slate-900 dark:text-amber-400 dark:ring-white/10 dark:hover:bg-slate-800 sm:py-3.5"
               >
                 <RotateCcw size={16} aria-hidden="true" />
                 Review again
