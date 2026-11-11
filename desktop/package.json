@@ -1,7 +1,7 @@
 {
   "name": "bcbr-qbank-desktop",
   "productName": "BCBR QBank",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "BCBR QBank desktop app (offline quiz bank) built with Electron",
   "homepage": "https://github.com/aswanthwuhan/BCBR-QUIZ-APP",
   "repository": {
