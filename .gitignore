@@ -29,3 +29,4 @@ nul
 
 # Supabase CLI local state
 supabase/.temp/
+release/
