@@ -952,6 +952,12 @@ export default function App() {
   const loadLeaderboard = async () => {
     try {
       const res = await fetch('/api/leaderboard');
+      if (res.status === 401) {
+        // Login cookie expires after 24h while the app still looks logged in
+        alert("Your session expired. Please log in again to see the leaderboard.");
+        await handleLogout();
+        return;
+      }
       const ct = res.headers.get('content-type') || '';
       if (!res.ok || !ct.includes('application/json')) {
         const text = await res.text();
@@ -3020,7 +3026,7 @@ export default function App() {
         onExpand={() => setSupportModalCompact(false)}
         onSnooze={snoozeSupportPopup}
         onClose={closeSupportModal}
-        upiId={import.meta.env.VITE_SUPPORT_UPI_ID || "aswanthwuhan-2@okhdfcbank"}
+        upiId={import.meta.env.VITE_SUPPORT_UPI_ID || "aswanthwuhan-2@okicici"}
         payeeName={import.meta.env.VITE_SUPPORT_PAYEE_NAME || "Dr. Aswanth Krishnan"}
       />
     </div>
